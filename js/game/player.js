@@ -40,7 +40,6 @@ majorKey.src = "images/majorKey.png";
 var playerTouchingIndex = -1;
 var carryingBlock = false;
 var numberOfKeys = 0;
-var antsRescued = 0;
 
 var iceBolt = false;
 var iceBoltX = 0;
@@ -64,11 +63,8 @@ var camPanY = 0.0;
 const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X = 150;
 const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
 
-const GROUND_FRICTION = 0.8;
-const AIR_RESISTANCE = 0.8;
+const GROUND_FRICTION = 0.8; // What's this?
 const RUN_SPEED = 4.0;
-const JUMP_POWER = 13.0;
-const GRAVITY = 0.6;
 
 var jumperX = 75, jumperY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
@@ -189,7 +185,7 @@ function jumperMove() {
       iceBolt = false;
     }
   }
-
+// What's this?
  if(jumperOnGround) {
     jumperSpeedX *= GROUND_FRICTION;
   } else {
