@@ -1,6 +1,6 @@
 var m_grid = [];
-var m_cols = 20;
-var m_rows = 15;
+var m_cols = 16;
+var m_rows = 12;
 var m_tileTypeCount = 19;
 var m_tooltips = [
   "nothing",
@@ -57,22 +57,22 @@ function keyPressed(evt) {
 }
 
 var m_optionSelection = 0;
-var m_name = "level4a: green";
-var m_worldLoc = {x:4,y:0};
+var m_name = "level4e: green";
+var m_worldLoc = {x:4,y:4};
 
 var roomsToLoadColsW = 9
 var roomColors=["#a0a0a0","#808080","green","yellow","red","purple","brown","blue"];
 var roomsToLoad =
 //0 1 2 3 4 5 6 7 8
- [0,0,0,0,2,0,7,0,0, // a
-  0,0,3,2,2,2,3,0,0, // b
-  0,3,3,3,4,3,0,0,7, // c
-  0,3,3,7,4,3,3,3,7, // d
-  0,4,4,4,4,4,4,0,7, // e
-  7,0,7,0,0,4,0,7,7, // f
-  6,6,0,6,4,4,5,5,0, // g
-  0,6,6,6,0,5,5,5,0, // h
-  0,0,6,0,0,7,0,5,5  // i
+ [0,0,0,0,0,0,0,0,0, // a
+  0,0,0,0,0,0,0,0,0, // b
+  0,0,0,0,0,0,0,0,0, // c
+  0,0,0,0,3,0,0,0,0, // d
+  0,0,0,1,2,4,0,0,0, // e
+  0,0,0,0,5,0,0,0,0, // f
+  0,0,0,0,0,0,0,0,0, // g
+  0,0,0,0,0,0,0,0,0, // h
+  0,0,0,0,0,0,0,0,0  // i
   ];
 
 function loadLevelsBesidesFirstOne() {
@@ -82,9 +82,9 @@ function loadLevelsBesidesFirstOne() {
         continue;
       }
       var roomKind = roomsToLoad[eachC + eachR*roomsToLoadColsW];
-      /*if(roomKind == 0) {
+      if(roomKind == 0) {
         continue;
-      }*/
+      }
       var imported = document.createElement('script');
       // imported.onerror = noLevelHere;
       imported.src = 'levels/'+levelCRToFilename(eachC,eachR)+".js";

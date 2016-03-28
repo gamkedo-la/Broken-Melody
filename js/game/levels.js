@@ -87,28 +87,28 @@ var roomsDownR = 0;
 var roomsToLoadColsW = 9
 var roomsToLoad =
 //0 1 2 3 4 5 6 7 8
- [0,0,0,0,2,0,7,0,0, // a
-  0,0,3,2,2,2,3,0,0, // b
-  0,3,3,3,4,3,0,0,7, // c
-  0,3,3,7,4,3,3,3,7, // d
-  0,4,4,4,4,4,4,0,7, // e
-  7,0,7,0,0,4,0,7,7, // f
-  6,6,0,6,4,4,5,5,0, // g
-  0,6,6,6,0,5,5,5,0, // h
-  0,0,6,0,0,7,0,5,5  // i
+[0,0,0,0,0,0,0,0,0, // a
+  0,0,0,0,0,0,0,0,0, // b
+  0,0,0,0,0,0,0,0,0, // c
+  0,0,0,0,0,0,0,0,0, // d
+  0,0,0,0,2,0,0,0,0, // e
+  0,0,0,0,0,0,0,0,0, // f
+  0,0,0,0,0,0,0,0,0, // g
+  0,0,0,0,0,0,0,0,0, // h
+  0,0,0,0,0,0,0,0,0  // i
   ];
 
 var animFrame = 0;
 var cyclesTillAnimStep = 0;
 const FRAMES_BETWEEN_ANIM = 4;
 
-const BRICK_W = 60;
-const BRICK_H = 60;
+const BRICK_W = 50;
+const BRICK_H = 50;
 const BRICK_GAP = 1;
 // changed to var to support variable room size in level format, but kept as all
 // capitals (implying const) since they're not meant to be changed anywhere else
-var BRICK_COLS = 20;
-var BRICK_ROWS = 15;
+var BRICK_COLS = 16;
+var BRICK_ROWS = 12;
 
 const TILE_NONE = 0;
 const TILE_DIRT = 1;
@@ -195,18 +195,20 @@ function loadLevelsBesidesFirstOne() {
 	        // set this room as first to be in focus
         	roomsOverC = eachC;
 	        roomsDownR = eachR;
-	        return;
+	        continue;
             } // end of player start found
           } // end of row
         } // end of col
       }
       var roomKind = roomsToLoad[eachC + eachR*roomsToLoadColsW];
+      console.log(eachC + ", " + eachR + ": " + roomKind )
       if(roomKind == 0) {
         continue;
       }
       var imported = document.createElement('script');
       imported.onerror = noLevelHere;
       imported.src = 'levels/'+levelCRToFilename(eachC,eachR)+".js";
+      console.log(imported.src);
       document.head.appendChild(imported);
     }
   }

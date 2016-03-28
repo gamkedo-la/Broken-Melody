@@ -196,29 +196,30 @@ function jumperMove() {
   }
   
   // collision detection #TODO fine tune when player graphic is created
-  
-  if(jumperSpeedX < 0 && isTileHereSolid(jumperX-JUMPER_RADIUS,jumperY)) {
-    // jumperX = (Math.floor( jumperX / BRICK_W )) * BRICK_W + JUMPER_RADIUS;
-    jumperSpeedX = 0.0;
+  if(wall_clipping_cheat == false){
+    if(jumperSpeedX < 0 && isTileHereSolid(jumperX-JUMPER_RADIUS,jumperY)) {
+        // jumperX = (Math.floor( jumperX / BRICK_W )) * BRICK_W + JUMPER_RADIUS;
+        jumperSpeedX = 0.0;
+    }
+    if(jumperSpeedX > 0 && isTileHereSolid(jumperX+JUMPER_RADIUS,jumperY)) {
+        // jumperX = (1+Math.floor( jumperX / BRICK_W )) * BRICK_W - JUMPER_RADIUS;
+        jumperSpeedX = 0.0;
+    }
+    if(jumperSpeedY < 0 && isTileHereSolid(jumperX,jumperY-0.4*JUMPER_RADIUS)) {
+        // jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H + 0.4*JUMPER_RADIUS;
+        jumperSpeedY = 0.0;
+    }
+    if(jumperSpeedY > 0 && isTileHereSolid(jumperX,jumperY+0.8*JUMPER_RADIUS)) {
+        // jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H - 0.4*JUMPER_RADIUS;
+        jumperSpeedY = 0.0;
+    }
   }
-  if(jumperSpeedX > 0 && isTileHereSolid(jumperX+JUMPER_RADIUS,jumperY)) {
-    // jumperX = (1+Math.floor( jumperX / BRICK_W )) * BRICK_W - JUMPER_RADIUS;
-    jumperSpeedX = 0.0;
-  }
-  if(jumperSpeedY < 0 && isTileHereSolid(jumperX,jumperY-0.4*JUMPER_RADIUS)) {
-    // jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H + 0.4*JUMPER_RADIUS;
-    jumperSpeedY = 0.0;
-  }
-  if(jumperSpeedY > 0 && isTileHereSolid(jumperX,jumperY+0.8*JUMPER_RADIUS)) {
-    // jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H - 0.4*JUMPER_RADIUS;
-    jumperSpeedY = 0.0;
-  }
-  
 
   jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed
   jumperY += jumperSpeedY; // same as above, but for vertical
-
+  
   // checking whether both are positive values to avoid the death glitch of them not having been set above
+  if(wall_clipping_cheat == false){
   if(isTileHereSolid(jumperX,jumperY) && playerNonSolidX > 0 && playerNonSolidY > 0) {
     jumperX = playerNonSolidX;
     jumperY = playerNonSolidY;
@@ -226,7 +227,7 @@ function jumperMove() {
       jumperSpeedY = 0;
     }
   }
-
+ }
   checkIfChangingRooms();
 }
 

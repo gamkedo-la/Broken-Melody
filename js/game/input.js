@@ -12,6 +12,8 @@ const KEY_T = 84;
 const KEY_M = 77;
 const KEY_R = 82;
 
+var wall_clipping_cheat = false;
+
 var holdLeft = false;
 var holdRight = false;
 var holdUp = false;
@@ -49,11 +51,12 @@ function setKeyHoldState(thisKey, setTo) {
         timerDelay = 10;
     }
 
-    if (thisKey == KEY_SPACE) {
+    if (thisKey == KEY_SPACE && setTo) {
         if (gameGoing == false && isWinner == false) {
             gameGoing = true;
             // audio_music.play();
         }
+        wall_clipping_cheat = !wall_clipping_cheat;
     }
     if (thisKey == KEY_LEFT_ARROW || thisKey == KEY_A) {
         holdLeft = setTo;
