@@ -1,17 +1,6 @@
 var playerPic = document.createElement("img");
-playerPic.src = "images/playerAnt-sheet.png";
-var playerPicWizHat = document.createElement("img");
-playerPicWizHat.src = "images/playerAntWizHat.png";
-var playerPicArmor = document.createElement("img");
-playerPicArmor.src = "images/playerAntArmor.png";
-var playerPicCloakStill = document.createElement("img");
-playerPicCloakStill.src = "images/playerAntCloak.png";
-var playerPicCloak = document.createElement("img");
-playerPicCloak.src = "images/playerAntCloak-sheet.png";
-const CLOAK_FRAMES = 3;
-var iceBoltPic = document.createElement("img");
-iceBoltPic.src = "images/iceBoltAn.png";
-const ICE_FRAMES = 4;
+playerPic.src = "images/player-sheet.png";
+
 var shieldPic = document.createElement("img");
 shieldPic.src = "images/shield.png";
 var playerSwordPic = document.createElement("img");
@@ -68,26 +57,17 @@ const RUN_SPEED = 4.0;
 
 var jumperX = 75, jumperY = 75;
 var jumperSpeedX = 0, jumperSpeedY = 0;
-var jumperOnGround = false;
-var recentJump = 0;
+
 var JUMPER_RADIUS = 16;
 const START_HEALTH = 3;
 var health = START_HEALTH;
 var damagedRecentely = 0;
-
-const playerNormal = 0
-const playerWiz = 1
-const playerArmor = 2
-const playerCloak = 3
-
-var playerState = playerNormal
 
 var startedRoomAtX = 0;
 var startedRoomAtY = 0;
 var startedRoomAtXV = 0;
 var startedRoomAtYV = 0;
 var startedRoomKeys = 0;
-var startedRoomPower = playerNormal;
 var roomAsItStarted = [];
 var enemiesWhenRoomStarted = [];
 var blockCarryOnEnter = false;
@@ -134,15 +114,6 @@ function drawShield () {
     shieldX = jumperX;
     shieldY = jumperY;
   }
-
-  if (playerState == playerArmor) {
-    if (shieldFacingLeft) {
-      drawFacingLeftOption(shieldPic,shieldX -5,shieldY + JUMPER_RADIUS, shieldFacingLeft);
-    } else {
-      drawFacingLeftOption(shieldPic,shieldX +5,shieldY + JUMPER_RADIUS, shieldFacingLeft);
-    }
-
-  }
 }
 
 function drawHealthHud() {
@@ -174,27 +145,9 @@ function jumperMove() {
     return;
   }
 
-  if(iceBolt) {
-    if (whichBrickAtPixelCoord(iceBoltX, iceBoltY, false) == TILE_ICE) {
-      iceBolt = false;
-      brickGrid[whichIndexAtPixelCoord(iceBoltX, iceBoltY)] = TILE_NONE;
-    }
-
-    if (whichBrickAtPixelCoord(iceBoltX, iceBoltY, false) != TILE_NONE &&
-        whichBrickAtPixelCoord(iceBoltX, iceBoltY, false) != TILE_PORTAL) {
-      iceBolt = false;
-    }
-  }
-// What's this?
- if(jumperOnGround) {
-    jumperSpeedX *= GROUND_FRICTION;
-  } else {
-    jumperSpeedX *= AIR_RESISTANCE;
-    jumperSpeedY += GRAVITY;
-    if(jumperSpeedY > JUMPER_RADIUS) { // cheap test to ensure can't fall through floor
-      jumperSpeedY = JUMPER_RADIUS;
-    }
-  }
+  
+  jumperSpeedX *= GROUND_FRICTION;
+  jumperSpeedY *= GROUND_FRICTION;
 
 
   if(holdLeft) {
@@ -202,6 +155,12 @@ function jumperMove() {
   }
   if(holdRight) {
     jumperSpeedX = RUN_SPEED;
+  }
+  if(holdUp) {
+    jumperSpeedY = -RUN_SPEED;
+  }
+  if(holdDown) {
+    jumperSpeedY = RUN_SPEED;
   }
 
     // is player center not inside a brick prior to move? if so save it to restore after move
@@ -212,55 +171,7 @@ function jumperMove() {
 
   playerTouchingIndex = -1;
 
-  if(jumperSpeedY < 0 && isTileHereSolid(jumperX,jumperY-0.4*JUMPER_RADIUS)) {
-    jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H + 0.4*JUMPER_RADIUS;
-    jumperSpeedY = 0.0;
-  }
-
-  if(recentJump>0 ) {
-    recentJump--;
-    jumperOnGround = false;
-  } else if(isTileHereSolid(jumperX,jumperY+JUMPER_RADIUS)) {
-    jumperY = (1+Math.floor( jumperY / BRICK_H )) * BRICK_H - JUMPER_RADIUS;
-    jumperOnGround = true;
-    jumperSpeedY = 0;
-  } else if(isTileHereSolid(jumperX,jumperY+JUMPER_RADIUS+2) == false) {
-    jumperOnGround = false;
-  }
-
-  if(whichBrickAtPixelCoord(jumperX,jumperY+JUMPER_RADIUS,true) == TILE_SPIKES) {
-    if (playerState == playerCloak && abilityCoolDown > 40) {
-
-    } else {
-      if (playerState != playerArmor) {
-          health --;
-      }
-      playerState = playerNormal
-    }
-  }
-
-  if(whichBrickAtPixelCoord(jumperX,jumperY+JUMPER_RADIUS,true) == TILE_CRUMBLE) {
-    brickGrid[whichIndexAtPixelCoord(jumperX, jumperY + JUMPER_RADIUS)] = -CRUMBLE_FRAME_TIME;
-  }
-
-  if (isBlockPickup(TILE_WIZ_HAT)) {
-    playerState = playerWiz;
-  }
-  if (isBlockPickup(TILE_ARMOR)) {
-    playerState = playerArmor;
-  }
-  if (isBlockPickup(TILE_CLOAK)) {
-    playerState = playerCloak;
-  }
-  if (isBlockPickup(TILE_ARMOR)) {
-    playerState = playerArmor;
-  }
-  if (isBlockPickup(TILE_CLOAK)) {
-    playerState = playerCloak;
-  }
-  if (isBlockPickup(TILE_FRIENDLY_ANT)) {
-    antsRescued ++;
-  }
+  
   if (isBlockPickup(TILE_HEALTH)) {
     if (health < 3) {
       health ++;
@@ -279,34 +190,30 @@ function jumperMove() {
   if (isBlockPickup(TILE_MAP)) {
     hasMap = true;
   }
-
-  if (isBlockPickup(TILE_GOLD_KEY)) {
-    hasGoldKey = true;
-  }
-  if (hasGoldKey) {
-    if (isBlockPickup(TILE_GOLD_DOOR)) {
-      hasGoldKey = false;
-    }
-  }
-
+  
   if (isBlockPickup(TILE_SWORD)) {
     hasSword = true;
   }
-
-  if(whichBrickAtPixelCoord(jumperX,jumperY+JUMPER_RADIUS,true) == TILE_WEAKPOINT) {
-    if (wasStabbed == false && hasSword == true) {
-      jumperStoreRoomEntry();
-      wasStabbed = true;
-      hasSword = false;
-    }
-  }
-
+  
+  // collision detection #TODO fine tune when player graphic is created
+  
   if(jumperSpeedX < 0 && isTileHereSolid(jumperX-JUMPER_RADIUS,jumperY)) {
-    jumperX = (Math.floor( jumperX / BRICK_W )) * BRICK_W + JUMPER_RADIUS;
+    // jumperX = (Math.floor( jumperX / BRICK_W )) * BRICK_W + JUMPER_RADIUS;
+    jumperSpeedX = 0.0;
   }
   if(jumperSpeedX > 0 && isTileHereSolid(jumperX+JUMPER_RADIUS,jumperY)) {
-    jumperX = (1+Math.floor( jumperX / BRICK_W )) * BRICK_W - JUMPER_RADIUS;
+    // jumperX = (1+Math.floor( jumperX / BRICK_W )) * BRICK_W - JUMPER_RADIUS;
+    jumperSpeedX = 0.0;
   }
+  if(jumperSpeedY < 0 && isTileHereSolid(jumperX,jumperY-0.4*JUMPER_RADIUS)) {
+    // jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H + 0.4*JUMPER_RADIUS;
+    jumperSpeedY = 0.0;
+  }
+  if(jumperSpeedY > 0 && isTileHereSolid(jumperX,jumperY+0.8*JUMPER_RADIUS)) {
+    // jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H - 0.4*JUMPER_RADIUS;
+    jumperSpeedY = 0.0;
+  }
+  
 
   jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed
   jumperY += jumperSpeedY; // same as above, but for vertical
@@ -379,7 +286,6 @@ function jumperRestoreFromStoredRoomEntry() {
   }
   // enemyList = enemiesWhenRoomStarted.slice(0);
   processBrickGrid();
-  playerState = startedRoomPower;
   carryingBlock = blockCarryOnEnter;
   damagedRecentely = 0;
   health = START_HEALTH;
@@ -417,9 +323,7 @@ function jumperStoreRoomEntry() {
 
   enemiesWhenRoomStarted = JSON.stringify(enemyListDataOnly); // deep copy needed for positions etc.
   // enemiesWhenRoomStarted = enemyList.slice(0);
-  blockCarryOnEnter = carryingBlock;
   startedRoomKeys = numberOfKeys;
-  startedRoomPower = playerState;
   startedRoomAtX = jumperX;
   startedRoomAtY = jumperY;
   startedRoomAtXV = jumperSpeedX;
@@ -484,29 +388,18 @@ function hitDetection (enemyX, enemyY) {
   }
   if (enemyX > jumperX - JUMPER_RADIUS && enemyX < jumperX + JUMPER_RADIUS) {
     if (enemyY > jumperY - JUMPER_RADIUS && enemyY < jumperY + JUMPER_RADIUS) {
-      if (playerState != playerArmor) {
-          health --;
-      }
-      playerState = playerNormal
+      health --;
       damagedRecentely = 50;
     }
   }
 }
 
-
-
 function drawJumper() {
 
-  if ( playerIsDead() ) {
+  if (playerIsDead()) {
     return;
   }
-
-  if(iceBolt == true) {
-    var iceFrame = animFrame % ICE_FRAMES
-    drawFacingLeftOption(iceBoltPic,iceBoltX,iceBoltY, iceFacingLeft, iceFrame);
-    iceBoltX += iceBoltSpeed;
-  }
-
+  
   var antFrame;
   var isMoving = Math.abs(jumperSpeedX)>1;
   if (isMoving) {
@@ -516,36 +409,8 @@ function drawJumper() {
   }
   drawFacingLeftOption(playerPic,jumperX,jumperY,lastFacingLeft, antFrame);
 
-  if (playerState == playerWiz) {
-    drawFacingLeftOption(playerPicWizHat,jumperX,jumperY,lastFacingLeft);
-  }
-  if (playerState == playerArmor) {
-    drawFacingLeftOption(playerPicArmor,jumperX,jumperY,lastFacingLeft);
-  }
-  if (playerState == playerCloak) {
-    if(isMoving == false) { // flap if falling, too
-      isMoving = Math.abs(jumperSpeedY)>1;
-    }
-    if(isMoving) {
-      drawFacingLeftOption(playerPicCloak,jumperX,jumperY,lastFacingLeft, animFrame % CLOAK_FRAMES);
-    } else {
-      drawFacingLeftOption(playerPicCloakStill,jumperX,jumperY,lastFacingLeft, 0);
-    }
-  }
-
-  if (hasSword) {
+  if (hasSword) {  
     drawFacingLeftOption(playerSwordPic,jumperX,jumperY,lastFacingLeft);
-  }
-
-  if(carryingBlock) {
-    if (roomsOverC == 4 && roomsDownR == 2) {
-      canvasContext.drawImage(tileCrownPic,jumperX - BRICK_W*0.5,
-        jumperY - JUMPER_RADIUS-BRICK_H*0.7);
-    } else {
-      canvasContext.drawImage(tileMovePic,jumperX - BRICK_W*0.5,
-        jumperY - JUMPER_RADIUS-BRICK_H*0.7);
-    }
-
   }
 }
 

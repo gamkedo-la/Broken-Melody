@@ -56,7 +56,7 @@ window.onload = function() {
   loadLevelsBesidesFirstOne();
 
   loadLevel(); // load stage for game's location in the overall world grid
-  // loadLevel(loadedLevelJSON); // uncomment to test hand-coded/added stage in levels.js
+//   loadLevel(loadedLevelJSON); // uncomment to test hand-coded/added stage in levels.js
 
   jumperReset(); // only calling this for first room player starts in
   // enemyPlacementFly();
@@ -88,8 +88,6 @@ window.onload = function() {
           canvasContext.fillStyle = 'Green';
           canvasContext.fillText("Total Time:" ,400, 240);
           canvasContext.fillText(timeH + ":" + timeM + ":" + timeS ,400, 260);
-          canvasContext.fillText("Total Ants Saved:" ,400, 300);
-          canvasContext.fillText(antsRescued ,490, 300);
           canvasContext.fillText("Bonuse Keys:" ,400, 340);
           canvasContext.fillText(numberOfKeys ,480, 340);
         } else {
@@ -172,39 +170,7 @@ function drawEverything() {
 
   drawHealthHud();
 
-
-  if (playerState == playerWiz) {
-      canvasContext.drawImage(tileWizHatPic,200,-10);
-
-      if (tutorialTimerWiz < 200) {
-        canvasContext.fillStyle = 'white';
-        canvasContext.fillText("space bar - shoot an ice bolt that freezes enemies",jumperX - camPanX -120, jumperY -20 - camPanY);
-        tutorialTimerWiz ++;
-      }
-  }
-  if (playerState == playerArmor) {
-      canvasContext.drawImage(tileArmorPic,200,0);
-
-      if (tutorialTimerArmor < 200) {
-        canvasContext.fillStyle = 'white';
-        canvasContext.fillText("space bar - Shield bash enemies or crumble blocks",jumperX - camPanX -120, jumperY -20 - camPanY);
-        tutorialTimerArmor ++;
-      }
-  }
-  if (playerState == playerCloak) {
-      canvasContext.drawImage(tileCloakPic,200,0);
-
-
-      if (tutorialTimerCloak < 200) {
-        canvasContext.fillStyle = 'white';
-        canvasContext.fillText("space bar - quick dash over gaps or through spikes",jumperX - camPanX -120, jumperY -20 - camPanY);
-        tutorialTimerCloak ++;
-      }
-  }
-
   canvasContext.fillStyle = 'white';
-  canvasContext.fillText(antsRescued + ":",734, 58);
-  canvasContext.drawImage(rescuedHudPic,740,0)
 
   if (timerDelay > 0) {
     timerDelay --;

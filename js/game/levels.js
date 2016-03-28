@@ -83,6 +83,7 @@ var hasSword = false;
 var roomsOverC = 4;
 var roomsDownR = 0;
 
+// room biome, rooms labeled 0 don't get loaded
 var roomsToLoadColsW = 9
 var roomsToLoad =
 //0 1 2 3 4 5 6 7 8
@@ -137,11 +138,7 @@ const TILE_WEAKPOINT = 23;
 
 function isTileHereSolid(atX,atY) {
   var tileKindAt = whichBrickAtPixelCoord(atX,atY,true);
-  if (playerState == playerCloak && abilityCoolDown > 40) {
-    return (tileKindAt != TILE_NONE && tileKindAt != TILE_PORTAL && tileKindAt != TILE_TORCH  && tileKindAt != TILE_SPIKES);
-  } else {
-    return (tileKindAt != TILE_NONE && tileKindAt != TILE_PORTAL && tileKindAt != TILE_TORCH);
-  }
+  return (tileKindAt != TILE_NONE && tileKindAt != TILE_PORTAL && tileKindAt != TILE_TORCH);
 }
 
 function isTileHereWalkOnAble(atX,atY) {
@@ -203,15 +200,14 @@ function loadLevelsBesidesFirstOne() {
           } // end of row
         } // end of col
       }
-      /* var roomKind = roomsToLoad[eachC + eachR*roomsToLoadColsW];
+      var roomKind = roomsToLoad[eachC + eachR*roomsToLoadColsW];
       if(roomKind == 0) {
         continue;
       }
       var imported = document.createElement('script');
       imported.onerror = noLevelHere;
       imported.src = 'levels/'+levelCRToFilename(eachC,eachR)+".js";
-      document.head.appendChild(imported);*/
-	// now all merged in allmaps.js for speedier load
+      document.head.appendChild(imported);
     }
   }
 }
@@ -222,7 +218,7 @@ function loadLevel(fromJSON) { // if no test stage argument, load from world gri
     fromJSON = window[loadingRoomName];
 
     if(fromJSON == undefined) {
-      console.log(loadingRoomName + "room not defined or found, cannot open it");
+      console.log(loadingRoomName + " room not defined or found, cannot open it");
       return false; // level not found for this coord
     }
   }
