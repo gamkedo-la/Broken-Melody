@@ -228,7 +228,7 @@ function loadLevel(fromJSON) { // if no test stage argument, load from world gri
   BRICK_ROWS = fromJSON.rows;
   brickGrid = fromJSON.gridspaces;
 
-  jumperStoreRoomEntry();
+  playerStoreRoomEntry();
   processBrickGrid();
 
   return true;
@@ -275,7 +275,7 @@ function whichIndexAtPixelCoord(hitPixelX, hitPixelY, forPlayer) {
   tileCol = Math.floor( tileCol );
   tileRow = Math.floor( tileRow );
 
-  // first check whether the jumper is within any part of the brick wall
+  // first check whether the player is within any part of the brick wall
   if(tileCol < 0 || tileCol >= BRICK_COLS ||
      tileRow < 0 || tileRow >= BRICK_ROWS) {
      return -1;

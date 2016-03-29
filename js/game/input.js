@@ -35,7 +35,7 @@ function setKeyHoldState(thisKey, setTo) {
 
     if (thisKey == KEY_R && resetTimer == 0) {
         resetTimer = 30;
-        jumperRestoreFromStoredRoomEntry();
+        playerRestoreFromStoredRoomEntry();
         audio_music.currentTime = 0;
         audio_music.play();
         return; // block other keys

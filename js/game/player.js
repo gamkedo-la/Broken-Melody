@@ -55,10 +55,10 @@ const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
 const GROUND_FRICTION = 0.8; // What's this?
 const RUN_SPEED = 4.0;
 
-var jumperX = 75, jumperY = 75;
-var jumperSpeedX = 0, jumperSpeedY = 0;
+var playerX = 75, playerY = 75;
+var playerSpeedX = 0, playerSpeedY = 0;
 
-var JUMPER_RADIUS = 16;
+var player_RADIUS = 16;
 const START_HEALTH = 3;
 var health = START_HEALTH;
 var damagedRecentely = 0;
@@ -78,20 +78,20 @@ var mapDotY = 0;
 var hasGoldKey = false;
 
 function isBlockPickup (tileType) {
-  if (whichBrickAtPixelCoord(jumperX,jumperY+JUMPER_RADIUS,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(jumperX, jumperY + JUMPER_RADIUS)] = TILE_NONE;
+  if (whichBrickAtPixelCoord(playerX,playerY+player_RADIUS,true) == tileType) {
+    brickGrid[whichIndexAtPixelCoord(playerX, playerY + player_RADIUS)] = TILE_NONE;
     return true;
   }
-  if (whichBrickAtPixelCoord(jumperX,jumperY-JUMPER_RADIUS,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(jumperX, jumperY - JUMPER_RADIUS)] = TILE_NONE;
+  if (whichBrickAtPixelCoord(playerX,playerY-player_RADIUS,true) == tileType) {
+    brickGrid[whichIndexAtPixelCoord(playerX, playerY - player_RADIUS)] = TILE_NONE;
     return true;
   }
-  if (whichBrickAtPixelCoord(jumperX + JUMPER_RADIUS,jumperY,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(jumperX + JUMPER_RADIUS, jumperY)] = TILE_NONE;
+  if (whichBrickAtPixelCoord(playerX + player_RADIUS,playerY,true) == tileType) {
+    brickGrid[whichIndexAtPixelCoord(playerX + player_RADIUS, playerY)] = TILE_NONE;
     return true;
   }
-  if (whichBrickAtPixelCoord(jumperX - JUMPER_RADIUS,jumperY,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(jumperX - JUMPER_RADIUS, jumperY)] = TILE_NONE;
+  if (whichBrickAtPixelCoord(playerX - player_RADIUS,playerY,true) == tileType) {
+    brickGrid[whichIndexAtPixelCoord(playerX - player_RADIUS, playerY)] = TILE_NONE;
     return true;
   }
 }
@@ -99,8 +99,8 @@ function isBlockPickup (tileType) {
 function drawShield () {
   if (isBashing) {
     bashTimer --;
-    shieldX = jumperX + 8*(5-Math.abs(bashTimer-5)) * (shieldFacingLeft ? -1 : 1);
-    shieldY = jumperY;
+    shieldX = playerX + 8*(5-Math.abs(bashTimer-5)) * (shieldFacingLeft ? -1 : 1);
+    shieldY = playerY;
     if (bashTimer <0){
       isBashing = false;
       bashTimer = 10;
@@ -111,8 +111,8 @@ function drawShield () {
     }
 
   } else {
-    shieldX = jumperX;
-    shieldY = jumperY;
+    shieldX = playerX;
+    shieldY = playerY;
   }
 }
 
@@ -135,38 +135,38 @@ function playerIsDead() {
   return (health <= 0);
 }
 
-function jumperMove() {
+function playerMove() {
   // used for returning player to valid position if bugged through wall
   var playerNonSolidX = -1;
   var playerNonSolidY = -1;
 
   if ( playerIsDead() ) {
-    jumperSpeedX = 0;
+    playerSpeedX = 0;
     return;
   }
 
   
-  jumperSpeedX *= GROUND_FRICTION;
-  jumperSpeedY *= GROUND_FRICTION;
+  playerSpeedX *= GROUND_FRICTION;
+  playerSpeedY *= GROUND_FRICTION;
 
 
   if(holdLeft) {
-    jumperSpeedX = -RUN_SPEED;
+    playerSpeedX = -RUN_SPEED;
   }
   if(holdRight) {
-    jumperSpeedX = RUN_SPEED;
+    playerSpeedX = RUN_SPEED;
   }
   if(holdUp) {
-    jumperSpeedY = -RUN_SPEED;
+    playerSpeedY = -RUN_SPEED;
   }
   if(holdDown) {
-    jumperSpeedY = RUN_SPEED;
+    playerSpeedY = RUN_SPEED;
   }
 
     // is player center not inside a brick prior to move? if so save it to restore after move
-  if(isTileHereSolid(jumperX,jumperY) == false) {
-    playerNonSolidX = jumperX;
-    playerNonSolidY = jumperY;
+  if(isTileHereSolid(playerX,playerY) == false) {
+    playerNonSolidX = playerX;
+    playerNonSolidY = playerY;
   }
 
   playerTouchingIndex = -1;
@@ -197,34 +197,34 @@ function jumperMove() {
   
   // collision detection #TODO fine tune when player graphic is created
   if(wall_clipping_cheat == false){
-    if(jumperSpeedX < 0 && isTileHereSolid(jumperX-JUMPER_RADIUS,jumperY)) {
-        // jumperX = (Math.floor( jumperX / BRICK_W )) * BRICK_W + JUMPER_RADIUS;
-        jumperSpeedX = 0.0;
+    if(playerSpeedX < 0 && isTileHereSolid(playerX-player_RADIUS,playerY)) {
+        // playerX = (Math.floor( playerX / BRICK_W )) * BRICK_W + player_RADIUS;
+        playerSpeedX = 0.0;
     }
-    if(jumperSpeedX > 0 && isTileHereSolid(jumperX+JUMPER_RADIUS,jumperY)) {
-        // jumperX = (1+Math.floor( jumperX / BRICK_W )) * BRICK_W - JUMPER_RADIUS;
-        jumperSpeedX = 0.0;
+    if(playerSpeedX > 0 && isTileHereSolid(playerX+player_RADIUS,playerY)) {
+        // playerX = (1+Math.floor( playerX / BRICK_W )) * BRICK_W - player_RADIUS;
+        playerSpeedX = 0.0;
     }
-    if(jumperSpeedY < 0 && isTileHereSolid(jumperX,jumperY-0.4*JUMPER_RADIUS)) {
-        // jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H + 0.4*JUMPER_RADIUS;
-        jumperSpeedY = 0.0;
+    if(playerSpeedY < 0 && isTileHereSolid(playerX,playerY-0.4*player_RADIUS)) {
+        // playerY = (Math.floor( playerY / BRICK_H )) * BRICK_H + 0.4*player_RADIUS;
+        playerSpeedY = 0.0;
     }
-    if(jumperSpeedY > 0 && isTileHereSolid(jumperX,jumperY+0.8*JUMPER_RADIUS)) {
-        // jumperY = (Math.floor( jumperY / BRICK_H )) * BRICK_H - 0.4*JUMPER_RADIUS;
-        jumperSpeedY = 0.0;
+    if(playerSpeedY > 0 && isTileHereSolid(playerX,playerY+0.8*player_RADIUS)) {
+        // playerY = (Math.floor( playerY / BRICK_H )) * BRICK_H - 0.4*player_RADIUS;
+        playerSpeedY = 0.0;
     }
   }
 
-  jumperX += jumperSpeedX; // move the jumper based on its current horizontal speed
-  jumperY += jumperSpeedY; // same as above, but for vertical
+  playerX += playerSpeedX; // move the player based on its current horizontal speed
+  playerY += playerSpeedY; // same as above, but for vertical
   
   // checking whether both are positive values to avoid the death glitch of them not having been set above
   if(wall_clipping_cheat == false){
-  if(isTileHereSolid(jumperX,jumperY) && playerNonSolidX > 0 && playerNonSolidY > 0) {
-    jumperX = playerNonSolidX;
-    jumperY = playerNonSolidY;
-    if(jumperSpeedY < 0) { // banged head?
-      jumperSpeedY = 0;
+  if(isTileHereSolid(playerX,playerY) && playerNonSolidX > 0 && playerNonSolidY > 0) {
+    playerX = playerNonSolidX;
+    playerY = playerNonSolidY;
+    if(playerSpeedY < 0) { // banged head?
+      playerSpeedY = 0;
     }
   }
  }
@@ -235,42 +235,42 @@ function checkIfChangingRooms() {
   // saving these in case we need to reverse due to non-existing level
   var wasROC = roomsOverC;
   var wasRDR = roomsDownR;
-  var wasJX = jumperX;
-  var wasJY = jumperY;
+  var wasJX = playerX;
+  var wasJY = playerY;
 
   var tryToReloadLevel = false;
   // edge of world checking to change rooms:
-  if(jumperX < BRICK_W/2) {
+  if(playerX < BRICK_W/2) {
     roomsOverC--;
-    jumperX = (BRICK_COLS-1)*BRICK_W;
+    playerX = (BRICK_COLS-1)*BRICK_W;
     tryToReloadLevel = true;
   }
-  if(jumperX > (BRICK_COLS-1)*BRICK_W+BRICK_W/2) {
+  if(playerX > (BRICK_COLS-1)*BRICK_W+BRICK_W/2) {
     roomsOverC++;
-    jumperX = BRICK_W;
+    playerX = BRICK_W;
     tryToReloadLevel = true;
   }
-  if(jumperY < BRICK_H/4 && jumperSpeedY<0) {
+  if(playerY < BRICK_H/4 && playerSpeedY<0) {
     roomsDownR--;
-    jumperY = (BRICK_ROWS-1)*BRICK_H-BRICK_H/2;
+    playerY = (BRICK_ROWS-1)*BRICK_H-BRICK_H/2;
     tryToReloadLevel = true;
   }
-  if(jumperY > (BRICK_ROWS-1)*BRICK_H+BRICK_H/2 && jumperSpeedY>0) {
+  if(playerY > (BRICK_ROWS-1)*BRICK_H+BRICK_H/2 && playerSpeedY>0) {
     roomsDownR++;
-    jumperY = BRICK_H/2;
+    playerY = BRICK_H/2;
     tryToReloadLevel = true;
   }
   if( tryToReloadLevel ) {
     if( loadLevel() == false ) {  // didn't exist, womp womp, undo shift
      roomsOverC = wasROC;
      roomsDownR = wasRDR;
-     jumperX = wasJX;
-     jumperY = wasJY;
+     playerX = wasJX;
+     playerY = wasJY;
     }
   }
 }
 
-function jumperRestoreFromStoredRoomEntry() {
+function playerRestoreFromStoredRoomEntry() {
   holdRight = holdLeft = false; // hacky fix to interrupt incorrect key held state after level reload
   if (wasStabbed) {
 
@@ -291,11 +291,11 @@ function jumperRestoreFromStoredRoomEntry() {
   damagedRecentely = 0;
   health = START_HEALTH;
   numberOfKeys = startedRoomKeys;
-  jumperX = startedRoomAtX;
-  jumperY = startedRoomAtY;
-  jumperSpeedX = startedRoomAtXV;
-  lastFacingLeft = jumperSpeedX < 0;
-  jumperSpeedY = startedRoomAtYV;
+  playerX = startedRoomAtX;
+  playerY = startedRoomAtY;
+  playerSpeedX = startedRoomAtXV;
+  lastFacingLeft = playerSpeedX < 0;
+  playerSpeedY = startedRoomAtYV;
   countdown = 0;
   timeSCD = 00;
   timeMCD = 2;
@@ -303,7 +303,7 @@ function jumperRestoreFromStoredRoomEntry() {
   wobble = 1;
 }
 
-function jumperStoreRoomEntry() {
+function playerStoreRoomEntry() {
   var loadingRoomName = levelCRToFilename(roomsOverC,roomsDownR);
   roomAsItStarted = window[loadingRoomName].gridspaces.slice(0);
   enemyListDataOnly = [];
@@ -325,23 +325,23 @@ function jumperStoreRoomEntry() {
   enemiesWhenRoomStarted = JSON.stringify(enemyListDataOnly); // deep copy needed for positions etc.
   // enemiesWhenRoomStarted = enemyList.slice(0);
   startedRoomKeys = numberOfKeys;
-  startedRoomAtX = jumperX;
-  startedRoomAtY = jumperY;
-  startedRoomAtXV = jumperSpeedX;
-  startedRoomAtYV = jumperSpeedY;
+  startedRoomAtX = playerX;
+  startedRoomAtY = playerY;
+  startedRoomAtXV = playerSpeedX;
+  startedRoomAtYV = playerSpeedY;
 }
 
-function jumperReset() {
+function playerReset() {
   for(var eachCol=0; eachCol<BRICK_COLS; eachCol++) {
     for(var eachRow=0; eachRow<BRICK_ROWS; eachRow++) {
 
       if( whichBrickAtTileCoord(eachCol, eachRow) == TILE_PLAYERSTART) {
-        jumperX = eachCol * BRICK_W + BRICK_W/2;
-        jumperY = eachRow * BRICK_H + BRICK_H/2;
+        playerX = eachCol * BRICK_W + BRICK_W/2;
+        playerY = eachRow * BRICK_H + BRICK_H/2;
         var changeAt = brickTileToIndex(eachCol, eachRow);
         brickGrid[changeAt] = TILE_NONE; // remove tile where player started
-        jumperSpeedY = jumperSpeedX = 0;
-        jumperStoreRoomEntry();
+        playerSpeedY = playerSpeedX = 0;
+        playerStoreRoomEntry();
       } // end of player start found
     } // end of row
   } // end of col
@@ -387,55 +387,55 @@ function hitDetection (enemyX, enemyY) {
   if (damagedRecentely > 0 || playerIsDead() || wasStabbed ) {
     return;
   }
-  if (enemyX > jumperX - JUMPER_RADIUS && enemyX < jumperX + JUMPER_RADIUS) {
-    if (enemyY > jumperY - JUMPER_RADIUS && enemyY < jumperY + JUMPER_RADIUS) {
+  if (enemyX > playerX - player_RADIUS && enemyX < playerX + player_RADIUS) {
+    if (enemyY > playerY - player_RADIUS && enemyY < playerY + player_RADIUS) {
       health --;
       damagedRecentely = 50;
     }
   }
 }
 
-function drawJumper() {
+function drawplayer() {
 
   if (playerIsDead()) {
     return;
   }
   
   var antFrame;
-  var isMoving = Math.abs(jumperSpeedX)>1;
+  var isMoving = Math.abs(playerSpeedX)>1;
   if (isMoving) {
     antFrame = animFrame % ANT_RUN_FRAMES;
   } else {
     antFrame = 0;
   }
-  drawFacingLeftOption(playerPic,jumperX,jumperY,lastFacingLeft, antFrame);
+  drawFacingLeftOption(playerPic,playerX,playerY,lastFacingLeft, antFrame);
 
   if (hasSword) {  
-    drawFacingLeftOption(playerSwordPic,jumperX,jumperY,lastFacingLeft);
+    drawFacingLeftOption(playerSwordPic,playerX,playerY,lastFacingLeft);
   }
 }
 
 function instantCamFollow() {
-  camPanX = jumperX - canvas.width/2;
-  camPanY = jumperY - canvas.height/2;
+  camPanX = playerX - canvas.width/2;
+  camPanY = playerY - canvas.height/2;
 }
 
 function cameraFollow() {
   var cameraFocusCenterX = camPanX + canvas.width/2;
   var cameraFocusCenterY = camPanY + canvas.height/2;
 
-  var playerDistFromCameraFocusX = Math.abs(jumperX-cameraFocusCenterX);
-  var playerDistFromCameraFocusY = Math.abs(jumperY-cameraFocusCenterY);
+  var playerDistFromCameraFocusX = Math.abs(playerX-cameraFocusCenterX);
+  var playerDistFromCameraFocusY = Math.abs(playerY-cameraFocusCenterY);
 
   if(playerDistFromCameraFocusX > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X) {
-    if(cameraFocusCenterX < jumperX)  {
+    if(cameraFocusCenterX < playerX)  {
       camPanX += RUN_SPEED;
     } else {
       camPanX -= RUN_SPEED;
     }
   }
   if(playerDistFromCameraFocusY > PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y) {
-    if(cameraFocusCenterY < jumperY)  {
+    if(cameraFocusCenterY < playerY)  {
       camPanY += RUN_SPEED;
     } else {
       camPanY -= RUN_SPEED;

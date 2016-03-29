@@ -37,7 +37,7 @@ function updateTime () {
     }
     if (timeSCD == 0) {
       if (timeMCD == 0) {
-        jumperRestoreFromStoredRoomEntry();
+        playerRestoreFromStoredRoomEntry();
       } else {
         timeSCD = 59;
         timeMCD --;
@@ -58,7 +58,7 @@ window.onload = function() {
   loadLevel(); // load stage for game's location in the overall world grid
 //   loadLevel(loadedLevelJSON); // uncomment to test hand-coded/added stage in levels.js
 
-  jumperReset(); // only calling this for first room player starts in
+  playerReset(); // only calling this for first room player starts in
   // enemyPlacementFly();
   // enemyPlacementAnt();
 
@@ -75,7 +75,7 @@ window.onload = function() {
           canvasContext.drawImage(deadScreen, 0, 0);
         }
 
-        if (roomsOverC == 4 && roomsDownR == 0 && jumperY < 240 && wasStabbed == true) {
+        if (roomsOverC == 4 && roomsDownR == 0 && playerY < 240 && wasStabbed == true) {
           isWinner = true;
           gameGoing = false;
           audio_music.pause()
@@ -99,7 +99,7 @@ window.onload = function() {
 
 function moveEverything() {
   if(health > 0) {
-    jumperMove();
+    playerMove();
   }
   cameraFollow();
   if (abilityCoolDown > 0) {
@@ -162,7 +162,7 @@ function drawEverything() {
 
   drawIceOverlay();
 
-  drawJumper();
+  drawplayer();
 
   drawShield();
 
@@ -178,7 +178,7 @@ function drawEverything() {
 
   if (hasMap && tutorialTimerMap < 200) {
     canvasContext.fillStyle = 'white';
-    canvasContext.fillText("Press M to bring up the Map",jumperX - camPanX -60, jumperY -20 - camPanY);
+    canvasContext.fillText("Press M to bring up the Map",playerX - camPanX -60, playerY -20 - camPanY);
     tutorialTimerMap ++;
   }
   if (showMap) {
@@ -216,7 +216,7 @@ function drawEverything() {
 
   if (damagedRecentely > 0) {
     canvasContext.fillStyle = 'white';
-    canvasContext.fillText("Ow",jumperX - camPanX -5, jumperY - camPanY + (damagedRecentely/5  ));
+    canvasContext.fillText("Ow",playerX - camPanX -5, playerY - camPanY + (damagedRecentely/5  ));
   }
 
 }
