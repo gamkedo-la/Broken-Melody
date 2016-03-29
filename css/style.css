@@ -4,32 +4,32 @@
 }
 
 body{
-	background:#704000 url(../images/background%20idea.png) center no-repeat;
+	background:#8a8b8d url(../images/background.png) center no-repeat;
 }
 
-#AntventureLogo{
+#BrokenMelodyLogo{
 	margin:0px auto 0px auto;
 	width:820px;
 	height:200px;
-	background:#95600E url('../images/title.png') center no-repeat;
+	background:#8a8b8d url('../images/title.png') center no-repeat;
 	padding:20px;
-	border: solid 3px #734A0A;
+	border: solid 3px #2f0511;
 	border-top-left-radius:80px 80px;
 	border-top-right-radius:80px 80px;
 }
 
 #slogan{
 	margin:0px auto 0px auto;
-	background:green;
+	background:#a1a2a4;
 	padding: 0px 17px ;
 	text-align:center;
 	font-size:30px;
-	border: solid 3px #734A0A;
+	border: solid 3px #84596a;
 }
 
 
 #Page{
-	border: solid 3px #734A0A;
+	border: solid 3px #29292b;
 	margin: 0px auto 0px auto;
 	padding:25px;
 	width: 810px;
@@ -43,8 +43,8 @@ body{
 }
 
 footer{
-	background:#95600E;
-	border: solid 3px #734A0A;
+	background:#8a8b8d;
+	border: solid 3px #29292b;
 	margin: 0px auto 0px auto;
 	padding:25px;
 	width: 810px;
