@@ -24,7 +24,7 @@ function spriteSafeEdge(img,frameNow,dim,offX,offY) {
         wid, dim); // draw full tile size for destination
 }
 
-// warning: currently is written assuming JUMPER_RADIUS is same for all chars
+// warning: currently is written assuming PLAYER_RADIUS is same for all chars
 function drawFacingLeftOption(image,atX,atY,ifFlipped, frameNum) {
   var imageDim = image.height; // making assumption of square animation frames to simplify strips
   if(frameNum == undefined) {

@@ -103,8 +103,8 @@ this.enemyCollideAndDraw = function() {
       this.y += BRICK_H; // fall
     }
 
-    if(whichBrickAtPixelCoord(this.x+JUMPER_RADIUS*this.xv,this.y+JUMPER_RADIUS*this.yv,false) != TILE_NONE &&
-    whichBrickAtPixelCoord(this.x+JUMPER_RADIUS*this.xv,this.y+JUMPER_RADIUS*this.yv,false) != TILE_PORTAL) {
+    if(whichBrickAtPixelCoord(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv,false) != TILE_NONE &&
+    whichBrickAtPixelCoord(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv,false) != TILE_PORTAL) {
       this.facingLeft = !this.facingLeft;
       this.xv = -this.xv;
       this.yv = -this.yv;
@@ -117,7 +117,7 @@ this.enemyCollideAndDraw = function() {
           this.y = Math.floor(this.y/BRICK_H)*BRICK_H +
                    (BRICK_H/2) + ANT_GROUND_HEIGHT_OFFSET;
         }
-        if (isTileHereWalkOnAble(this.x+JUMPER_RADIUS*this.xv,this.y + 60) == false) {
+        if (isTileHereWalkOnAble(this.x+PLAYER_RADIUS*this.xv,this.y + 60) == false) {
               this.facingLeft = !this.facingLeft;
               this.xv = -this.xv;
               this.x += this.xv;
