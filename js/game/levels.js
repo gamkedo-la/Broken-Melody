@@ -31,8 +31,8 @@ tileKeyPic.src = "images/TileKeyAN.png";
 const TILE_KEY_FRAMES = 4;
 var tileSpikesPic = document.createElement("img");
 tileSpikesPic.src = "images/tileSpikes.png";
-var tilePortalPic = document.createElement("img");
-tilePortalPic.src = "images/tilePortal.png";
+var tileGrenadePic = document.createElement("img");
+tileGrenadePic.src = "images/tileGrenade.png";
 var tileFriendlyPic = document.createElement("img");
 tileFriendlyPic.src = "images/tileFriendly.png";
 const TILE_FRIENDLY_FRAMES = 4;
@@ -102,7 +102,7 @@ const BRICK_GAP = 1;
 
 function isTileHereSolid(atX,atY) {
   var tileKindAt = whichBrickAtPixelCoord(atX,atY,true);
-  return (tileKindAt != TILE_NONE && tileKindAt != TILE_PORTAL && tileKindAt != TILE_TORCH);
+  return (tileKindAt != TILE_NONE && tileKindAt != TILE_TORCH);
 }
 
 function isTileHereWalkOnAble(atX,atY) {
@@ -199,16 +199,6 @@ function loadLevel(fromJSON) { // if no test stage argument, load from world gri
 }
 
 function processBrickGrid() {
-  // defrost frozen baddies
-  // console.log("defrosting");
-  for(var eachCol=0; eachCol<BRICK_COLS; eachCol++) {
-    for(var eachRow=0; eachRow<BRICK_ROWS; eachRow++) {
-      if( whichBrickAtTileCoord(eachCol, eachRow) == TILE_ICE) {
-        var changeAt = brickTileToIndex(eachCol, eachRow);
-        brickGrid[changeAt] = TILE_NONE;
-      }
-    }
-  }
 
   var tempEnemy = new enemySlideAndBounce();
   // enemyList = []; do not clear enemy list, we're keeping old ones around
@@ -307,7 +297,6 @@ function drawOnlyBricksOnScreen() {
           case TILE_NONE:
             continue;
           case TILE_DIRT:
-          case TILE_ICE: // drawing dirt background in addition to ice on next pass
             usePic = tilePic;
             break;
           case TILE_PILLAR:
@@ -328,7 +317,7 @@ function drawOnlyBricksOnScreen() {
           case TILE_CRUMBLE:
             usePic = tileCrumblePic;
             break;
-          case TILE_WIZ_HAT:
+          case TILE_PISTOL:  // #TODO JK come back and update this
             usePic = tileWizHatSheet;
             tileFrame = animFrame % TILE_HAT_FRAMES;
             break;
@@ -356,16 +345,13 @@ function drawOnlyBricksOnScreen() {
               usePic = tileSpikesPic;
               break;
             }
-          case TILE_PORTAL:
-            usePic = tilePortalPic;
+          case TILE_GRENADE:
+            usePic = tileGrenadePic;
             break;
           case TILE_FRIENDLY_ANT:
             tileFrame = animFrame % TILE_FRIENDLY_FRAMES;
             usePic = tileFriendlyPic;
             break;
-          /* case TILE_ICE:
-            usePic = tileIcePic;
-            break; */
           case TILE_TORCH:
             tileFrame = animFrame % TILE_TORCH_FRAMES;
             usePic = tileTorch;
@@ -417,7 +403,7 @@ function drawIceOverlay() {
     cameraBottomMostRow = BRICK_ROWS;
   }
 
-  var usePic = tileIcePic;
+  var usePic = tileIcePic;  // JK check with Chris on this one 
   for(var eachCol=cameraLeftMostCol; eachCol<cameraRightMostCol; eachCol++) {
     for(var eachRow=cameraTopMostRow; eachRow<cameraBottomMostRow; eachRow++) {
 

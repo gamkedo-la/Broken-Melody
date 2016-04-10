@@ -80,16 +80,6 @@ this.enemyCollideAndDraw = function() {
     // doing before move code so it'll snap into correct tile
     iceAndShieldDetection (this);
 
-    if(whichBrickAtPixelCoord(this.x,this.y,false) == TILE_ICE) {
-      // snap to center of ice block
-      this.x = Math.floor(this.x/BRICK_W) * BRICK_W + 0.5 * BRICK_W;
-      this.y = Math.floor(this.y/BRICK_H) * BRICK_H + 0.5 * BRICK_H;
-
-      // drawing here since otherwise the draw call later gets skipped too
-      drawFacingLeftOption(this.myPic,this.x,this.y, this.facingLeft);
-      return; // prevent any other movement
-    }
-
     if(whichBrickAtPixelCoord(this.x,this.y,false) == TILE_SPIKES) { // ant fell on spikes
       return;
     }
@@ -103,8 +93,7 @@ this.enemyCollideAndDraw = function() {
       this.y += BRICK_H; // fall
     }
 
-    if(whichBrickAtPixelCoord(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv,false) != TILE_NONE &&
-    whichBrickAtPixelCoord(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv,false) != TILE_PORTAL) {
+    if(whichBrickAtPixelCoord(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv,false) != TILE_NONE) {
       this.facingLeft = !this.facingLeft;
       this.xv = -this.xv;
       this.yv = -this.yv;

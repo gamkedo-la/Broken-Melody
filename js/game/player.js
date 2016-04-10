@@ -368,19 +368,6 @@ function iceAndShieldDetection (theEnemy) {
       }
     }
   }
-
-  if(iceBolt == false) {
-    return;
-  }
-
-  if (enemyX > iceBoltX - 20 && enemyX < iceBoltX + 20) {
-    if (enemyY > iceBoltY - 20 && enemyY < iceBoltY + 20) {
-      console.log("CHILL OUT")
-      // freezing location of enemy (not the ice ball)
-      brickGrid[whichIndexAtPixelCoord(enemyX, enemyY)] = TILE_ICE;
-      iceBolt = false; // stop the bolt
-    }
-  }
 }
 
 function hitDetection (enemyX, enemyY) {
