@@ -1,28 +1,6 @@
 var m_grid = [];
-var m_cols = 16;
-var m_rows = 12;
-var m_tileTypeCount = 19;
-var m_tooltips = [
-  "nothing",
-  "dirt",
-  "moss",
-  "crumble",
-  "pillar",
-  "red-ant",
-  "fly",
-  "spikes",
-  "friendlies",
-  "health",
-  "gate",
-  "key",
-  "start",
-  "portal",
-  "wiz-hat",
-  "armor",
-  "cloak",
-  "ice",
-  "torch"
-  ];
+
+
 
 var draggingTiles = false;
 
@@ -62,18 +40,7 @@ var m_worldLoc = {x:4,y:4};
 
 var roomsToLoadColsW = 9
 var roomColors=["#a0a0a0","#808080","green","yellow","red","purple","brown","blue"];
-var roomsToLoad =
-//0 1 2 3 4 5 6 7 8
- [0,0,0,0,0,0,0,0,0, // a
-  0,0,0,0,0,0,0,0,0, // b
-  0,0,0,0,0,0,0,0,0, // c
-  0,0,0,0,3,0,0,0,0, // d
-  0,0,0,1,2,4,0,0,0, // e
-  0,0,0,0,5,0,0,0,0, // f
-  0,0,0,0,0,0,0,0,0, // g
-  0,0,0,0,0,0,0,0,0, // h
-  0,0,0,0,0,0,0,0,0  // i
-  ];
+
 
 function loadLevelsBesidesFirstOne() {
   for(var eachC=0;eachC<9;eachC++) {
@@ -143,7 +110,7 @@ function createDOM() {
   $(".header").append("<div class='options'></div>");
   $(".options").append("<div class='option-title'>Options: </div>");
 
-  for( var i=0; i<m_tileTypeCount; i++){
+  for( var i=0; i<TILE_TOTAL_COUNT; i++){
     $(".options").append("<div title=" + m_tooltips[i] + " class='option t" + i + "'></div>");
   }
   $('.t0').addClass("selected");
@@ -253,8 +220,8 @@ function clickCheck() {
     });
 
     $("body").on("click", "#submit-new",function() {
-      m_rows = $('#row-num').val();
-      m_cols = $('#col-num').val();
+      BRICK_ROWS = $('#row-num').val();
+      BRICK_COLS = $('#col-num').val();
       createGrid();
     });
 
@@ -298,7 +265,7 @@ function clickCheck() {
 
 function createGrid() {
   // Create a new grid
-  makeGrid(m_cols, m_rows, []);
+  makeGrid(BRICK_COLS, BRICK_ROWS, []);
 }
 
 function openGrid() {
@@ -344,18 +311,18 @@ function openGrid() {
   var roomKind = roomsToLoad[m_worldLoc.x + m_worldLoc.y*roomsToLoadColsW];
   $(".level-name").text(loadingRoomName+": "+roomColors[roomKind]);
 
-  m_cols = fromJSON.cols;
-  m_rows = fromJSON.rows;
+  BRICK_COLS = fromJSON.cols;
+  BRICK_ROWS = fromJSON.rows;
   m_grid = fromJSON.gridspaces;
 
-  makeGrid(m_cols, m_rows, m_grid);
+  makeGrid(BRICK_COLS, BRICK_ROWS, m_grid);
 
   /*$.get("levels/"+ m_name +".js", function( data ) {
     var content = JSON.parse(data.substring(10));
-    m_rows = content["rows"];
-    m_cols = content["cols"];
+    BRICK_ROWS = content["rows"];
+    BRICK_COLS = content["cols"];
     m_grid = content["gridspaces"];
-    makeGrid(m_cols, m_rows, m_grid);
+    makeGrid(BRICK_COLS, BRICK_ROWS, m_grid);
   });*/
 
 }
@@ -364,8 +331,8 @@ function saveGrid() {
   // Save grid to file
   //m_name = $('#save-text').val();
   var json = {
-    "rows": m_rows,
-    "cols": m_cols,
+    "rows": BRICK_ROWS,
+    "cols": BRICK_COLS,
     "gridspaces": m_grid
   };
 

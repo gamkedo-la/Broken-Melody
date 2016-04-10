@@ -83,20 +83,9 @@ var hasSword = false;
 var roomsOverC = 4;
 var roomsDownR = 0;
 
-// room biome, rooms labeled 0 don't get loaded
+
 var roomsToLoadColsW = 9
-var roomsToLoad =
-//0 1 2 3 4 5 6 7 8
-[0,0,0,0,0,0,0,0,0, // a
-  0,0,0,0,0,0,0,0,0, // b
-  0,0,0,0,0,0,0,0,0, // c
-  0,0,0,0,0,0,0,0,0, // d
-  0,0,0,0,2,0,0,0,0, // e
-  0,0,0,0,0,0,0,0,0, // f
-  0,0,0,0,0,0,0,0,0, // g
-  0,0,0,0,0,0,0,0,0, // h
-  0,0,0,0,0,0,0,0,0  // i
-  ];
+
 
 var animFrame = 0;
 var cyclesTillAnimStep = 0;
@@ -107,33 +96,8 @@ const BRICK_H = 50;
 const BRICK_GAP = 1;
 // changed to var to support variable room size in level format, but kept as all
 // capitals (implying const) since they're not meant to be changed anywhere else
-var BRICK_COLS = 16;
-var BRICK_ROWS = 12;
 
-const TILE_NONE = 0;
-const TILE_DIRT = 1;
-const TILE_MOSS = 2;
-const TILE_CRUMBLE = 3;
-const TILE_PILLAR = 4;
-const TILE_EVIL_ANT_START = 5;
-const TILE_EVIL_FLY_START = 6;
-const TILE_SPIKES = 7;
-const TILE_FRIENDLY_ANT = 8;
-const TILE_HEALTH = 9;
-const TILE_DOOR = 10;
-const TILE_KEY = 11;
-const TILE_PLAYERSTART = 12;
-const TILE_PORTAL = 13;
-const TILE_WIZ_HAT = 14;
-const TILE_ARMOR = 15;
-const TILE_CLOAK = 16;
-const TILE_ICE = 17;
-const TILE_TORCH = 18;
-const TILE_MAP = 19;
-const TILE_GOLD_DOOR = 20;
-const TILE_GOLD_KEY = 21;
-const TILE_SWORD = 22;
-const TILE_WEAKPOINT = 23;
+
 
 
 function isTileHereSolid(atX,atY) {
@@ -419,14 +383,6 @@ function drawOnlyBricksOnScreen() {
           case TILE_SWORD:
             usePic = tileSwordPic;
             break;
-          case TILE_WEAKPOINT:
-            if (wasStabbed) {
-              usePic = bloodSprayAn;
-              tileFrame = animFrame % TILE_BLOOD_FRAMES;
-              break;
-            } else {
-              continue;
-            }
       } // end of whichBrickAtTileCoord()
       var brickLeftEdgeX = eachCol * BRICK_W;
       var brickTopEdgeY = eachRow * BRICK_H;
