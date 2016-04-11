@@ -30,17 +30,11 @@ var playerTouchingIndex = -1;
 var carryingBlock = false;
 var numberOfKeys = 0;
 
-var iceBolt = false;
-var iceBoltX = 0;
-var iceBoltY = 0;
-var iceBoltSpeed = 0;
-var iceFacingLeft = false;
-
-var isBashing = false;
+var isFiring = false;
 var bashTimer = 10;
 var shieldFacingLeft = false;
-var shieldX = 0;
-var shieldY = 0;
+var shotX = 0;
+var shotY = 0;
 
 var tutorialTimerWiz = 0;
 var tutorialTimerArmor = 0;
@@ -58,7 +52,7 @@ const RUN_SPEED = 4.0;
 var playerX = 75, playerY = 75;
 var playerSpeedX = 0, playerSpeedY = 0;
 
-var player_RADIUS = 16;
+var PLAYER_RADIUS = 16;
 const START_HEALTH = 3;
 var health = START_HEALTH;
 var damagedRecentely = 0;
@@ -78,41 +72,38 @@ var mapDotY = 0;
 var hasGoldKey = false;
 
 function isBlockPickup (tileType) {
-  if (whichBrickAtPixelCoord(playerX,playerY+player_RADIUS,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(playerX, playerY + player_RADIUS)] = TILE_NONE;
+  if (whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == tileType) {
+    brickGrid[whichIndexAtPixelCoord(playerX, playerY + PLAYER_RADIUS)] = TILE_NONE;
     return true;
   }
-  if (whichBrickAtPixelCoord(playerX,playerY-player_RADIUS,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(playerX, playerY - player_RADIUS)] = TILE_NONE;
+  if (whichBrickAtPixelCoord(playerX,playerY-PLAYER_RADIUS,true) == tileType) {
+    brickGrid[whichIndexAtPixelCoord(playerX, playerY - PLAYER_RADIUS)] = TILE_NONE;
     return true;
   }
-  if (whichBrickAtPixelCoord(playerX + player_RADIUS,playerY,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(playerX + player_RADIUS, playerY)] = TILE_NONE;
+  if (whichBrickAtPixelCoord(playerX + PLAYER_RADIUS,playerY,true) == tileType) {
+    brickGrid[whichIndexAtPixelCoord(playerX + PLAYER_RADIUS, playerY)] = TILE_NONE;
     return true;
   }
-  if (whichBrickAtPixelCoord(playerX - player_RADIUS,playerY,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(playerX - player_RADIUS, playerY)] = TILE_NONE;
+  if (whichBrickAtPixelCoord(playerX - PLAYER_RADIUS,playerY,true) == tileType) {
+    brickGrid[whichIndexAtPixelCoord(playerX - PLAYER_RADIUS, playerY)] = TILE_NONE;
     return true;
   }
 }
 
-function drawShield () {
-  if (isBashing) {
+function drawShot () {
+  if (isFiring) {
     bashTimer --;
-    shieldX = playerX + 8*(5-Math.abs(bashTimer-5)) * (shieldFacingLeft ? -1 : 1);
-    shieldY = playerY;
+    shotX = playerX + 8*(5-Math.abs(bashTimer-5)) * (shieldFacingLeft ? -1 : 1);
+    shotY = playerY;
     if (bashTimer <0){
-      isBashing = false;
+      isFiring = false;
       bashTimer = 10;
     }
 
-    if (whichBrickAtPixelCoord(shieldX,shieldY,false) == TILE_CRUMBLE) {
-      brickGrid[whichIndexAtPixelCoord(shieldX,shieldY)] = TILE_NONE;
+    if (whichBrickAtPixelCoord(shotX,shotY,false) == TILE_CRUMBLE) {
+      brickGrid[whichIndexAtPixelCoord(shotX,shotY)] = TILE_NONE;
     }
 
-  } else {
-    shieldX = playerX;
-    shieldY = playerY;
   }
 }
 
@@ -197,20 +188,20 @@ function playerMove() {
   
   // collision detection #TODO fine tune when player graphic is created
   if(wall_clipping_cheat == false){
-    if(playerSpeedX < 0 && isTileHereSolid(playerX-player_RADIUS,playerY)) {
-        // playerX = (Math.floor( playerX / BRICK_W )) * BRICK_W + player_RADIUS;
+    if(playerSpeedX < 0 && isTileHereSolid(playerX-PLAYER_RADIUS,playerY)) {
+        // playerX = (Math.floor( playerX / BRICK_W )) * BRICK_W + PLAYER_RADIUS;
         playerSpeedX = 0.0;
     }
-    if(playerSpeedX > 0 && isTileHereSolid(playerX+player_RADIUS,playerY)) {
-        // playerX = (1+Math.floor( playerX / BRICK_W )) * BRICK_W - player_RADIUS;
+    if(playerSpeedX > 0 && isTileHereSolid(playerX+PLAYER_RADIUS,playerY)) {
+        // playerX = (1+Math.floor( playerX / BRICK_W )) * BRICK_W - PLAYER_RADIUS;
         playerSpeedX = 0.0;
     }
-    if(playerSpeedY < 0 && isTileHereSolid(playerX,playerY-0.4*player_RADIUS)) {
-        // playerY = (Math.floor( playerY / BRICK_H )) * BRICK_H + 0.4*player_RADIUS;
+    if(playerSpeedY < 0 && isTileHereSolid(playerX,playerY-0.4*PLAYER_RADIUS)) {
+        // playerY = (Math.floor( playerY / BRICK_H )) * BRICK_H + 0.4*PLAYER_RADIUS;
         playerSpeedY = 0.0;
     }
-    if(playerSpeedY > 0 && isTileHereSolid(playerX,playerY+0.8*player_RADIUS)) {
-        // playerY = (Math.floor( playerY / BRICK_H )) * BRICK_H - 0.4*player_RADIUS;
+    if(playerSpeedY > 0 && isTileHereSolid(playerX,playerY+0.8*PLAYER_RADIUS)) {
+        // playerY = (Math.floor( playerY / BRICK_H )) * BRICK_H - 0.4*PLAYER_RADIUS;
         playerSpeedY = 0.0;
     }
   }
@@ -347,14 +338,14 @@ function playerReset() {
   } // end of col
 }
 
-function iceAndShieldDetection (theEnemy) {
+function shotDetection (theEnemy) {
   var enemyX = theEnemy.x;
   var enemyY = theEnemy.y;
 
-  if(isBashing) {
-    if (enemyX > shieldX - 20 && enemyX < shieldX + 20) {
-      if (enemyY > shieldY - 20 && enemyY < shieldY + 20) {
-        if(enemyX > shieldX) {
+  if(isFiring) {
+    if (enemyX > shotX - 20 && enemyX < shotX + 20) {
+      if (enemyY > shotY - 20 && enemyY < shotY + 20) {
+        if(enemyX > shotX) {
           theEnemy.x += BRICK_W;
           if( brickGrid[whichIndexAtPixelCoord(theEnemy.x, theEnemy.y)] != TILE_NONE) {
             theEnemy.x -= BRICK_W;
@@ -374,8 +365,8 @@ function hitDetection (enemyX, enemyY) {
   if (damagedRecentely > 0 || playerIsDead() || wasStabbed ) {
     return;
   }
-  if (enemyX > playerX - player_RADIUS && enemyX < playerX + player_RADIUS) {
-    if (enemyY > playerY - player_RADIUS && enemyY < playerY + player_RADIUS) {
+  if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
+    if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
       health --;
       damagedRecentely = 50;
     }

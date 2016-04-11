@@ -159,12 +159,9 @@ function drawEverything() {
     }
   }
 
-
-  drawIceOverlay();
-
   drawplayer();
 
-  drawShield();
+  drawShot();
 
   canvasContext.restore(); // undoes the .translate() used for cam scroll
 

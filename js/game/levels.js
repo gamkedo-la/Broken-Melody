@@ -36,8 +36,8 @@ tileGrenadePic.src = "images/tileGrenade.png";
 var tileFriendlyPic = document.createElement("img");
 tileFriendlyPic.src = "images/tileFriendly.png";
 const TILE_FRIENDLY_FRAMES = 4;
-var tileIcePic = document.createElement("img");
-tileIcePic.src = "images/tileIce.png";
+var tileRiflePic = document.createElement("img");
+tileRiflePic.src = "images/tileRifle.png";
 var tileTorch = document.createElement("img");
 tileTorch.src = "images/torchSheet.png";
 const TILE_TORCH_FRAMES = 4;
@@ -383,42 +383,3 @@ function drawOnlyBricksOnScreen() {
     } // end of for eachRow
   } // end of for eachCol
 } // end of drawOnlyBricksOnScreen()
-
-function drawIceOverlay() {
-
-  var cameraLeftMostCol = Math.floor(camPanX / BRICK_W);
-  var cameraTopMostRow = Math.floor(camPanY / BRICK_H);
-
-  // how many columns and rows of tiles fit on one screenful of area?
-  var colsThatFitOnScreen = Math.floor(canvas.width / BRICK_W);
-  var rowsThatFitOnScreen = Math.floor(canvas.height / BRICK_H);
-
-  var cameraRightMostCol = cameraLeftMostCol + colsThatFitOnScreen + 2;
-  var cameraBottomMostRow = cameraTopMostRow + rowsThatFitOnScreen + 1;
-
-  if(cameraRightMostCol > BRICK_COLS) {
-    cameraRightMostCol = BRICK_COLS;
-  }
-  if(cameraBottomMostRow > BRICK_ROWS) {
-    cameraBottomMostRow = BRICK_ROWS;
-  }
-
-  var usePic = tileIcePic;  // JK check with Chris on this one 
-  for(var eachCol=cameraLeftMostCol; eachCol<cameraRightMostCol; eachCol++) {
-    for(var eachRow=cameraTopMostRow; eachRow<cameraBottomMostRow; eachRow++) {
-
-      var tileValueHere = whichBrickAtTileCoord(eachCol, eachRow);
-      if(tileValueHere == TILE_ICE) {
-        var brickLeftEdgeX = eachCol * BRICK_W;
-        var brickTopEdgeY = eachRow * BRICK_H;
-
-        canvasContext.drawImage(usePic,
-          0, 0, // top-left corner of tile art
-          BRICK_W, BRICK_H, // get full tile size from source
-          brickLeftEdgeX, brickTopEdgeY, // x,y top-left corner for image destination
-          BRICK_W, BRICK_H); // draw full full tile size for destination
-      } // end of whichBrickAtTileCoord()
-
-    } // end of for eachRow
-  } // end of for eachCol
-} // end of drawIceOverlay()

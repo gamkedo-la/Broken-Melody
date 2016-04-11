@@ -61,7 +61,7 @@ var m_tooltips = [
   "wiz-hat",
   "armor",
   "cloak",
-  "ice",
+  "rifle",
   "torch",
   "map",
   "gold_door",

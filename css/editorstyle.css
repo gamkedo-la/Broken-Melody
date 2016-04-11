@@ -345,10 +345,10 @@ html {
   background: url("../images/tileCloak.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Ice */
+/* Rifle */
 .t17 {
   background: #00f;
-  background: url("../images/tileIce.png") no-repeat;
+  background: url("../images/tileRifle.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Torch */

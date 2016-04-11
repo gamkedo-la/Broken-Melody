@@ -1,8 +1,13 @@
 var evilBugPic = document.createElement("img");
 evilBugPic.src = "images/evilBug-sheet.png";
 const ENEMY_FRAMES = 4;
-var evilFlyPic = document.createElement("img");
-evilFlyPic.src = "images/evilFly.png";
+
+// Facing direction 
+const DIR_N = 0;
+const DIR_E = 1;
+const DIR_S = 2;
+const DIR_W = 3;
+const DIR_NONE = 4;
 
 const EVIL_BUG_SPEED = 1.0;
 const ANT_GROUND_HEIGHT_OFFSET = 14;
@@ -18,17 +23,13 @@ function enemySlideAndBounce() {
   this.y = 50;
   this.xv = 0;
   this.yv = 0;
-  this.facingLeft = false;
+  this.facingDir = DIR_E;
   this.myID = enemyList.length;
-  this.myKind = -1; // ant or fly?
 
   this.restoreImgFromKind =  function() {
-    if(this.myKind == TILE_EVIL_ANT_START) {
       this.myPic = evilBugPic;
-    } else {
-      this.myPic = evilFlyPic;
-    }
   }
+
 
   this.respawnEnemy = function(jsonInfo) {
     this.myRoomC = jsonInfo.myRoomC;
@@ -38,9 +39,8 @@ function enemySlideAndBounce() {
     this.y = jsonInfo.y;
     this.xv = jsonInfo.xv;
     this.yv = jsonInfo.yv;
-    this.facingLeft = jsonInfo.facingLeft;
+    this.facingDir = jsonInfo.facingDir;
     this.myID = jsonInfo.myID;
-    this.myKind = jsonInfo.myKind;
 
     this.restoreImgFromKind();
   }
@@ -50,7 +50,7 @@ function enemySlideAndBounce() {
     this.yv = yv;
     this.myKind = tileLoadIndex;
     this.restoreImgFromKind();
-    this.facingLeft = false;
+    this.facingDir = DIR_E;
 
     for(var eachCol=0; eachCol<BRICK_COLS; eachCol++) {
       for(var eachRow=0; eachRow<BRICK_ROWS; eachRow++) {
@@ -77,8 +77,7 @@ this.enemyCollideAndDraw = function() {
       return; // not in this room, skip this one
     }
 
-    // doing before move code so it'll snap into correct tile
-    iceAndShieldDetection (this);
+    shotDetection (this);
 
     if(whichBrickAtPixelCoord(this.x,this.y,false) == TILE_SPIKES) { // ant fell on spikes
       return;
@@ -88,31 +87,32 @@ this.enemyCollideAndDraw = function() {
     this.x += this.xv;
     this.y += this.yv;
 
-    if(this.yv ==0 &&
-      isTileHereWalkOnAble(this.x,this.y + 60) == false) {
-      this.y += BRICK_H; // fall
-    }
-
     if(whichBrickAtPixelCoord(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv,false) != TILE_NONE) {
-      this.facingLeft = !this.facingLeft;
-      this.xv = -this.xv;
-      this.yv = -this.yv;
-      this.x += this.xv;
-      this.y += this.yv;
-    } else {
-      if (this.yv == 0) {
-        var heightInTile = this.y % BRICK_H;
-        if(heightInTile < (BRICK_H/2) + ANT_GROUND_HEIGHT_OFFSET) {
-          this.y = Math.floor(this.y/BRICK_H)*BRICK_H +
-                   (BRICK_H/2) + ANT_GROUND_HEIGHT_OFFSET;
-        }
-        if (isTileHereWalkOnAble(this.x+PLAYER_RADIUS*this.xv,this.y + 60) == false) {
-              this.facingLeft = !this.facingLeft;
-              this.xv = -this.xv;
-              this.x += this.xv;
-        }
+      this.facingDir ++;
+      if(this.facingDir >= DIR_NONE){
+          this.facingDir = DIR_N;
       }
+      switch(this.facingDir){
+          case DIR_N:
+            this.xv = 0;
+            this.yv = -EVIL_BUG_SPEED;
+            break;
+          case DIR_E:
+            this.xv = EVIL_BUG_SPEED;
+            this.yv = 0;
+            break;
+          case DIR_S:
+            this.xv = 0;
+            this.yv = EVIL_BUG_SPEED;
+            break;
+          case DIR_W:
+            this.xv = -EVIL_BUG_SPEED;
+            this.yv = 0;
+            break;
+      }  
     }
+    this.x += this.xv;
+    this.y += this.yv;
 
     hitDetection (this.x, this.y);
 
@@ -121,6 +121,6 @@ this.enemyCollideAndDraw = function() {
       enemyFrame = 0; // no animation on fly
     }
 
-    drawFacingLeftOption(this.myPic,this.x,this.y, this.facingLeft, enemyFrame);
+    drawFacingLeftOption(this.myPic,this.x,this.y, false, enemyFrame);
   }
 }

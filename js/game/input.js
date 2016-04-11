@@ -62,7 +62,7 @@ function setKeyHoldState(thisKey, setTo) {
         holdLeft = setTo;
         if (setTo) {
             lastFacingLeft = true;
-            if (isBashing == false) {
+            if (isFiring == false) {
                 shieldFacingLeft = true;
             }
         }
@@ -71,7 +71,7 @@ function setKeyHoldState(thisKey, setTo) {
         holdRight = setTo;
         if (setTo) {
             lastFacingLeft = false;
-            if (isBashing == false) {
+            if (isFiring == false) {
                 shieldFacingLeft = false;
             }
         }
