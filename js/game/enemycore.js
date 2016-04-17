@@ -1,5 +1,5 @@
-var evilBugPic = document.createElement("img");
-evilBugPic.src = "images/evilBug-sheet.png";
+var gangerPic = document.createElement("img");
+gangerPic.src = "images/ganger-sheet.png";
 const ENEMY_FRAMES = 4;
 
 // Facing direction 
@@ -27,7 +27,7 @@ function enemySlideAndBounce() {
   this.myID = enemyList.length;
 
   this.restoreImgFromKind =  function() {
-      this.myPic = evilBugPic;
+      this.myPic = gangerPic;
   }
 
 

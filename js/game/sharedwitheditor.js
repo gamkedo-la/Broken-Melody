@@ -39,7 +39,7 @@ const TILE_TORCH = 18;  // light
 const TILE_MAP = 19;
 const TILE_GOLD_DOOR = 20;
 const TILE_GOLD_KEY = 21;
-const TILE_SWORD = 22;  // knife
+const TILE_KNIFE = 22;  // knife
 const TILE_TOTAL_COUNT = 23;
 
 
@@ -57,8 +57,8 @@ var m_tooltips = [
   "gate",
   "key",
   "start",
-  "portal",
-  "wiz-hat",
+  "grenade",
+  "pistol",
   "armor",
   "cloak",
   "rifle",
@@ -66,5 +66,5 @@ var m_tooltips = [
   "map",
   "gold_door",
   "gold_key",
-  "sword",
+  "knife",
   ];

@@ -276,7 +276,7 @@ html {
 /* Red Ant */
 .t5 {
   background: #f00;
-  background: url("../images/evilBug.png") no-repeat;
+  background: url("../images/ganger.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Fly */
@@ -378,7 +378,7 @@ html {
 /* Sword */
 .t22 {
   background: #00f;
-  background: url("../images/sword.png") no-repeat;
+  background: url("../images/knife.png") no-repeat;
   background-size: 100% 100%;
 }
 

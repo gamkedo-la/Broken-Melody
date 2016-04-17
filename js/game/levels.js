@@ -49,8 +49,8 @@ tileGoldDoorPic.src = "images/tileGoldDoor.png";
 var tileGoldKeyPic = document.createElement("img");
 tileGoldKeyPic.src = "images/tileGoldKey.png";
 const TILE_GOLD_KEY_FRAMES = 4;
-var tileSwordPic = document.createElement("img");
-tileSwordPic.src = "images/sword.png";
+var tileKnifePic = document.createElement("img");
+tileKnifePic.src = "images/knife.png";
 
 var startScreen = document.createElement("img");
 startScreen.src = "images/startScreen.png";
@@ -59,22 +59,8 @@ deadScreen.src = "images/deadScreen.png";
 var endScreen = document.createElement("img");
 endScreen.src = "images/endScreen.png";
 
-var queenAntPic = document.createElement("img");
-queenAntPic.src = "images/queenAnt.png";
-const QUEEN_FRAMES = 6;
-var queenAntDeadPic = document.createElement("img");
-queenAntDeadPic.src = "images/queenAntDead.png";
-var queenAntWingPic = document.createElement("img");
-queenAntWingPic.src = "images/queenAntWing.png";
-const QUEEN_WING_FRAMES = 4;
-var tileCrownPic = document.createElement("img");
-tileCrownPic.src = "images/crown.png";
-var bloodSprayAn = document.createElement("img");
-bloodSprayAn.src = "images/bloodSheet.png";
-const TILE_BLOOD_FRAMES = 4;
 
-var antQueenState = 0;
-var wasStabbed = false;
+var wasStabbed = false;  // JK ask Chris what wasstabbed is
 var hasSword = false;
 
 // where is the player/gameplay happening in the overworld level grid?
@@ -300,20 +286,11 @@ function drawOnlyBricksOnScreen() {
             usePic = tilePic;
             break;
           case TILE_PILLAR:
-            if (roomsOverC == 4 && roomsDownR == 2) {
-              usePic = tileCrownPic;
-              break;
-            } else {
-              usePic = tileMovePic;
-              break;
-            }
+            usePic = tileMovePic;
+            break;
           case TILE_MOSS:
-            if (roomsOverC == 4 && roomsDownR == 2) {
-              continue;
-            } else {
-              usePic = tileMossPic;
-              break;
-            }
+            usePic = tileMossPic;
+            break;
           case TILE_CRUMBLE:
             usePic = tileCrumblePic;
             break;
@@ -339,12 +316,8 @@ function drawOnlyBricksOnScreen() {
             tileFrame = animFrame % TILE_KEY_FRAMES;
             break;
           case TILE_SPIKES:
-            if (roomsOverC == 4 && roomsDownR == 2) {
-              continue;
-            } else {
-              usePic = tileSpikesPic;
-              break;
-            }
+            usePic = tileSpikesPic;
+            break;
           case TILE_GRENADE:
             usePic = tileGrenadePic;
             break;
@@ -366,8 +339,8 @@ function drawOnlyBricksOnScreen() {
             usePic = tileGoldKeyPic;
             tileFrame = animFrame % TILE_GOLD_KEY_FRAMES;
             break;
-          case TILE_SWORD:
-            usePic = tileSwordPic;
+          case TILE_KNIFE:
+            usePic = tileKnifePic;
             break;
       } // end of whichBrickAtTileCoord()
       var brickLeftEdgeX = eachCol * BRICK_W;

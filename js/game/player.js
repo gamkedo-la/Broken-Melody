@@ -6,7 +6,7 @@ shieldPic.src = "images/shield.png";
 var playerSwordPic = document.createElement("img");
 playerSwordPic.src = "images/playerSwordPic.png";
 
-const ANT_RUN_FRAMES = 4;
+const PLAYER_RUN_FRAMES = 4;
 
 var hudHealth1Pic = document.createElement("img");
 hudHealth1Pic.src = "images/hudHealth1.png";
@@ -17,8 +17,6 @@ hudHealth3Pic.src = "images/hudHealth3.png";
 var hudHealth0Pic = document.createElement("img");
 hudHealth0Pic.src = "images/hudHealth0.png";
 
-var rescuedHudPic = document.createElement("img");
-rescuedHudPic.src = "images/rescuedHud.png";
 var hudMapPic = document.createElement("img");
 hudMapPic.src = "images/hudMap.png";
 var mapDotPic = document.createElement("img");
@@ -182,7 +180,7 @@ function playerMove() {
     hasMap = true;
   }
   
-  if (isBlockPickup(TILE_SWORD)) {
+  if (isBlockPickup(TILE_KNIFE)) {
     hasSword = true;
   }
   
@@ -379,14 +377,14 @@ function drawplayer() {
     return;
   }
   
-  var antFrame;
+  var playerFrame;
   var isMoving = Math.abs(playerSpeedX)>1;
   if (isMoving) {
-    antFrame = animFrame % ANT_RUN_FRAMES;
+    playerFrame = animFrame % PLAYER_RUN_FRAMES;
   } else {
-    antFrame = 0;
+    playerFrame = 0;
   }
-  drawFacingLeftOption(playerPic,playerX,playerY,lastFacingLeft, antFrame);
+  drawFacingLeftOption(playerPic,playerX,playerY,lastFacingLeft, playerFrame);
 
   if (hasSword) {  
     drawFacingLeftOption(playerSwordPic,playerX,playerY,lastFacingLeft);
