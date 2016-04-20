@@ -243,22 +243,22 @@ html {
   border-bottom: 2px solid #000;
 }
 
-/* Nothing */
+/* Road */
 .t0 {
   background: #f7f7f7;
-  border: 1px dashed #a7a7a7;
-  background-size: 100% 100%;
-}
-/* Dirt */
-.t1 {
-  background: #9e6019;
   background: url("../images/tile.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Moss */
+/* Sidewalk */
+.t1 {
+  background: #9e6019;
+  background: url("../images/tileSidewalk.png") no-repeat;
+  background-size: 100% 100%;
+}
+/* Building */
 .t2 {
   background: #005500;
-  background: url("../images/tileMoss.png") no-repeat;
+  background: url("../images/tileBuilding.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Crumble */
@@ -267,116 +267,110 @@ html {
   background: url("../images/tileCrumble.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Pillar */
-.t4 {
-  background: #c7c7c7;
-  background: url("../images/tileMove.png") no-repeat;
-  background-size: 100% 100%;
-}
 /* Red Ant */
-.t5 {
+.t4 {
   background: #f00;
   background: url("../images/ganger.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Fly */
-.t6 {
+.t5 {
   background: #505050;
   background: url("../images/evilFly.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Spikes */
-.t7 {
+.t6 {
   background: #800000;
   background: url("../images/tileSpikes.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Friendlies */
-.t8 {
+.t7 {
   background: #202020;
   background: url("../images/tileFriendly.png") no-repeat;
   background-size: 400% 100%; /* to only show first of 4 frames */
 }
 /* Health */
-.t9 {
+.t8 {
   background: #0f0;
   background: url("../images/tileHealth.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Gate */
-.t10 {
+.t9 {
   background: #ff5900;
-  background: url("../images/tileDoor.png") no-repeat;
+  background: url("../images/welcome.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Key */
-.t11 {
+/* Pizza */
+.t10 {
   background: #e0dd22;
-  background: url("../images/tileKey.png") no-repeat;
+  background: url("../images/pizza.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Start */
-.t12 {
+.t11 {
   background: #22e0d0;
   background: url("../images/player.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Portal */
-.t13 {
+.t12 {
   background: #cc0099;
   background: url("../images/tilePortal.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Wiz Hat */
-.t14 {
+.t13 {
   background: #00f;
   background: url("../images/tileWizHat.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Armor */
-.t15 {
+.t14 {
   background: #00f;
   background: url("../images/tileArmor.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Cloak */
-.t16 {
+.t15 {
   background: #00f;
   background: url("../images/tileCloak.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Rifle */
-.t17 {
+.t16 {
   background: #00f;
   background: url("../images/tileRifle.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Torch */
-.t18 {
+.t17 {
   background: #00f;
   background: url("../images/torchSheet.png") no-repeat;
   background-size: 400% 100%; /* only show frame 1 of 4 */
 }
 /* Map */
-.t19 {
+.t18 {
   background: #00f;
   background: url("../images/tileMap.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Gold Door */
-.t20 {
+.t19 {
   background: #00f;
   background: url("../images/tileGoldDoor.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Gold Key */
-.t21 {
+.t20 {
   background: #00f;
   background: url("../images/tileGoldKey.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Sword */
-.t22 {
+/* Knife */
+.t21 {
   background: #00f;
   background: url("../images/knife.png") no-repeat;
   background-size: 100% 100%;

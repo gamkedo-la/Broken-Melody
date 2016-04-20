@@ -115,7 +115,7 @@ function moveEverything() {
 }
 
 function drawEverything() {
-  colorRect(0, 0, canvas.width, canvas.height, "#704000");
+//   colorRect(0, 0, canvas.width, canvas.height, "#704000");
 
   canvasContext.save(); // needed to undo this .translate() used for scroll
 

@@ -2,21 +2,18 @@ var backgroundPic = document.createElement("img");
 backgroundPic.src = "images/background.png"
 var tilePic = document.createElement("img");
 tilePic.src = "images/tile.png";
-var tileMovePic = document.createElement("img");
-tileMovePic.src = "images/tileMove.png";
-var tileMossPic = document.createElement("img");
-tileMossPic.src = "images/tileMoss.png";
+var tileSidewalk = document.createElement("img");
+tileSidewalk.src = "images/tileSidewalk.png";
+var tileBuildingPic = document.createElement("img");
+tileBuildingPic.src = "images/tileBuilding.png";
 var tileCrumblePic = document.createElement("img");
 tileCrumblePic.src = "images/tileCrumble.png";
 const TILE_CRUMBLING_FRAMES = 4;
 const CRUMBLE_FRAME_TIME = 30;
 var tileCrumblingPic = document.createElement("img");
 tileCrumblingPic.src = "images/tileCrumbling.png";
-var tileWizHatPic = document.createElement("img");
-tileWizHatPic.src = "images/tileWizHat.png";
-var tileWizHatSheet = document.createElement("img");
-tileWizHatSheet.src = "images/tileWizHat-sheet.png";
-const TILE_HAT_FRAMES = 4;
+var tilePistolPic = document.createElement("img");
+tilePistolPic.src = "images/tilePistol.png";
 var tileArmorPic = document.createElement("img");
 tileArmorPic.src = "images/tileArmor.png";
 var tileCloakPic = document.createElement("img");
@@ -25,7 +22,7 @@ var tileHealth = document.createElement("img");
 tileHealth.src = "images/healthSheet.png";
 const TILE_HEALTH_FRAMES = 4;
 var tileDoorPic = document.createElement("img");
-tileDoorPic.src = "images/tileDoor.png";
+tileDoorPic.src = "images/welcome.png";
 var tileKeyPic = document.createElement("img");
 tileKeyPic.src = "images/TileKeyAN.png";
 const TILE_KEY_FRAMES = 4;
@@ -94,10 +91,9 @@ function isTileHereSolid(atX,atY) {
 function isTileHereWalkOnAble(atX,atY) {
   var tileKindAt = whichBrickAtPixelCoord(atX,atY,false);
 
-  return tileKindAt == TILE_DIRT ||
-          tileKindAt == TILE_MOSS ||
+  return tileKindAt == TILE_SIDEWALK ||
+          tileKindAt == TILE_BUILDING ||
           tileKindAt == TILE_DOOR ||
-          tileKindAt == TILE_PILLAR ||
           tileKindAt == TILE_CRUMBLE ||
           tileKindAt < 0; // mid-decay
 }
@@ -228,11 +224,7 @@ function whichIndexAtPixelCoord(hitPixelX, hitPixelY, forPlayer) {
 function whichBrickAtPixelCoord(hitPixelX, hitPixelY, forPlayer) {
   var index = whichIndexAtPixelCoord(hitPixelX, hitPixelY);
   if(index < 0) {
-     return TILE_DIRT;
-  }
-
-  if(forPlayer && brickGrid[index] == TILE_PILLAR) {
-    playerTouchingIndex = index;
+     return TILE_SIDEWALK;
   }
   return brickGrid[index];
 }
@@ -281,22 +273,19 @@ function drawOnlyBricksOnScreen() {
         brickGrid[brickTileToIndex(eachCol, eachRow)] = tileValueHere +1;
       } else switch( tileValueHere ) {
           case TILE_NONE:
-            continue;
-          case TILE_DIRT:
             usePic = tilePic;
             break;
-          case TILE_PILLAR:
-            usePic = tileMovePic;
+          case TILE_SIDEWALK:
+            usePic = tileSidewalk;
             break;
-          case TILE_MOSS:
-            usePic = tileMossPic;
+          case TILE_BUILDING:
+            usePic = tileBuildingPic;
             break;
           case TILE_CRUMBLE:
             usePic = tileCrumblePic;
             break;
-          case TILE_PISTOL:  // #TODO JK come back and update this
-            usePic = tileWizHatSheet;
-            tileFrame = animFrame % TILE_HAT_FRAMES;
+          case TILE_PISTOL:
+            usePic = tilePistolPic;
             break;
           case TILE_ARMOR:
             usePic = tileArmorPic;
@@ -342,10 +331,13 @@ function drawOnlyBricksOnScreen() {
           case TILE_KNIFE:
             usePic = tileKnifePic;
             break;
+          default:
+            usePic = tileTorch;
+            break;
       } // end of whichBrickAtTileCoord()
       var brickLeftEdgeX = eachCol * BRICK_W;
       var brickTopEdgeY = eachRow * BRICK_H;
-
+      console.log(tileValueHere);
       canvasContext.drawImage(usePic,
         tileFrame * BRICK_W, 0, // top-left corner of tile art
         BRICK_W, BRICK_H, // get full tile size from source

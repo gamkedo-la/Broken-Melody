@@ -311,8 +311,8 @@ function openGrid() {
   var roomKind = roomsToLoad[m_worldLoc.x + m_worldLoc.y*roomsToLoadColsW];
   $(".level-name").text(loadingRoomName+": "+roomColors[roomKind]);
 
-  BRICK_COLS = fromJSON.cols;
-  BRICK_ROWS = fromJSON.rows;
+//   BRICK_COLS = fromJSON.cols;
+//   BRICK_ROWS = fromJSON.rows;
   m_grid = fromJSON.gridspaces;
 
   makeGrid(BRICK_COLS, BRICK_ROWS, m_grid);

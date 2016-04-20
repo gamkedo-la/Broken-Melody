@@ -24,7 +24,7 @@ mapDotPic.src = "images/mapDotPic.png";
 var majorKey = document.createElement("img");
 majorKey.src = "images/majorKey.png";
 
-var playerTouchingIndex = -1;
+
 var carryingBlock = false;
 var numberOfKeys = 0;
 
@@ -157,8 +157,6 @@ function playerMove() {
     playerNonSolidX = playerX;
     playerNonSolidY = playerY;
   }
-
-  playerTouchingIndex = -1;
 
   
   if (isBlockPickup(TILE_HEALTH)) {

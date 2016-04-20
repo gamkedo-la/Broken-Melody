@@ -44,7 +44,7 @@ function enemySlideAndBounce() {
 
     this.restoreImgFromKind();
   }
-
+// JK ask Chris about enemyPlacementAnt
   this.enemyPlacementAnt = function(tileLoadIndex,xv,yv,myImg) {
     this.xv = xv;
     this.yv = yv;

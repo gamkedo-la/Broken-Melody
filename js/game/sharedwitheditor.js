@@ -18,37 +18,35 @@ var roomsToLoad =
   ];
 
 const TILE_NONE = 0;
-const TILE_DIRT = 1;
-const TILE_MOSS = 2;
+const TILE_SIDEWALK = 1;
+const TILE_BUILDING = 2;
 const TILE_CRUMBLE = 3;
-const TILE_PILLAR = 4;
-const TILE_EVIL_ANT_START = 5;
-const TILE_EVIL_FLY_START = 6;
-const TILE_SPIKES = 7;
-const TILE_FRIENDLY_ANT = 8;
-const TILE_HEALTH = 9;
-const TILE_DOOR = 10;
-const TILE_KEY = 11;
-const TILE_PLAYERSTART = 12;
-const TILE_GRENADE = 13;
-const TILE_PISTOL = 14;
-const TILE_ARMOR = 15;
-const TILE_CLOAK = 16;  // Stealth cloak
-const TILE_RIFLE = 17;
-const TILE_TORCH = 18;  // light
-const TILE_MAP = 19;
-const TILE_GOLD_DOOR = 20;
-const TILE_GOLD_KEY = 21;
-const TILE_KNIFE = 22;  // knife
-const TILE_TOTAL_COUNT = 23;
+const TILE_EVIL_ANT_START = 4;
+const TILE_EVIL_FLY_START = 5;
+const TILE_SPIKES = 6;
+const TILE_FRIENDLY_ANT = 7;
+const TILE_HEALTH = 8;
+const TILE_DOOR = 9;
+const TILE_KEY = 10;
+const TILE_PLAYERSTART = 11;
+const TILE_GRENADE = 12;
+const TILE_PISTOL = 13;
+const TILE_ARMOR = 14;
+const TILE_CLOAK = 15;  // Stealth cloak
+const TILE_RIFLE = 16;
+const TILE_TORCH = 17;  // light
+const TILE_MAP = 18;
+const TILE_GOLD_DOOR = 19;
+const TILE_GOLD_KEY = 20;
+const TILE_KNIFE = 21;  // knife
+const TILE_TOTAL_COUNT = 22;
 
 
 var m_tooltips = [
-  "nothing",
-  "dirt",
-  "moss",
+  "street",
+  "sidewalk",
+  "building",
   "crumble",
-  "pillar",
   "red-ant",
   "fly",
   "spikes",
