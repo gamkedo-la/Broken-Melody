@@ -227,25 +227,30 @@ function checkIfChangingRooms() {
 
   var tryToReloadLevel = false;
   // edge of world checking to change rooms:
+  // checking if on left side of screen going off
   if(playerX < BRICK_W/2) {
     roomsOverC--;
     playerX = (BRICK_COLS-1)*BRICK_W;
     tryToReloadLevel = true;
+    slideDir = DIR_W;
   }
-  if(playerX > (BRICK_COLS-1)*BRICK_W+BRICK_W/2) {
+  if(playerX > (BRICK_COLS-1)*BRICK_W+BRICK_W/2) { // check if player going off right side of screen
     roomsOverC++;
     playerX = BRICK_W;
     tryToReloadLevel = true;
+    slideDir = DIR_E;
   }
-  if(playerY < BRICK_H/4 && playerSpeedY<0) {
+  if(playerY < BRICK_H/4 && playerSpeedY<0) { // check if player going off top of screen
     roomsDownR--;
     playerY = (BRICK_ROWS-1)*BRICK_H-BRICK_H/2;
     tryToReloadLevel = true;
+    slideDir = DIR_N;
   }
-  if(playerY > (BRICK_ROWS-1)*BRICK_H+BRICK_H/2 && playerSpeedY>0) {
+  if(playerY > (BRICK_ROWS-1)*BRICK_H+BRICK_H/2 && playerSpeedY>0) { // check if player going off bottom of screen
     roomsDownR++;
     playerY = BRICK_H/2;
     tryToReloadLevel = true;
+    slideDir = DIR_S;
   }
   if( tryToReloadLevel ) {
     if( loadLevel() == false ) {  // didn't exist, womp womp, undo shift

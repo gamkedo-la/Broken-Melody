@@ -184,11 +184,11 @@ function processBrickGrid() {
 
   var tempEnemy = new enemySlideAndBounce();
   // enemyList = []; do not clear enemy list, we're keeping old ones around
-  while(tempEnemy.enemyPlacementAnt(TILE_EVIL_ANT_START, EVIL_BUG_SPEED, 0.0)) {
+  while(tempEnemy.enemyPlacement(TILE_EVIL_ANT_START, EVIL_BUG_SPEED, 0.0)) {
     enemyList.push(tempEnemy);
     tempEnemy = new enemySlideAndBounce();
   }
-  while(tempEnemy.enemyPlacementAnt(TILE_EVIL_FLY_START, 0.0, EVIL_BUG_SPEED)) {
+  while(tempEnemy.enemyPlacement(TILE_EVIL_FLY_START, 0.0, EVIL_BUG_SPEED)) {
     enemyList.push(tempEnemy);
     tempEnemy = new enemySlideAndBounce();
   }
@@ -337,7 +337,7 @@ function drawOnlyBricksOnScreen() {
       } // end of whichBrickAtTileCoord()
       var brickLeftEdgeX = eachCol * BRICK_W;
       var brickTopEdgeY = eachRow * BRICK_H;
-      console.log(tileValueHere);
+    //   console.log(tileValueHere);
       canvasContext.drawImage(usePic,
         tileFrame * BRICK_W, 0, // top-left corner of tile art
         BRICK_W, BRICK_H, // get full tile size from source

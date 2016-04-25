@@ -44,8 +44,8 @@ function enemySlideAndBounce() {
 
     this.restoreImgFromKind();
   }
-// JK ask Chris about enemyPlacementAnt
-  this.enemyPlacementAnt = function(tileLoadIndex,xv,yv,myImg) {
+  
+  this.enemyPlacement = function(tileLoadIndex,xv,yv,myImg) {
     this.xv = xv;
     this.yv = yv;
     this.myKind = tileLoadIndex;
@@ -72,7 +72,20 @@ function enemySlideAndBounce() {
     return false;
   } // end of function
 
-this.enemyCollideAndDraw = function() {
+this.enemyDraw = function() {
+    if(this.myRoomC != roomsOverC || this.myRoomR != roomsDownR) {
+      return; // not in this room, skip this one
+    }
+    
+    var enemyFrame = animFrame % ENEMY_FRAMES;
+    if(this.xv == 0) {
+      enemyFrame = 0; // no animation on fly
+    }
+    
+    drawFacingLeftOption(this.myPic,this.x,this.y, false, enemyFrame);
+}
+
+this.enemyMove = function() {
     if(this.myRoomC != roomsOverC || this.myRoomR != roomsDownR) {
       return; // not in this room, skip this one
     }
@@ -115,12 +128,5 @@ this.enemyCollideAndDraw = function() {
     this.y += this.yv;
 
     hitDetection (this.x, this.y);
-
-    var enemyFrame = animFrame % ENEMY_FRAMES;
-    if(this.xv == 0) {
-      enemyFrame = 0; // no animation on fly
-    }
-
-    drawFacingLeftOption(this.myPic,this.x,this.y, false, enemyFrame);
   }
 }
