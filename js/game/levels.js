@@ -1,5 +1,5 @@
 var backgroundPic = document.createElement("img");
-backgroundPic.src = "images/background.png"
+backgroundPic.src = "images/gamebg.png"
 var tilePic = document.createElement("img");
 tilePic.src = "images/tile.png";
 var tileSidewalk = document.createElement("img");

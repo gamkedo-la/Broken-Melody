@@ -153,13 +153,15 @@ function drawEverything() {
     enemyList[i].enemyDraw();
   }
 
-  drawplayer();
+  if(slideDir == DIR_NONE) {
+    drawplayer();
+  }
 
   drawShot();
 
-  canvasContext.restore(); // undoes the .translate() used for cam scroll
-
   drawHealthHud();
+
+  canvasContext.restore(); // undoes the .translate() used for cam scroll
 
   canvasContext.fillStyle = 'white';
 
