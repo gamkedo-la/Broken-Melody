@@ -32,23 +32,6 @@ function updateTime () {
     timeM = 0;
     timeH ++;
   }
-
-  if(wasStabbed) {
-    countdown ++;
-    if (countdown == 30) {
-      countdown = 0;
-      timeSCD --;
-    }
-    if (timeSCD == 0) {
-      if (timeMCD == 0) {
-        playerRestoreFromStoredRoomEntry();
-      } else {
-        timeSCD = 59;
-        timeMCD --;
-      }
-
-    }
-  }
 }
 
 window.onload = function() {
@@ -76,14 +59,6 @@ window.onload = function() {
         if (health <= 0) {
           canvasContext.drawImage(deadScreen, 0, 0);
         }
-
-        if (roomsOverC == 4 && roomsDownR == 0 && playerY < 240 && wasStabbed == true) {
-          isWinner = true;
-          gameGoing = false;
-          audio_music.pause()
-        }
-
-
       } else {
         if (isWinner) {
           canvasContext.drawImage(endScreen, 0, 0);

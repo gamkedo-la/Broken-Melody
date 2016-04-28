@@ -23,7 +23,7 @@ const TILE_BUILDING = 2;
 const TILE_CRUMBLE = 3;
 const TILE_EVIL_ANT_START = 4;
 const TILE_EVIL_FLY_START = 5;
-const TILE_SPIKES = 6;
+const TILE_PISTOL_GANGER = 6;
 const TILE_FRIENDLY_ANT = 7;
 const TILE_HEALTH = 8;
 const TILE_DOOR = 9;
@@ -32,33 +32,30 @@ const TILE_PLAYERSTART = 11;
 const TILE_GRENADE = 12;
 const TILE_PISTOL = 13;
 const TILE_ARMOR = 14;
-const TILE_CLOAK = 15;  // Stealth cloak
-const TILE_RIFLE = 16;
-const TILE_TORCH = 17;  // light
-const TILE_MAP = 18;
-const TILE_GOLD_DOOR = 19;
-const TILE_GOLD_KEY = 20;
-const TILE_KNIFE = 21;  // knife
-const TILE_TOTAL_COUNT = 22;
-
+const TILE_RIFLE = 15;
+const TILE_TORCH = 16;  // light
+const TILE_MAP = 17;
+const TILE_GOLD_DOOR = 18;
+const TILE_GOLD_KEY = 19;
+const TILE_KNIFE = 20;  // knife
+const TILE_TOTAL_COUNT = 21;
 
 var m_tooltips = [
   "street",
   "sidewalk",
   "building",
   "crumble",
-  "red-ant",
-  "fly",
-  "spikes",
+  "ganger",
+  "knife_ganger",
+  "pistol_ganger",
   "friendlies",
   "health",
-  "gate",
-  "key",
+  "welcome_mat",
+  "pizza",
   "start",
   "grenade",
   "pistol",
   "armor",
-  "cloak",
   "rifle",
   "torch",
   "map",

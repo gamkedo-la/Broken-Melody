@@ -16,8 +16,6 @@ var tilePistolPic = document.createElement("img");
 tilePistolPic.src = "images/tilePistol.png";
 var tileArmorPic = document.createElement("img");
 tileArmorPic.src = "images/tileArmor.png";
-var tileCloakPic = document.createElement("img");
-tileCloakPic.src = "images/tileCloak.png";
 var tileHealth = document.createElement("img");
 tileHealth.src = "images/healthSheet.png";
 const TILE_HEALTH_FRAMES = 4;
@@ -26,8 +24,8 @@ tileDoorPic.src = "images/welcome.png";
 var tileKeyPic = document.createElement("img");
 tileKeyPic.src = "images/TileKeyAN.png";
 const TILE_KEY_FRAMES = 4;
-var tileSpikesPic = document.createElement("img");
-tileSpikesPic.src = "images/tileSpikes.png";
+var tilePistolGangerPic = document.createElement("img");
+tilePistolGangerPic.src = "images/pistolGanger.png";
 var tileGrenadePic = document.createElement("img");
 tileGrenadePic.src = "images/tileGrenade.png";
 var tileFriendlyPic = document.createElement("img");
@@ -56,8 +54,6 @@ deadScreen.src = "images/deadScreen.png";
 var endScreen = document.createElement("img");
 endScreen.src = "images/endScreen.png";
 
-
-var wasStabbed = false;  // JK ask Chris what wasstabbed is
 var hasSword = false;
 
 // where is the player/gameplay happening in the overworld level grid?
@@ -290,9 +286,6 @@ function drawOnlyBricksOnScreen() {
           case TILE_ARMOR:
             usePic = tileArmorPic;
             break;
-          case TILE_CLOAK:
-            usePic = tileCloakPic;
-            break;
           case TILE_HEALTH:
             tileFrame = animFrame % TILE_HEALTH_FRAMES;
             usePic = tileHealth;
@@ -304,8 +297,8 @@ function drawOnlyBricksOnScreen() {
             usePic = tileKeyPic;
             tileFrame = animFrame % TILE_KEY_FRAMES;
             break;
-          case TILE_SPIKES:
-            usePic = tileSpikesPic;
+          case TILE_PISTOL_GANGER:
+            usePic = tilePistolGangerPic;
             break;
           case TILE_GRENADE:
             usePic = tileGrenadePic;

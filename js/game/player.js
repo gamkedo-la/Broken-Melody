@@ -264,9 +264,6 @@ function checkIfChangingRooms() {
 
 function playerRestoreFromStoredRoomEntry() {
   holdRight = holdLeft = false; // hacky fix to interrupt incorrect key held state after level reload
-  if (wasStabbed) {
-
-  }
 
   var loadingRoomName = levelCRToFilename(roomsOverC,roomsDownR);
   brickGrid = window[loadingRoomName].gridspaces = roomAsItStarted.slice(0);
@@ -363,7 +360,7 @@ function shotDetection (theEnemy) {
 }
 
 function hitDetection (enemyX, enemyY) {
-  if (damagedRecentely > 0 || playerIsDead() || wasStabbed ) {
+  if (damagedRecentely > 0 || playerIsDead()) {
     return;
   }
   if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {

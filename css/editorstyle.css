@@ -267,22 +267,22 @@ html {
   background: url("../images/tileCrumble.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Red Ant */
+/* Ganger */
 .t4 {
   background: #f00;
   background: url("../images/ganger.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Fly */
+/* Knife Ganger */
 .t5 {
   background: #505050;
-  background: url("../images/evilFly.png") no-repeat;
+  background: url("../images/knifeGanger.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Spikes */
+/* Pistol Ganger */
 .t6 {
   background: #800000;
-  background: url("../images/tileSpikes.png") no-repeat;
+  background: url("../images/pistolGanger.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Friendlies */
@@ -333,44 +333,38 @@ html {
   background: url("../images/tileArmor.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Cloak */
-.t15 {
-  background: #00f;
-  background: url("../images/tileCloak.png") no-repeat;
-  background-size: 100% 100%;
-}
 /* Rifle */
-.t16 {
+.t15 {
   background: #00f;
   background: url("../images/tileRifle.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Torch */
-.t17 {
+.t16 {
   background: #00f;
   background: url("../images/torchSheet.png") no-repeat;
   background-size: 400% 100%; /* only show frame 1 of 4 */
 }
 /* Map */
-.t18 {
+.t17 {
   background: #00f;
   background: url("../images/tileMap.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Gold Door */
-.t19 {
+.t18 {
   background: #00f;
   background: url("../images/tileGoldDoor.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Gold Key */
-.t20 {
+.t19 {
   background: #00f;
   background: url("../images/tileGoldKey.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Knife */
-.t21 {
+.t20 {
   background: #00f;
   background: url("../images/knife.png") no-repeat;
   background-size: 100% 100%;

@@ -92,10 +92,6 @@ this.enemyMove = function() {
 
     shotDetection (this);
 
-    if(whichBrickAtPixelCoord(this.x,this.y,false) == TILE_SPIKES) { // ant fell on spikes
-      return;
-    }
-
 	  // movement for the one hard coded enemy red ant
     this.x += this.xv;
     this.y += this.yv;
