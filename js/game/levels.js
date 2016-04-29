@@ -261,6 +261,7 @@ function drawOnlyBricksOnScreen() {
 
       // will be overridden in switch-case with cycled frame for animated tiles
       tileFrame = 0; // by default use first tile position
+      var showStreetUnderTransparency = false;
 
       var tileValueHere = whichBrickAtTileCoord(eachCol, eachRow);
       if(tileValueHere < 0) {
@@ -269,6 +270,7 @@ function drawOnlyBricksOnScreen() {
         brickGrid[brickTileToIndex(eachCol, eachRow)] = tileValueHere +1;
       } else switch( tileValueHere ) {
           case TILE_NONE:
+          case TILE_PLAYERSTART:
             usePic = tilePic;
             break;
           case TILE_SIDEWALK:
@@ -282,19 +284,24 @@ function drawOnlyBricksOnScreen() {
             break;
           case TILE_PISTOL:
             usePic = tilePistolPic;
+            showStreetUnderTransparency = true;
             break;
           case TILE_ARMOR:
             usePic = tileArmorPic;
+            showStreetUnderTransparency = true;
             break;
           case TILE_HEALTH:
             tileFrame = animFrame % TILE_HEALTH_FRAMES;
+            showStreetUnderTransparency = true;
             usePic = tileHealth;
             break;
           case TILE_DOOR:
             usePic = tileDoorPic;
+            showStreetUnderTransparency = true;
             break;
           case TILE_KEY:
             usePic = tileKeyPic;
+            showStreetUnderTransparency = true;
             tileFrame = animFrame % TILE_KEY_FRAMES;
             break;
           case TILE_PISTOL_GANGER:
@@ -302,6 +309,7 @@ function drawOnlyBricksOnScreen() {
             break;
           case TILE_GRENADE:
             usePic = tileGrenadePic;
+            showStreetUnderTransparency = true;
             break;
           case TILE_FRIENDLY_ANT:
             tileFrame = animFrame % TILE_FRIENDLY_FRAMES;
@@ -309,20 +317,24 @@ function drawOnlyBricksOnScreen() {
             break;
           case TILE_TORCH:
             tileFrame = animFrame % TILE_TORCH_FRAMES;
+            showStreetUnderTransparency = true;
             usePic = tileTorch;
             break;
           case TILE_MAP:
             usePic = tileMapPic;
+            showStreetUnderTransparency = true;
             break;
           case TILE_GOLD_DOOR:
             usePic = tileGoldDoorPic;
             break;
           case TILE_GOLD_KEY:
             usePic = tileGoldKeyPic;
+            showStreetUnderTransparency = true;
             tileFrame = animFrame % TILE_GOLD_KEY_FRAMES;
             break;
           case TILE_KNIFE:
             usePic = tileKnifePic;
+            showStreetUnderTransparency = true;
             break;
           default:
             usePic = tileTorch;
@@ -330,6 +342,15 @@ function drawOnlyBricksOnScreen() {
       } // end of whichBrickAtTileCoord()
       var brickLeftEdgeX = eachCol * BRICK_W;
       var brickTopEdgeY = eachRow * BRICK_H;
+
+      if(showStreetUnderTransparency) {
+        canvasContext.drawImage(tilePic,
+          0, 0, // top-left corner of tile art
+          BRICK_W, BRICK_H, // get full tile size from source
+          brickLeftEdgeX, brickTopEdgeY, // x,y top-left corner for image destination
+          BRICK_W, BRICK_H); // draw full full tile size for destination
+      }
+
     //   console.log(tileValueHere);
       canvasContext.drawImage(usePic,
         tileFrame * BRICK_W, 0, // top-left corner of tile art

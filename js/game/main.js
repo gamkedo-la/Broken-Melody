@@ -119,7 +119,7 @@ function drawEverything() {
         break;
   }
   
-  canvasContext.drawImage(backgroundPic,0, 0);
+  // canvasContext.drawImage(backgroundPic,0, 0);
 
   drawOnlyBricksOnScreen();
 
@@ -135,8 +135,6 @@ function drawEverything() {
   drawShot();
 
   drawHealthHud();
-
-  canvasContext.restore(); // undoes the .translate() used for cam scroll
 
   canvasContext.fillStyle = 'white';
 
@@ -182,6 +180,8 @@ function drawEverything() {
     canvasContext.fillText("Ow",playerX - camPanX -5, playerY - camPanY + (damagedRecentely/5  ));
   }
   
+  canvasContext.restore(); // undoes the .translate() used for cam scroll
+
   switch (slideDir){
       case DIR_N:
         canvasContext.drawImage(canvas, 0, ROOM_PAN_SPEED);
