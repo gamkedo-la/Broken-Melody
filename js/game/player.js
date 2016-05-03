@@ -33,6 +33,7 @@ var bashTimer = 10;
 var shieldFacingLeft = false;
 var shotX = 0;
 var shotY = 0;
+var playerLastWalkedIn = DIR_S;
 
 var tutorialTimerWiz = 0;
 var tutorialTimerArmor = 0;
@@ -141,15 +142,19 @@ function playerMove() {
 
   if(holdLeft) {
     playerSpeedX = -RUN_SPEED;
+    playerLastWalkedIn = DIR_W;
   }
   if(holdRight) {
     playerSpeedX = RUN_SPEED;
+    playerLastWalkedIn = DIR_E;
   }
   if(holdUp) {
     playerSpeedY = -RUN_SPEED;
+    playerLastWalkedIn = DIR_N;
   }
   if(holdDown) {
     playerSpeedY = RUN_SPEED;
+    playerLastWalkedIn = DIR_S;
   }
 
     // is player center not inside a brick prior to move? if so save it to restore after move
@@ -283,7 +288,7 @@ function playerRestoreFromStoredRoomEntry() {
   playerX = startedRoomAtX;
   playerY = startedRoomAtY;
   playerSpeedX = startedRoomAtXV;
-  lastFacingLeft = playerSpeedX < 0;
+  // lastFacingLeft = playerSpeedX < 0;
   playerSpeedY = startedRoomAtYV;
   countdown = 0;
   timeSCD = 00;
@@ -378,16 +383,17 @@ function drawplayer() {
   }
   
   var playerFrame;
-  var isMoving = Math.abs(playerSpeedX)>1;
+  /*var isMoving = Math.abs(playerSpeedX)>1;
   if (isMoving) {
     playerFrame = animFrame % PLAYER_RUN_FRAMES;
   } else {
     playerFrame = 0;
-  }
-  drawFacingLeftOption(playerPic,playerX,playerY,lastFacingLeft, playerFrame);
+  }*/
+  playerFrame = playerLastWalkedIn;
+  drawFacingLeftOption(playerPic,playerX,playerY,false, playerFrame);
 
   if (hasSword) {  
-    drawFacingLeftOption(playerSwordPic,playerX,playerY,lastFacingLeft);
+    drawFacingLeftOption(playerSwordPic,playerX,playerY,false);
   }
 }
 

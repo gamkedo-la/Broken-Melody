@@ -3,10 +3,10 @@ gangerPic.src = "images/ganger-sheet.png";
 const ENEMY_FRAMES = 4;
 
 // Facing direction 
-const DIR_N = 0;
-const DIR_E = 1;
-const DIR_S = 2;
-const DIR_W = 3;
+const DIR_E = 0;
+const DIR_S = 1;
+const DIR_W = 2;
+const DIR_N = 3;
 const DIR_NONE = 4;
 
 const EVIL_BUG_SPEED = 1.0;
