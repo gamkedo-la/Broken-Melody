@@ -70,8 +70,6 @@ var mapDotX = 0;
 var mapDotY = 0;
 var hasGoldKey = false;
 
-var isFiringGun = false;
-
 myShot = new shotClass();
 
 function fireGun(){
@@ -99,9 +97,9 @@ function isBlockPickup (tileType) {
 
 function drawShot () {
 
-  if (isFiringGun){
-    myShot.move();
-  }
+  myShot.move();
+  myShot.draw();
+
 
   if (isFiring) {
     bashTimer --;

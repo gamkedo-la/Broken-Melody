@@ -77,14 +77,12 @@ function setKeyHoldState(thisKey, setTo) {
     if (thisKey == KEY_DOWN_ARROW || thisKey == KEY_S) {
         holdDown = setTo;
     }
-
-    if (thisKey == KEY_T) {
-        isFiringGun = true;       
-        fireGun();
-    }
 }
 
 function keyPressed(evt) {
+    if (evt.keyCode == KEY_T) {    
+        fireGun();
+    }
     setKeyHoldState(evt.keyCode, true);
     evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
