@@ -41,11 +41,6 @@ function setKeyHoldState(thisKey, setTo) {
         return; // block other keys
     }
 
-    if (thisKey == KEY_T && timerDelay == 0) {
-        showTimer = !showTimer;
-        timerDelay = 10;
-    }
-
     if (thisKey == KEY_M && hasMap && timerDelay == 0) {
         showMap = !showMap;
         timerDelay = 10;
@@ -81,6 +76,11 @@ function setKeyHoldState(thisKey, setTo) {
     }
     if (thisKey == KEY_DOWN_ARROW || thisKey == KEY_S) {
         holdDown = setTo;
+    }
+
+    if (thisKey == KEY_T) {
+        isFiringGun = true;       
+        fireGun();
     }
 }
 

@@ -70,6 +70,14 @@ var mapDotX = 0;
 var mapDotY = 0;
 var hasGoldKey = false;
 
+var isFiringGun = false;
+
+myShot = new shotClass();
+
+function fireGun(){
+  myShot.shootFrom(playerX, playerY);
+}
+
 function isBlockPickup (tileType) {
   if (whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == tileType) {
     brickGrid[whichIndexAtPixelCoord(playerX, playerY + PLAYER_RADIUS)] = TILE_NONE;
@@ -90,6 +98,11 @@ function isBlockPickup (tileType) {
 }
 
 function drawShot () {
+
+  if (isFiringGun){
+    myShot.move();
+  }
+
   if (isFiring) {
     bashTimer --;
     shotX = playerX + 8*(5-Math.abs(bashTimer-5)) * (shieldFacingLeft ? -1 : 1);
@@ -336,6 +349,7 @@ function playerReset() {
         brickGrid[changeAt] = TILE_NONE; // remove tile where player started
         playerSpeedY = playerSpeedX = 0;
         playerStoreRoomEntry();
+        myShot.reset();
       } // end of player start found
     } // end of row
   } // end of col
