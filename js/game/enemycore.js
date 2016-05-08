@@ -25,7 +25,7 @@ function enemySlideAndBounce() {
   this.yv = 0;
   this.facingDir = DIR_E;
   this.myID = enemyList.length;
-
+  this.readyToRemove = false;
   this.restoreImgFromKind =  function() {
       this.myPic = gangerPic;
   }
@@ -96,12 +96,28 @@ this.enemyMove = function() {
     this.x += this.xv;
     this.y += this.yv;
 
-    if(whichBrickAtPixelCoord(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv,false) != TILE_NONE) {
+    if(isTileHereSolid(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv)) {
       this.facingDir ++;
       if(this.facingDir >= DIR_NONE){
-          this.facingDir = DIR_N;
+          this.facingDir = DIR_E;
       }
-      switch(this.facingDir){
+      
+    } else if (Math.random() < 0.05) {
+        if (Math.random() < 0.5){ // North/South
+            if(this.y < playerY){
+                this.facingDir = DIR_S;
+            } else {
+                this.facingDir = DIR_N;
+            }
+        } else {  // East/West
+            if (this.x < playerX){
+                this.facingDir = DIR_E;
+            } else {
+                this.facingDir = DIR_W;
+            }
+        }
+    }
+    switch(this.facingDir){
           case DIR_N:
             this.xv = 0;
             this.yv = -EVIL_BUG_SPEED;
@@ -119,7 +135,7 @@ this.enemyMove = function() {
             this.yv = 0;
             break;
       }  
-    }
+    
     this.x += this.xv;
     this.y += this.yv;
 

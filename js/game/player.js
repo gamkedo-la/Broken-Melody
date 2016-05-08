@@ -76,6 +76,10 @@ function fireGun(){
   myShot.shootFrom(playerX, playerY);
 }
 
+function isShotActive(){
+    return myShot.bullet_life > 0;
+}
+
 function isBlockPickup (tileType) {
   if (whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == tileType) {
     brickGrid[whichIndexAtPixelCoord(playerX, playerY + PLAYER_RADIUS)] = TILE_NONE;
@@ -102,18 +106,8 @@ function drawShot () {
 
 
   if (isFiring) {
-    bashTimer --;
     shotX = playerX + 8*(5-Math.abs(bashTimer-5)) * (shieldFacingLeft ? -1 : 1);
     shotY = playerY;
-    if (bashTimer <0){
-      isFiring = false;
-      bashTimer = 10;
-    }
-
-    if (whichBrickAtPixelCoord(shotX,shotY,false) == TILE_CRUMBLE) {
-      brickGrid[whichIndexAtPixelCoord(shotX,shotY)] = TILE_NONE;
-    }
-
   }
 }
 
@@ -245,24 +239,28 @@ function checkIfChangingRooms() {
   // edge of world checking to change rooms:
   // checking if on left side of screen going off
   if(playerX < BRICK_W/2) {
+    playerStoreRoomEntry();
     roomsOverC--;
     playerX = (BRICK_COLS-1)*BRICK_W;
     tryToReloadLevel = true;
     slideDir = DIR_W;
   }
   if(playerX > (BRICK_COLS-1)*BRICK_W+BRICK_W/2) { // check if player going off right side of screen
+    playerStoreRoomEntry();
     roomsOverC++;
     playerX = BRICK_W;
     tryToReloadLevel = true;
     slideDir = DIR_E;
   }
   if(playerY < BRICK_H/4 && playerSpeedY<0) { // check if player going off top of screen
+    playerStoreRoomEntry();
     roomsDownR--;
     playerY = (BRICK_ROWS-1)*BRICK_H-BRICK_H/2;
     tryToReloadLevel = true;
     slideDir = DIR_N;
   }
   if(playerY > (BRICK_ROWS-1)*BRICK_H+BRICK_H/2 && playerSpeedY>0) { // check if player going off bottom of screen
+    playerStoreRoomEntry();
     roomsDownR++;
     playerY = BRICK_H/2;
     tryToReloadLevel = true;
@@ -357,20 +355,11 @@ function shotDetection (theEnemy) {
   var enemyX = theEnemy.x;
   var enemyY = theEnemy.y;
 
-  if(isFiring) {
-    if (enemyX > shotX - 20 && enemyX < shotX + 20) {
-      if (enemyY > shotY - 20 && enemyY < shotY + 20) {
-        if(enemyX > shotX) {
-          theEnemy.x += BRICK_W;
-          if( brickGrid[whichIndexAtPixelCoord(theEnemy.x, theEnemy.y)] != TILE_NONE) {
-            theEnemy.x -= BRICK_W;
-          }
-        } else {
-          theEnemy.x -= BRICK_W;
-          if( brickGrid[whichIndexAtPixelCoord(theEnemy.x, theEnemy.y)] != TILE_NONE) {
-            theEnemy.x += BRICK_W;
-          }
-        }
+  if(isShotActive()) {
+    if (enemyX > myShot.x - 20 && enemyX < myShot.x + 20) {
+      if (enemyY > myShot.y - 20 && enemyY < myShot.y + 20) {
+        myShot.bullet_life = 0;
+        theEnemy.readyToRemove = true;
       }
     }
   }

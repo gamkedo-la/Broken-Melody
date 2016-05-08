@@ -1,4 +1,3 @@
-console.log("yay I was included");
 var roomsToLoadColsW = 9
 
 var BRICK_COLS = 16;

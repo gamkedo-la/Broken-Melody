@@ -80,10 +80,12 @@ function setKeyHoldState(thisKey, setTo) {
 }
 
 function keyPressed(evt) {
-    if (evt.keyCode == KEY_T) {    
-        fireGun();
+    if(slideDir == DIR_NONE){
+        if (evt.keyCode == KEY_T) {    
+            fireGun();
+        }
+        setKeyHoldState(evt.keyCode, true);
     }
-    setKeyHoldState(evt.keyCode, true);
     evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
 

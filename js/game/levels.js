@@ -81,14 +81,13 @@ const BRICK_GAP = 1;
 
 function isTileHereSolid(atX,atY) {
   var tileKindAt = whichBrickAtPixelCoord(atX,atY,true);
-  return (tileKindAt != TILE_NONE && tileKindAt != TILE_TORCH);
+  return (tileKindAt != TILE_NONE && tileKindAt != TILE_SIDEWALK);
 }
 
 function isTileHereWalkOnAble(atX,atY) {
   var tileKindAt = whichBrickAtPixelCoord(atX,atY,false);
 
   return tileKindAt == TILE_SIDEWALK ||
-          tileKindAt == TILE_BUILDING ||
           tileKindAt == TILE_DOOR ||
           tileKindAt == TILE_CRUMBLE ||
           tileKindAt < 0; // mid-decay
@@ -220,7 +219,8 @@ function whichIndexAtPixelCoord(hitPixelX, hitPixelY, forPlayer) {
 function whichBrickAtPixelCoord(hitPixelX, hitPixelY, forPlayer) {
   var index = whichIndexAtPixelCoord(hitPixelX, hitPixelY);
   if(index < 0) {
-     return TILE_SIDEWALK;
+     console.log("Hit the edge and the index at pixel cord is " + index);
+     return TILE_BUILDING;
   }
   return brickGrid[index];
 }

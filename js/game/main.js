@@ -44,7 +44,7 @@ window.onload = function() {
 
   loadLevel(); // load stage for game's location in the overall world grid
 //   loadLevel(loadedLevelJSON); // uncomment to test hand-coded/added stage in levels.js
-
+  playerStoreRoomEntry();
   playerReset(); // only calling this for first room player starts in.
 
   sliderReset();
@@ -97,6 +97,13 @@ function moveEverything() {
   for(var i=0;i<enemyList.length;i++) {
     enemyList[i].enemyMove();
   }
+  
+  for(var i=enemyList.length-1;i>=0;i--) {
+    if(enemyList[i].readyToRemove){
+        enemyList.splice(i,1);
+    }
+  }
+  
 }
 
 function drawEverything() {
