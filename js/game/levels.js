@@ -1,58 +1,3 @@
-var backgroundPic = document.createElement("img");
-backgroundPic.src = "images/gamebg.png"
-var tilePic = document.createElement("img");
-tilePic.src = "images/tile.png";
-var tileSidewalk = document.createElement("img");
-tileSidewalk.src = "images/tileSidewalk.png";
-var tileBuildingPic = document.createElement("img");
-tileBuildingPic.src = "images/tileBuilding.png";
-var tileCrumblePic = document.createElement("img");
-tileCrumblePic.src = "images/tileCrumble.png";
-const TILE_CRUMBLING_FRAMES = 4;
-const CRUMBLE_FRAME_TIME = 30;
-var tileCrumblingPic = document.createElement("img");
-tileCrumblingPic.src = "images/tileCrumbling.png";
-var tilePistolPic = document.createElement("img");
-tilePistolPic.src = "images/tilePistol.png";
-var tileArmorPic = document.createElement("img");
-tileArmorPic.src = "images/tileArmor.png";
-var tileHealth = document.createElement("img");
-tileHealth.src = "images/healthSheet.png";
-const TILE_HEALTH_FRAMES = 4;
-var tileDoorPic = document.createElement("img");
-tileDoorPic.src = "images/welcome.png";
-var tileKeyPic = document.createElement("img");
-tileKeyPic.src = "images/TileKeyAN.png";
-const TILE_KEY_FRAMES = 4;
-var tilePistolGangerPic = document.createElement("img");
-tilePistolGangerPic.src = "images/pistolGanger.png";
-var tileGrenadePic = document.createElement("img");
-tileGrenadePic.src = "images/tileGrenade.png";
-var tileFriendlyPic = document.createElement("img");
-tileFriendlyPic.src = "images/tileFriendly.png";
-const TILE_FRIENDLY_FRAMES = 4;
-var tileRiflePic = document.createElement("img");
-tileRiflePic.src = "images/tileRifle.png";
-var tileTorch = document.createElement("img");
-tileTorch.src = "images/torchSheet.png";
-const TILE_TORCH_FRAMES = 4;
-
-var tileMapPic = document.createElement("img");
-tileMapPic.src = "images/tileMap.png";
-var tileGoldDoorPic = document.createElement("img");
-tileGoldDoorPic.src = "images/tileGoldDoor.png";
-var tileGoldKeyPic = document.createElement("img");
-tileGoldKeyPic.src = "images/tileGoldKey.png";
-const TILE_GOLD_KEY_FRAMES = 4;
-var tileKnifePic = document.createElement("img");
-tileKnifePic.src = "images/knife.png";
-
-var startScreen = document.createElement("img");
-startScreen.src = "images/startScreen.png";
-var deadScreen = document.createElement("img");
-deadScreen.src = "images/deadScreen.png";
-var endScreen = document.createElement("img");
-endScreen.src = "images/endScreen.png";
 
 var hasSword = false;
 
@@ -89,7 +34,6 @@ function isTileHereWalkOnAble(atX,atY) {
 
   return tileKindAt == TILE_SIDEWALK ||
           tileKindAt == TILE_DOOR ||
-          tileKindAt == TILE_CRUMBLE ||
           tileKindAt < 0; // mid-decay
 }
 
@@ -264,81 +208,53 @@ function drawOnlyBricksOnScreen() {
       var showStreetUnderTransparency = false;
 
       var tileValueHere = whichBrickAtTileCoord(eachCol, eachRow);
-      if(tileValueHere < 0) {
-        tileFrame = Math.floor( (CRUMBLE_FRAME_TIME+tileValueHere) * TILE_CRUMBLING_FRAMES/CRUMBLE_FRAME_TIME );
-        usePic = tileCrumblingPic;
-        brickGrid[brickTileToIndex(eachCol, eachRow)] = tileValueHere +1;
-      } else switch( tileValueHere ) {
-          case TILE_NONE:
-          case TILE_PLAYERSTART:
-            usePic = tilePic;
-            break;
-          case TILE_SIDEWALK:
-            usePic = tileSidewalk;
-            break;
-          case TILE_BUILDING:
-            usePic = tileBuildingPic;
-            break;
-          case TILE_CRUMBLE:
-            usePic = tileCrumblePic;
-            break;
-          case TILE_PISTOL:
-            usePic = tilePistolPic;
-            showStreetUnderTransparency = true;
-            break;
-          case TILE_ARMOR:
-            usePic = tileArmorPic;
-            showStreetUnderTransparency = true;
-            break;
-          case TILE_HEALTH:
-            tileFrame = animFrame % TILE_HEALTH_FRAMES;
-            showStreetUnderTransparency = true;
-            usePic = tileHealth;
-            break;
-          case TILE_DOOR:
-            usePic = tileDoorPic;
-            showStreetUnderTransparency = true;
-            break;
-          case TILE_KEY:
-            usePic = tileKeyPic;
-            showStreetUnderTransparency = true;
-            tileFrame = animFrame % TILE_KEY_FRAMES;
-            break;
-          case TILE_PISTOL_GANGER:
-            usePic = tilePistolGangerPic;
-            break;
-          case TILE_GRENADE:
-            usePic = tileGrenadePic;
-            showStreetUnderTransparency = true;
-            break;
-          case TILE_FRIENDLY_ANT:
-            tileFrame = animFrame % TILE_FRIENDLY_FRAMES;
-            usePic = tileFriendlyPic;
-            break;
-          case TILE_TORCH:
-            tileFrame = animFrame % TILE_TORCH_FRAMES;
-            showStreetUnderTransparency = true;
-            usePic = tileTorch;
-            break;
-          case TILE_MAP:
-            usePic = tileMapPic;
-            showStreetUnderTransparency = true;
-            break;
-          case TILE_GOLD_DOOR:
-            usePic = tileGoldDoorPic;
-            break;
-          case TILE_GOLD_KEY:
-            usePic = tileGoldKeyPic;
-            showStreetUnderTransparency = true;
-            tileFrame = animFrame % TILE_GOLD_KEY_FRAMES;
-            break;
-          case TILE_KNIFE:
-            usePic = tileKnifePic;
-            showStreetUnderTransparency = true;
-            break;
-          default:
-            usePic = tileTorch;
-            break;
+      switch( tileValueHere ) {
+        case TILE_NONE:
+        case TILE_PLAYERSTART:
+        usePic = tilePic;
+        break;
+        case TILE_SIDEWALK:
+        usePic = tileSidewalk;
+        break;
+        case TILE_BUILDING:
+        usePic = tileBuildingPic;
+        break;
+        case TILE_PISTOL:
+        usePic = tilePistolPic;
+        showStreetUnderTransparency = true;
+        break;
+        case TILE_ARMOR:
+        usePic = tileArmorPic;
+        showStreetUnderTransparency = true;
+        break;
+        case TILE_HEALTH:
+        tileFrame = animFrame % TILE_HEALTH_FRAMES;
+        showStreetUnderTransparency = true;
+        usePic = tileHealth;
+        break;
+        case TILE_DOOR:
+        usePic = tileDoorPic;
+        showStreetUnderTransparency = true;
+        break;
+        case TILE_KEY:
+        usePic = tileKeyPic;
+        showStreetUnderTransparency = true;
+        tileFrame = animFrame % TILE_KEY_FRAMES;
+        break;
+        case TILE_PISTOL_GANGER:
+        usePic = tilePistolGangerPic;
+        break;
+        case TILE_FRIENDLY_ANT:
+        tileFrame = animFrame % TILE_FRIENDLY_FRAMES;
+        usePic = tileFriendlyPic;
+        break;
+        case TILE_MAP:
+        usePic = tileMapPic;
+        showStreetUnderTransparency = true;
+        break;
+        default:
+        usePic = tilePic;
+        break;
       } // end of whichBrickAtTileCoord()
       var brickLeftEdgeX = eachCol * BRICK_W;
       var brickTopEdgeY = eachRow * BRICK_H;

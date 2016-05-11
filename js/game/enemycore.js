@@ -1,6 +1,4 @@
-var gangerPic = document.createElement("img");
-gangerPic.src = "images/ganger-sheet.png";
-const ENEMY_FRAMES = 4;
+
 
 // Facing direction 
 const DIR_E = 0;

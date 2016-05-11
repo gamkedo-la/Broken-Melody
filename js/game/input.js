@@ -48,7 +48,7 @@ function setKeyHoldState(thisKey, setTo) {
 
     if (thisKey == KEY_SPACE && setTo) {
         if (gameGoing == false && isWinner == false) {
-            gameGoing = true;
+            loadImages();
             // audio_music.play();
         }
         wall_clipping_cheat = !wall_clipping_cheat;

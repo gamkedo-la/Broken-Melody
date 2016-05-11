@@ -12,8 +12,6 @@ function setFormat() {
 setFormat();
 
 var audio_music = new Audio("SFX/antventureTheme" + ext);
-var audio_crumble = new Audio("SFX/CrumbleBrick" + ext);
-var audio_crumbleBreak = new Audio("SFX/CrumbleBrickBreak" + ext);
 var audio_squishSoundV1 = new Audio("SFX/squishSoundV1" + ext);
 var audio_squishSoundV2 = new Audio("SFX/squishSoundV2" + ext);
 var audio_walkingloop = new Audio("SFX/walkingloop" + ext);

@@ -1,29 +1,3 @@
-var playerPic = document.createElement("img");
-playerPic.src = "images/player-sheet.png";
-
-var shieldPic = document.createElement("img");
-shieldPic.src = "images/shield.png";
-var playerSwordPic = document.createElement("img");
-playerSwordPic.src = "images/playerSwordPic.png";
-
-const PLAYER_RUN_FRAMES = 4;
-
-var hudHealth1Pic = document.createElement("img");
-hudHealth1Pic.src = "images/hudHealth1.png";
-var hudHealth2Pic = document.createElement("img");
-hudHealth2Pic.src = "images/hudHealth2.png";
-var hudHealth3Pic = document.createElement("img");
-hudHealth3Pic.src = "images/hudHealth3.png";
-var hudHealth0Pic = document.createElement("img");
-hudHealth0Pic.src = "images/hudHealth0.png";
-
-var hudMapPic = document.createElement("img");
-hudMapPic.src = "images/hudMap.png";
-var mapDotPic = document.createElement("img");
-mapDotPic.src = "images/mapDotPic.png";
-var majorKey = document.createElement("img");
-majorKey.src = "images/majorKey.png";
-
 
 var carryingBlock = false;
 var numberOfKeys = 0;
@@ -45,7 +19,7 @@ var camPanY = 0.0;
 const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X = 150;
 const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
 
-const GROUND_FRICTION = 0.8; // What's this?
+const GROUND_FRICTION = 0.8;
 const RUN_SPEED = 4.0;
 
 var playerX = 75, playerY = 75;
@@ -186,10 +160,6 @@ function playerMove() {
 
   if (isBlockPickup(TILE_MAP)) {
     hasMap = true;
-  }
-  
-  if (isBlockPickup(TILE_KNIFE)) {
-    hasSword = true;
   }
   
   // collision detection #TODO fine tune when player graphic is created
