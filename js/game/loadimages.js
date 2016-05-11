@@ -1,5 +1,5 @@
 var backgroundPic = document.createElement("img");
-var tilePic = document.createElement("img");
+var tileStreet = document.createElement("img");
 var tileSidewalk = document.createElement("img");
 var tileBuildingPic = document.createElement("img");
 var deadScreen = document.createElement("img");
@@ -42,25 +42,34 @@ var startScreen = document.createElement("img");
 startScreen.src = "images/startScreen.png";
 
 var picsToLoad = 0;
+var worldArtSets = 2;
 
 function countLoadedImageAndLaunchIfReady() {
   picsToLoad--;
-  if(picsToLoad == 1) {
+  if(picsToLoad == 0) {
     gameGoing = true;
   }
 }
 
-function beginLoadingImage(imgVar, fileName) {
-  imgVar.onload=countLoadedImageAndLaunchIfReady; 
-  imgVar.src=fileName; 
+function beginLoadingImage(imgVar, fileName, idx) {
+  if(idx != undefined){
+    console.log("IDX is " + idx);
+    imgVar[idx] = document.createElement("img");
+    imgVar[idx].onload=countLoadedImageAndLaunchIfReady; 
+    imgVar[idx].src=fileName; 
+  } else {
+    imgVar.onload=countLoadedImageAndLaunchIfReady; 
+    imgVar.src=fileName; 
+  }
 }
 
 function loadImages() {
+  tileStreet = [];
+  tileSidewalk = [];
+  tileBuildingPic = [];
+
   var imageList = [
     {varName:backgroundPic, theFile:"images/gamebg.png"},
-    {varName:tilePic, theFile:"images/tile.png"},
-    {varName:tileSidewalk, theFile:"images/tileSidewalk.png"},
-    {varName:tileBuildingPic, theFile:"images/tileBuilding.png"},
     {varName:tilePistolPic, theFile:"images/tilePistol.png"},
     {varName:tileArmorPic, theFile:"images/tileArmor.png"},
     {varName:tileHealth, theFile:"images/healthSheet.png"},
@@ -70,7 +79,6 @@ function loadImages() {
     {varName:tileFriendlyPic, theFile:"images/tileFriendly.png"},
     {varName:tileRiflePic, theFile:"images/tileRifle.png"},
     {varName:tileMapPic, theFile:"images/tileMap.png"},
-    {varName:deadScreen, theFile:"images/deadScreen.png"},
     {varName:deadScreen, theFile:"images/deadScreen.png"},
     {varName:playerPic, theFile:"images/player-sheet.png"},
     {varName:shieldPic, theFile:"images/shield.png"},
@@ -84,9 +92,16 @@ function loadImages() {
     {varName:gangerPic, theFile:"images/ganger-sheet.png"}
     ];
   
+  
+
+  for(var i = 1;i<=worldArtSets;i++){ // starting at 1 so <=
+    imageList.push({varName:tileStreet, idx:i, theFile:"images/" + i + "/tileStreet.png"});
+    imageList.push({varName:tileSidewalk, idx:i, theFile:"images/" + i + "/tileSidewalk.png"});
+    imageList.push({varName:tileBuildingPic, idx:i, theFile:"images/" + i + "/tileBuilding.png"});
+  }
   picsToLoad = imageList.length;
 
   for(var i=0;i<imageList.length;i++) {
-    beginLoadingImage(imageList[i].varName,imageList[i].theFile);
+    beginLoadingImage(imageList[i].varName, imageList[i].theFile, imageList[i].idx);
   }
 }

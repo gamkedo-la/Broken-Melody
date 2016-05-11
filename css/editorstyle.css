@@ -246,19 +246,19 @@ html {
 /* Road */
 .t0 {
   background: #f7f7f7;
-  background: url("../images/tile.png") no-repeat;
+  background: url("../images/1/tileStreet.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Sidewalk */
 .t1 {
   background: #9e6019;
-  background: url("../images/tileSidewalk.png") no-repeat;
+  background: url("../images/1/tileSidewalk.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Building */
 .t2 {
   background: #005500;
-  background: url("../images/tileBuilding.png") no-repeat;
+  background: url("../images/1/tileBuilding.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Ganger */

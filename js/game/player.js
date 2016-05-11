@@ -257,6 +257,7 @@ function playerRestoreFromStoredRoomEntry() {
     var newEnem = new enemySlideAndBounce();
     newEnem.respawnEnemy(enemyRespawnData[i]);
     enemyList.push( newEnem );
+    console.log("Enemy respawned from json");
   }
   // enemyList = enemiesWhenRoomStarted.slice(0);
   processBrickGrid();
@@ -362,10 +363,6 @@ function drawplayer() {
   }*/
   playerFrame = playerLastWalkedIn;
   drawFacingLeftOption(playerPic,playerX,playerY,false, playerFrame);
-
-  if (hasSword) {  
-    drawFacingLeftOption(playerSwordPic,playerX,playerY,false);
-  }
 }
 
 function instantCamFollow() {

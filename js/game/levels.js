@@ -127,10 +127,10 @@ function processBrickGrid() {
     enemyList.push(tempEnemy);
     tempEnemy = new enemySlideAndBounce();
   }
-  while(tempEnemy.enemyPlacement(TILE_EVIL_FLY_START, 0.0, EVIL_BUG_SPEED)) {
-    enemyList.push(tempEnemy);
-    tempEnemy = new enemySlideAndBounce();
-  }
+  // while(tempEnemy.enemyPlacement(TILE_EVIL_FLY_START, 0.0, EVIL_BUG_SPEED)) {
+  //   enemyList.push(tempEnemy);
+  //   tempEnemy = new enemySlideAndBounce();
+  // }
 }
 
 function brickTileToIndex(tileCol, tileRow) {
@@ -200,6 +200,7 @@ function drawOnlyBricksOnScreen() {
 
   var usePic;
   var tileFrame;
+  var roomKind = roomsToLoad[roomsOverC + roomsDownR*roomsToLoadColsW];
   for(var eachCol=cameraLeftMostCol; eachCol<cameraRightMostCol; eachCol++) {
     for(var eachRow=cameraTopMostRow; eachRow<cameraBottomMostRow; eachRow++) {
 
@@ -211,13 +212,13 @@ function drawOnlyBricksOnScreen() {
       switch( tileValueHere ) {
         case TILE_NONE:
         case TILE_PLAYERSTART:
-        usePic = tilePic;
+        usePic = tileStreet[roomKind];
         break;
         case TILE_SIDEWALK:
-        usePic = tileSidewalk;
+        usePic = tileSidewalk[roomKind];
         break;
         case TILE_BUILDING:
-        usePic = tileBuildingPic;
+        usePic = tileBuildingPic[roomKind];
         break;
         case TILE_PISTOL:
         usePic = tilePistolPic;
@@ -253,14 +254,14 @@ function drawOnlyBricksOnScreen() {
         showStreetUnderTransparency = true;
         break;
         default:
-        usePic = tilePic;
+        usePic = tileStreet[roomKind];
         break;
       } // end of whichBrickAtTileCoord()
       var brickLeftEdgeX = eachCol * BRICK_W;
       var brickTopEdgeY = eachRow * BRICK_H;
 
       if(showStreetUnderTransparency) {
-        canvasContext.drawImage(tilePic,
+        canvasContext.drawImage(tileStreet[roomKind],
           0, 0, // top-left corner of tile art
           BRICK_W, BRICK_H, // get full tile size from source
           brickLeftEdgeX, brickTopEdgeY, // x,y top-left corner for image destination
@@ -268,12 +269,13 @@ function drawOnlyBricksOnScreen() {
       }
 
     //   console.log(tileValueHere);
+    if(usePic){
       canvasContext.drawImage(usePic,
         tileFrame * BRICK_W, 0, // top-left corner of tile art
         BRICK_W, BRICK_H, // get full tile size from source
         brickLeftEdgeX, brickTopEdgeY, // x,y top-left corner for image destination
         BRICK_W, BRICK_H); // draw full full tile size for destination
-
+      }
 
     } // end of for eachRow
   } // end of for eachCol

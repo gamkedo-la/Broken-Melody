@@ -58,7 +58,7 @@ function enemySlideAndBounce() {
           this.y = (eachRow * BRICK_H + BRICK_H/2) + ANT_GROUND_HEIGHT_OFFSET;
           var changeAt = brickTileToIndex(eachCol, eachRow);
           brickGrid[changeAt] = TILE_NONE; // remove tile where player started
-
+          console.log("enemy spawned from tile");
           this.myRoomC = roomsOverC;
           this.myRoomR = roomsDownR;
 
@@ -80,7 +80,7 @@ this.enemyDraw = function() {
       enemyFrame = 0; // no animation on fly
     }
     
-    drawFacingLeftOption(this.myPic,this.x,this.y, false, enemyFrame);
+    drawFacingLeftOption(this.myPic, this.x, this.y, false, enemyFrame);
 }
 
 this.enemyMove = function() {
