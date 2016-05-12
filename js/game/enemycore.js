@@ -75,10 +75,11 @@ this.enemyDraw = function() {
       return; // not in this room, skip this one
     }
     
-    var enemyFrame = animFrame % ENEMY_FRAMES;
-    if(this.xv == 0) {
-      enemyFrame = 0; // no animation on fly
-    }
+    // var enemyFrame = animFrame % ENEMY_FRAMES;
+    // if(this.xv == 0) {
+    //   enemyFrame = 0; // no animation on fly
+    // }
+    var enemyFrame = this.facingDir;
     
     drawFacingLeftOption(this.myPic, this.x, this.y, false, enemyFrame);
 }
@@ -100,7 +101,7 @@ this.enemyMove = function() {
           this.facingDir = DIR_E;
       }
       
-    } else if (Math.random() < 0.05) {
+    } else if (Math.random() < 0.05) { // this will randomly move towards the player
         if (Math.random() < 0.5){ // North/South
             if(this.y < playerY){
                 this.facingDir = DIR_S;
