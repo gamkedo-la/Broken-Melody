@@ -68,7 +68,7 @@ window.onload = function() {
           canvasContext.fillText("Bonuse Keys:" ,400, 340);
           canvasContext.fillText(numberOfKeys ,480, 340);
         } else {
-          canvasContext.drawImage(startScreen, 0, 0);
+          canvasContext.drawImage(startScreen, 0, 70);
         }
       }
     }, 1000/framesPerSecond);
