@@ -245,9 +245,8 @@ function drawOnlyBricksOnScreen() {
         case TILE_PISTOL_GANGER:
         usePic = tilePistolGangerPic;
         break;
-        case TILE_FRIENDLY_ANT:
-        tileFrame = animFrame % TILE_FRIENDLY_FRAMES;
-        usePic = tileFriendlyPic;
+        case TILE_MERCHANT:
+        usePic = tileMerchantPic;
         break;
         case TILE_MAP:
         usePic = tileMapPic;

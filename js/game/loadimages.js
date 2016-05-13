@@ -16,8 +16,7 @@ var tileMapPic = document.createElement("img");
 
 
 var tileArmorPic = document.createElement("img"); // #TODO remove
-var tileFriendlyPic = document.createElement("img"); // #TODO replace with merchant
-const TILE_FRIENDLY_FRAMES = 4;
+var tileMerchantPic = document.createElement("img");
 
 var playerPic = document.createElement("img");
 
@@ -76,7 +75,7 @@ function loadImages() {
     {varName:tileDoorPic, theFile:"images/welcome.png"},
     {varName:tileKeyPic, theFile:"images/TileKeyAN.png"},
     {varName:tilePistolGangerPic, theFile:"images/pistolGanger.png"},
-    {varName:tileFriendlyPic, theFile:"images/tileFriendly.png"},
+    {varName:tileMerchantPic, theFile:"images/merchant.png"},
     {varName:tileRiflePic, theFile:"images/tileRifle.png"},
     {varName:tileMapPic, theFile:"images/tileMap.png"},
     {varName:deadScreen, theFile:"images/deadScreen.png"},

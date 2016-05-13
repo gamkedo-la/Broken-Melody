@@ -282,8 +282,8 @@ html {
 /* Merchant */
 .t6 {
   background: #202020;
-  background: url("../images/tileFriendly.png") no-repeat;
-  background-size: 400% 100%; /* to only show first of 4 frames */
+  background: url("../images/merchant.png") no-repeat;
+  background-size: 100% 100%;
 }
 /* Health */
 .t7 {
@@ -312,7 +312,7 @@ html {
 /* Pistol */
 .t11 {
   background: #00f;
-  background: url("../images/tileWizHat.png") no-repeat;
+  background: url("../images/tilePistol.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Armor */
