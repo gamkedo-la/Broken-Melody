@@ -178,10 +178,6 @@ function drawEverything() {
 
   }
 
-  if (hasGoldKey) {
-    canvasContext.drawImage(majorKey, 735, 65)
-  }
-
   if (damagedRecentely > 0) {
     canvasContext.fillStyle = 'white';
     canvasContext.fillText("Ow",playerX - camPanX -5, playerY - camPanY + (damagedRecentely/5  ));

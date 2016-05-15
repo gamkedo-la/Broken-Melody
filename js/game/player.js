@@ -42,7 +42,7 @@ var blockCarryOnEnter = false;
 var hasMap = false;
 var mapDotX = 0;
 var mapDotY = 0;
-var hasGoldKey = false;
+
 
 myShot = new shotClass();
 
@@ -54,7 +54,7 @@ function isShotActive(){
     return myShot.bullet_life > 0;
 }
 
-function isBlockPickup (tileType) {
+function isBlockPickup (tileType) {  // this allows for picking up health, etc.
   if (whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == tileType) {
     brickGrid[whichIndexAtPixelCoord(playerX, playerY + PLAYER_RADIUS)] = TILE_NONE;
     return true;
