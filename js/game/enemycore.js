@@ -7,7 +7,7 @@ const DIR_W = 2;
 const DIR_N = 3;
 const DIR_NONE = 4;
 
-const EVIL_BUG_SPEED = 1.0;
+const ENEMY_SPEED = 1.0;
 const ANT_GROUND_HEIGHT_OFFSET = 14;
 
 enemyList = [];
@@ -119,18 +119,18 @@ this.enemyMove = function() {
     switch(this.facingDir){
           case DIR_N:
             this.xv = 0;
-            this.yv = -EVIL_BUG_SPEED;
+            this.yv = -ENEMY_SPEED;
             break;
           case DIR_E:
-            this.xv = EVIL_BUG_SPEED;
+            this.xv = ENEMY_SPEED;
             this.yv = 0;
             break;
           case DIR_S:
             this.xv = 0;
-            this.yv = EVIL_BUG_SPEED;
+            this.yv = ENEMY_SPEED;
             break;
           case DIR_W:
-            this.xv = -EVIL_BUG_SPEED;
+            this.xv = -ENEMY_SPEED;
             this.yv = 0;
             break;
       }  

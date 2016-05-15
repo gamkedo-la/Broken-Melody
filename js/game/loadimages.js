@@ -7,9 +7,9 @@ var endScreen = document.createElement("img");
 var tilePistolPic = document.createElement("img");
 var tileHealth = document.createElement("img");
 const TILE_HEALTH_FRAMES = 4;
-var tileDoorPic = document.createElement("img");
-var tileKeyPic = document.createElement("img");
-const TILE_KEY_FRAMES = 4;
+var tileWelcomeMatPic = document.createElement("img");
+var tilePizzaPic = document.createElement("img");
+const TILE_PIZZA_FRAMES = 4;
 var tilePistolGangerPic = document.createElement("img");
 var tileRiflePic = document.createElement("img");
 var tileMapPic = document.createElement("img");
@@ -19,8 +19,6 @@ var tileArmorPic = document.createElement("img"); // #TODO remove
 var tileMerchantPic = document.createElement("img");
 
 var playerPic = document.createElement("img");
-
-var shieldPic = document.createElement("img");
 
 var playerSwordPic = document.createElement("img");
 const PLAYER_RUN_FRAMES = 4;
@@ -41,7 +39,7 @@ var startScreen = document.createElement("img");
 startScreen.src = "images/startScreen.png";
 
 var picsToLoad = 0;
-var worldArtSets = 2;
+var worldArtSets = 3;
 
 function countLoadedImageAndLaunchIfReady() {
   picsToLoad--;
@@ -72,15 +70,14 @@ function loadImages() {
     {varName:tilePistolPic, theFile:"images/tilePistol.png"},
     {varName:tileArmorPic, theFile:"images/tileArmor.png"},
     {varName:tileHealth, theFile:"images/healthSheet.png"},
-    {varName:tileDoorPic, theFile:"images/welcome.png"},
-    {varName:tileKeyPic, theFile:"images/TileKeyAN.png"},
+    {varName:tileWelcomeMatPic, theFile:"images/welcome.png"},
+    {varName:tilePizzaPic, theFile:"images/TilePizzaAnimated.png"},
     {varName:tilePistolGangerPic, theFile:"images/pistolGanger.png"},
     {varName:tileMerchantPic, theFile:"images/merchant.png"},
     {varName:tileRiflePic, theFile:"images/tileRifle.png"},
     {varName:tileMapPic, theFile:"images/tileMap.png"},
     {varName:deadScreen, theFile:"images/deadScreen.png"},
     {varName:playerPic, theFile:"images/player-sheet.png"},
-    {varName:shieldPic, theFile:"images/shield.png"},
     {varName:playerSwordPic, theFile:"images/playerSwordPic.png"},
     {varName:hudHealth0Pic, theFile:"images/hudHealth0.png"},
     {varName:hudHealth1Pic, theFile:"images/hudHealth1.png"},

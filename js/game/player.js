@@ -43,6 +43,7 @@ var hasMap = false;
 var mapDotX = 0;
 var mapDotY = 0;
 
+var money = 0;
 
 myShot = new shotClass();
 
@@ -100,6 +101,13 @@ function drawHealthHud() {
   }
 }
 
+
+function drawFunds(){
+  canvasContext.font = "20px Comic Sans MS";
+  canvasContext.fillStyle = "black";
+  canvasContext.fillText("$" + money, canvas.width / 2, 20)
+}
+
 function playerIsDead() {
   return (health <= 0);
 }
@@ -148,12 +156,14 @@ function playerMove() {
       health ++;
     }
   }
-  if (isBlockPickup(TILE_KEY)) {
+  
+  if (isBlockPickup(TILE_PIZZA)) {
     numberOfKeys ++;
   }
 
   if (numberOfKeys > 0) {
-    if (isBlockPickup(TILE_DOOR)) {
+    if (isBlockPickup(TILE_WELCOME_MAT)) {
+        money += 20;
         numberOfKeys --;
     }
   }
@@ -161,7 +171,19 @@ function playerMove() {
   if (isBlockPickup(TILE_MAP)) {
     hasMap = true;
   }
-  
+
+  if(money > 15){
+    if (isBlockPickup(TILE_PISTOL)){
+      money -= 15;
+    }
+  }
+
+  if (money > 25){
+    if (isBlockPickup(TILE_ARMOR)){
+      money -= 25;
+    }
+  }
+
   // collision detection #TODO fine tune when player graphic is created
   if(wall_clipping_cheat == false){
     if(playerSpeedX < 0 && isTileHereSolid(playerX-PLAYER_RADIUS,playerY)) {

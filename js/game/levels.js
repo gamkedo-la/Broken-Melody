@@ -33,7 +33,7 @@ function isTileHereWalkOnAble(atX,atY) {
   var tileKindAt = whichBrickAtPixelCoord(atX,atY,false);
 
   return tileKindAt == TILE_SIDEWALK ||
-          tileKindAt == TILE_DOOR ||
+          tileKindAt == TILE_WELCOME_MAT ||
           tileKindAt < 0; // mid-decay
 }
 
@@ -123,11 +123,11 @@ function processBrickGrid() {
 
   var tempEnemy = new enemySlideAndBounce();
   // enemyList = []; do not clear enemy list, we're keeping old ones around
-  while(tempEnemy.enemyPlacement(TILE_EVIL_ANT_START, EVIL_BUG_SPEED, 0.0)) {
+  while(tempEnemy.enemyPlacement(TILE_GANGER, ENEMY_SPEED, 0.0)) {
     enemyList.push(tempEnemy);
     tempEnemy = new enemySlideAndBounce();
   }
-  // while(tempEnemy.enemyPlacement(TILE_EVIL_FLY_START, 0.0, EVIL_BUG_SPEED)) {
+  // while(tempEnemy.enemyPlacement(KNIFE_GANGER, 0.0, ENEMY_SPEED)) {
   //   enemyList.push(tempEnemy);
   //   tempEnemy = new enemySlideAndBounce();
   // }
@@ -233,14 +233,14 @@ function drawOnlyBricksOnScreen() {
         showStreetUnderTransparency = true;
         usePic = tileHealth;
         break;
-        case TILE_DOOR:
-        usePic = tileDoorPic;
+        case TILE_WELCOME_MAT:
+        usePic = tileWelcomeMatPic;
         showStreetUnderTransparency = true;
         break;
-        case TILE_KEY:
-        usePic = tileKeyPic;
+        case TILE_PIZZA:
+        usePic = tilePizzaPic;
         showStreetUnderTransparency = true;
-        tileFrame = animFrame % TILE_KEY_FRAMES;
+        tileFrame = animFrame % TILE_PIZZA_FRAMES;
         break;
         case TILE_PISTOL_GANGER:
         usePic = tilePistolGangerPic;

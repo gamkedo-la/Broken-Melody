@@ -9,7 +9,7 @@ var roomsToLoad =
   0,0,0,0,0,0,0,0,0, // b
   0,0,0,0,0,0,0,0,0, // c
   0,0,0,0,1,0,0,0,0, // d
-  0,0,0,2,1,2,0,0,0, // e
+  0,0,0,2,3,2,0,0,0, // e
   0,0,0,0,2,0,0,0,0, // f
   0,0,0,0,0,0,0,0,0, // g
   0,0,0,0,0,0,0,0,0, // h
@@ -19,13 +19,13 @@ var roomsToLoad =
 const TILE_NONE = 0;
 const TILE_SIDEWALK = 1;
 const TILE_BUILDING = 2;
-const TILE_EVIL_ANT_START = 3;
-const TILE_EVIL_FLY_START = 4;
+const TILE_GANGER = 3;
+const TILE_KNIFE_GANGER = 4;
 const TILE_PISTOL_GANGER = 5;
 const TILE_MERCHANT = 6;
 const TILE_HEALTH = 7;
-const TILE_DOOR = 8;
-const TILE_KEY = 9;
+const TILE_WELCOME_MAT = 8;
+const TILE_PIZZA = 9;
 const TILE_PLAYERSTART = 10;
 const TILE_PISTOL = 11;
 const TILE_ARMOR = 12;
