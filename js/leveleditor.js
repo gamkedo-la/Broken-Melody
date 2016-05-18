@@ -39,7 +39,7 @@ var m_name = "level4e: green";
 var m_worldLoc = {x:4,y:4};
 
 var roomsToLoadColsW = 9
-var roomColors=["#a0a0a0","#808080","green","yellow","red","purple","brown","blue"];
+var roomColors=["#a0a0a0","blue","green","yellow","red","purple","brown","#808080"];
 
 
 function loadLevelsBesidesFirstOne() {
