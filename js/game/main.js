@@ -34,11 +34,25 @@ function updateTime () {
   }
 }
 
+function loadProgress(){
+  if(typeof(Storage) !== "undefined") {
+    if(localStorage.localMoney) {
+      money = localStorage.localMoney;
+    } else {
+      money = 0;
+    }
+  } else {
+    console.log("web storage not supported on your browser!");
+  }
+}
+
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
 
   initInput();
+
+  loadProgress();
 
   loadLevelsBesidesFirstOne();
 

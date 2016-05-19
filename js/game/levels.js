@@ -246,6 +246,7 @@ function drawOnlyBricksOnScreen() {
         usePic = tilePistolGangerPic;
         break;
         case TILE_MERCHANT:
+        showStreetUnderTransparency = true;
         usePic = tileMerchantPic;
         break;
         case TILE_MAP:

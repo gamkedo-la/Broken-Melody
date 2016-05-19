@@ -159,6 +159,9 @@ function playerMove() {
   
   if (isBlockPickup(TILE_PIZZA)) {
     numberOfKeys ++;
+    if(numberOfKeys > 1){
+      numberOfKeys = 1;
+    }
   }
 
   if (numberOfKeys > 0) {
