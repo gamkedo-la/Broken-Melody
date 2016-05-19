@@ -46,6 +46,14 @@ function loadProgress(){
   }
 }
 
+function saveProgress(){
+  if(typeof Storage !== "undefined") {
+      localStorage.localMoney = money;
+  } else {
+    console.log("web storage not supported");
+  }
+}
+
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');

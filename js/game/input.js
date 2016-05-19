@@ -11,6 +11,7 @@ const KEY_SPACE = 32;
 const KEY_T = 84;
 const KEY_M = 77;
 const KEY_R = 82;
+const KEY_L = 76;
 
 var wall_clipping_cheat = false;
 
@@ -53,7 +54,7 @@ function setKeyHoldState(thisKey, setTo) {
         }
         wall_clipping_cheat = !wall_clipping_cheat;
     }
-    if (thisKey == KEY_LEFT_ARROW || thisKey == KEY_A) {
+    if (thisKey == KEY_LEFT_ARROW) { // removed  || thisKey == KEY_A until a better save is in place
         holdLeft = setTo;
         if (setTo) {
             lastFacingLeft = true;
@@ -62,7 +63,7 @@ function setKeyHoldState(thisKey, setTo) {
             }
         }
     }
-    if (thisKey == KEY_RIGHT_ARROW || thisKey == KEY_D) {
+    if (thisKey == KEY_RIGHT_ARROW) { // removed  || thisKey == KEY_D until a better save is in place
         holdRight = setTo;
         if (setTo) {
             lastFacingLeft = false;
@@ -71,11 +72,17 @@ function setKeyHoldState(thisKey, setTo) {
             }
         }
     }
-    if (thisKey == KEY_UP_ARROW || thisKey == KEY_W) {
+    if (thisKey == KEY_UP_ARROW) {
         holdUp = setTo;
     }
-    if (thisKey == KEY_DOWN_ARROW || thisKey == KEY_S) {
+    if (thisKey == KEY_DOWN_ARROW) {
         holdDown = setTo;
+    }
+    if (thisKey == KEY_L) {
+        loadProgress();
+    }
+    if (thisKey == KEY_S) {
+        saveProgress();
     }
 }
 

@@ -157,10 +157,12 @@ function playerMove() {
     }
   }
   
+  if(numberOfKeys == 0){
   if (isBlockPickup(TILE_PIZZA)) {
-    numberOfKeys ++;
-    if(numberOfKeys > 1){
-      numberOfKeys = 1;
+      numberOfKeys ++;
+      if(numberOfKeys > 1){
+        numberOfKeys = 1;
+      }
     }
   }
 
