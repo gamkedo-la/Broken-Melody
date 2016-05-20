@@ -39,7 +39,7 @@ function shotClass(){
 
 	this.draw = function(){
 		if(this.bullet_life > 0){
-			colorCircle(this.x, this.y, bullet_display_radious, 'yellow');	
+		    colorCircle(this.x, this.y, bullet_display_radious, "#2D3030");
 		}
 	}
 
