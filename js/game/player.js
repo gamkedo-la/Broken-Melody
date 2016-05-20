@@ -1,6 +1,6 @@
 
 var carryingBlock = false;
-var numberOfKeys = 0;
+var numberOfPizzas = 0;
 
 var isFiring = false;
 var bashTimer = 10;
@@ -34,7 +34,7 @@ var startedRoomAtX = 0;
 var startedRoomAtY = 0;
 var startedRoomAtXV = 0;
 var startedRoomAtYV = 0;
-var startedRoomKeys = 0;
+var startedPizzas = 0;
 var roomAsItStarted = [];
 var enemiesWhenRoomStarted = [];
 var blockCarryOnEnter = false;
@@ -157,19 +157,19 @@ function playerMove() {
     }
   }
   
-  if(numberOfKeys == 0){
+  if(numberOfPizzas == 0){
   if (isBlockPickup(TILE_PIZZA)) {
-      numberOfKeys ++;
-      if(numberOfKeys > 1){
-        numberOfKeys = 1;
+      numberOfPizzas ++;
+      if(numberOfPizzas > 1){
+        numberOfPizzas = 1;
       }
     }
   }
 
-  if (numberOfKeys > 0) {
+  if (numberOfPizzas > 0) {
     if (isBlockPickup(TILE_WELCOME_MAT)) {
         money += 20;
-        numberOfKeys --;
+        numberOfPizzas --;
     }
   }
 
@@ -291,7 +291,7 @@ function playerRestoreFromStoredRoomEntry() {
   carryingBlock = blockCarryOnEnter;
   damagedRecentely = 0;
   health = START_HEALTH;
-  numberOfKeys = startedRoomKeys;
+  numberOfPizzas = startedPizzas;
   playerX = startedRoomAtX;
   playerY = startedRoomAtY;
   playerSpeedX = startedRoomAtXV;
@@ -325,7 +325,7 @@ function playerStoreRoomEntry() {
 
   enemiesWhenRoomStarted = JSON.stringify(enemyListDataOnly); // deep copy needed for positions etc.
   // enemiesWhenRoomStarted = enemyList.slice(0);
-  startedRoomKeys = numberOfKeys;
+  startedPizzas = numberOfPizzas;
   startedRoomAtX = playerX;
   startedRoomAtY = playerY;
   startedRoomAtXV = playerSpeedX;

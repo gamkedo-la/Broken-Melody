@@ -88,7 +88,7 @@ window.onload = function() {
           canvasContext.fillText("Total Time:" ,400, 240);
           canvasContext.fillText(timeH + ":" + timeM + ":" + timeS ,400, 260);
           canvasContext.fillText("Bonuse Keys:" ,400, 340);
-          canvasContext.fillText(numberOfKeys ,480, 340);
+          canvasContext.fillText(numberOfPizzas ,480, 340);
         } else {
           canvasContext.drawImage(startScreen, 0, 70);
         }
@@ -190,9 +190,9 @@ function drawEverything() {
     canvasContext.fillText(timeH + ":" + timeM + ":" + timeS ,400, 40);
   }
 
-  if (numberOfKeys > 0) {
+  if (numberOfPizzas > 0) {
     var keyArtDim = tilePizzaPic.height;
-    for (var i = 1; i < numberOfKeys + 1; i++) {
+    for (var i = 1; i < numberOfPizzas + 1; i++) {
       canvasContext.drawImage(tilePizzaPic,
         0, 0, // don't animtate, just set top-left corner of tile art
         keyArtDim,keyArtDim, // get full tile size from source
