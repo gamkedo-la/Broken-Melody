@@ -37,7 +37,7 @@ function updateTime () {
 function loadProgress(){
   if(typeof(Storage) !== "undefined") {
     if(localStorage.localMoney) {
-      money = localStorage.localMoney;
+      money = Number(localStorage.localMoney);
     } else {
       money = 0;
     }
