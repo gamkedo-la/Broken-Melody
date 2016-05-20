@@ -33,6 +33,7 @@ var majorKey = document.createElement("img");
 
 var gangerPic = document.createElement("img");
 const ENEMY_FRAMES = 4;
+var gangerHitPic = document.createElement("img");
 
 // start screen image loading before rest of them
 var startScreen = document.createElement("img");
@@ -85,8 +86,9 @@ function loadImages() {
     {varName:hudHealth3Pic, theFile:"images/hudHealth3.png"},
     {varName:hudMapPic, theFile:"images/hudMap.png"},
     {varName:mapDotPic, theFile:"images/mapDotPic.png"},
-    {varName:gangerPic, theFile:"images/ganger-sheet.png"}
-    ];
+    { varName: gangerPic, theFile: "images/ganger-sheet.png" },
+      { varName: gangerHitPic, theFile: "images/gangerHit-sheet.png" }
+  ];
   
   
 

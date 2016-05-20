@@ -28,10 +28,12 @@ function enemySlideAndBounce() {
 
     //health
   this.readyToRemove = false;
+  this.hitRecently = 0;
   this.gangerHealth = HEALTH_GANGER;
 
   this.restoreImgFromKind =  function() {
       this.myPic = gangerPic;
+      this.myHitPic = gangerHitPic;
   }
 
 
@@ -87,7 +89,12 @@ this.enemyDraw = function() {
     // }
     var enemyFrame = this.facingDir;
     
-    drawFacingLeftOption(this.myPic, this.x, this.y, false, enemyFrame);
+    if (this.hitRecently > 0) {
+        drawFacingLeftOption(this.myHitPic, this.x, this.y, false, enemyFrame);
+    } else {
+        drawFacingLeftOption(this.myPic, this.x, this.y, false, enemyFrame);
+    }
+    
 }
 
 this.enemyMove = function() {
@@ -95,7 +102,11 @@ this.enemyMove = function() {
       return; // not in this room, skip this one
     }
 
-    shotDetection (this);
+    shotDetection(this);
+
+    if (this.hitRecently > 0) {
+        this.hitRecently--;
+    }
 
 	  // movement for the one hard coded enemy red ant
     this.x += this.xv;
@@ -149,6 +160,7 @@ this.enemyMove = function() {
 
     this.removeHealthAndKill = function() {
         this.gangerHealth--;
+        this.hitRecently = 10;
         if (this.gangerHealth <= 0) {
             this.readyToRemove = true;
         }
