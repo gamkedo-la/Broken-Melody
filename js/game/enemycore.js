@@ -10,6 +10,8 @@ const DIR_NONE = 4;
 const ENEMY_SPEED = 1.0;
 const ANT_GROUND_HEIGHT_OFFSET = 14;
 
+const HEALTH_GANGER = 2;
+
 enemyList = [];
 
 function enemySlideAndBounce() {
@@ -23,7 +25,11 @@ function enemySlideAndBounce() {
   this.yv = 0;
   this.facingDir = DIR_E;
   this.myID = enemyList.length;
+
+    //health
   this.readyToRemove = false;
+  this.gangerHealth = HEALTH_GANGER;
+
   this.restoreImgFromKind =  function() {
       this.myPic = gangerPic;
   }
@@ -139,5 +145,12 @@ this.enemyMove = function() {
     this.y += this.yv;
 
     hitDetection (this.x, this.y);
-  }
+}
+
+    this.removeHealthAndKill = function() {
+        this.gangerHealth--;
+        if (this.gangerHealth <= 0) {
+            this.readyToRemove = true;
+        }
+    }
 }

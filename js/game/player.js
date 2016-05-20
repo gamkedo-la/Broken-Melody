@@ -357,7 +357,7 @@ function shotDetection (theEnemy) {
     if (enemyX > myShot.x - 20 && enemyX < myShot.x + 20) {
       if (enemyY > myShot.y - 20 && enemyY < myShot.y + 20) {
         myShot.bullet_life = 0;
-        theEnemy.readyToRemove = true;
+          theEnemy.removeHealthAndKill();
       }
     }
   }
