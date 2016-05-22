@@ -33,7 +33,7 @@ function isTileHereWalkOnAble(atX,atY) {
   var tileKindAt = whichBrickAtPixelCoord(atX,atY,false);
 
   return tileKindAt == TILE_SIDEWALK ||
-          tileKindAt == TILE_WELCOME_MAT ||
+          tileKindAt == TILE_PIZZA_HERE ||
           tileKindAt < 0; // mid-decay
 }
 
@@ -233,8 +233,8 @@ function drawOnlyBricksOnScreen() {
         showStreetUnderTransparency = true;
         usePic = tileHealth;
         break;
-        case TILE_WELCOME_MAT:
-        usePic = tileWelcomeMatPic;
+        case TILE_PIZZA_HERE:
+        usePic = tilePizzaHerePic;
         showStreetUnderTransparency = true;
         break;
         case TILE_PIZZA:

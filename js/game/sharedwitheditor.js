@@ -24,7 +24,7 @@ const TILE_KNIFE_GANGER = 4;
 const TILE_PISTOL_GANGER = 5;
 const TILE_MERCHANT = 6;
 const TILE_HEALTH = 7;
-const TILE_WELCOME_MAT = 8;
+const TILE_PIZZA_HERE = 8;
 const TILE_PIZZA = 9;
 const TILE_PLAYERSTART = 10;
 const TILE_PISTOL = 11;
@@ -42,7 +42,7 @@ var m_tooltips = [
   "pistol_ganger",
   "friendlies",
   "health",
-  "welcome_mat",
+  "pizza_here",
   "pizza",
   "start",
   "pistol",

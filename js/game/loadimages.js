@@ -7,13 +7,13 @@ var endScreen = document.createElement("img");
 var tilePistolPic = document.createElement("img");
 var tileHealth = document.createElement("img");
 const TILE_HEALTH_FRAMES = 4;
-var tileWelcomeMatPic = document.createElement("img");
+var tilePizzaHerePic = document.createElement("img");
 var tilePizzaPic = document.createElement("img");
 const TILE_PIZZA_FRAMES = 4;
 var tilePistolGangerPic = document.createElement("img");
 var tileRiflePic = document.createElement("img");
 var tileMapPic = document.createElement("img");
-
+var pausedPic = document.createElement("img");
 
 var tileArmorPic = document.createElement("img"); // #TODO remove
 var tileMerchantPic = document.createElement("img");
@@ -71,7 +71,7 @@ function loadImages() {
     {varName:tilePistolPic, theFile:"images/tilePistol.png"},
     {varName:tileArmorPic, theFile:"images/tileArmor.png"},
     {varName:tileHealth, theFile:"images/healthSheet.png"},
-    {varName:tileWelcomeMatPic, theFile:"images/welcome.png"},
+    {varName:tilePizzaHerePic, theFile:"images/pizzaHere.png"},
     {varName:tilePizzaPic, theFile:"images/TilePizzaAnimated.png"},
     {varName:tilePistolGangerPic, theFile:"images/pistolGanger.png"},
     {varName:tileMerchantPic, theFile:"images/merchant.png"},
@@ -86,8 +86,9 @@ function loadImages() {
     {varName:hudHealth3Pic, theFile:"images/hudHealth3.png"},
     {varName:hudMapPic, theFile:"images/hudMap.png"},
     {varName:mapDotPic, theFile:"images/mapDotPic.png"},
-    { varName: gangerPic, theFile: "images/ganger-sheet.png" },
-      { varName: gangerHitPic, theFile: "images/gangerHit-sheet.png" }
+    {varName:gangerPic, theFile: "images/ganger-sheet.png"},
+    {varName:gangerHitPic, theFile: "images/gangerHit-sheet.png"},
+    {varName:pausedPic, theFile: "images/pause.png"}
   ];
   
   

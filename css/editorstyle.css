@@ -291,10 +291,10 @@ html {
   background: url("../images/tileHealth.png") no-repeat;
   background-size: 100% 100%;
 }
-/* Gate */
+/* Pizza Delivery */
 .t8 {
   background: #ff5900;
-  background: url("../images/welcome.png") no-repeat;
+  background: url("../images/pizzaHere.png") no-repeat;
   background-size: 100% 100%;
 }
 /* Pizza */

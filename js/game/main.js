@@ -14,6 +14,8 @@ var timeSCD = 30;
 var timeMCD = 2;
 var wobble = 1;
 
+var paused = false;
+
 var gameGoing = false;
 var isWinner = false;
 
@@ -51,6 +53,14 @@ function saveProgress(){
       localStorage.localMoney = money;
   } else {
     console.log("web storage not supported");
+  }
+}
+
+function pauseGame(){
+  if(paused){
+    paused = false;
+  } else {
+    paused = true;
   }
 }
 
@@ -97,10 +107,13 @@ window.onload = function() {
 }
 
 function moveEverything() {
-    if(slideDir != DIR_NONE){
-        return;
-        
-    }
+  if(slideDir != DIR_NONE){
+      return;
+  }
+  if(paused){
+    return;
+  }
+
   if(health > 0) {
     playerMove();
   }
@@ -132,7 +145,7 @@ function drawEverything() {
 //   colorRect(0, 0, canvas.width, canvas.height, "#704000");
 
   canvasContext.save(); // needed to undo this .translate() used for scroll
-  
+
   switch(slideDir){
       case DIR_N:
         canvasContext.translate(0, slidePx - canvas.height);
@@ -152,6 +165,10 @@ function drawEverything() {
 
   drawOnlyBricksOnScreen();
 
+  if(paused){
+    canvasContext.drawImage(pausedPic, 200, canvas.height / 3);
+    return;
+  }
   
   for(var i=0;i<enemyList.length;i++) {
     enemyList[i].enemyDraw();

@@ -12,6 +12,7 @@ const KEY_T = 84;
 const KEY_M = 77;
 const KEY_R = 82;
 const KEY_L = 76;
+const KEY_P = 80;
 
 var wall_clipping_cheat = false;
 
@@ -84,6 +85,7 @@ function setKeyHoldState(thisKey, setTo) {
     if (thisKey == KEY_S) {
         saveProgress();
     }
+
 }
 
 function keyPressed(evt) {
@@ -92,6 +94,9 @@ function keyPressed(evt) {
             fireGun();
         }
         setKeyHoldState(evt.keyCode, true);
+    }
+    if (evt.keyCode == KEY_P) {
+        pauseGame();
     }
     evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
