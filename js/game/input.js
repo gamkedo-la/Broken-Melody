@@ -27,10 +27,14 @@ var showTimer = false;
 var timerDelay = 0;
 var showMap = false;
 var resetTimer = 0;
+var mouseX = 0;
+var mouseY = 0;
 
 function initInput() {
     document.addEventListener("keydown", keyPressed);
     document.addEventListener("keyup", keyReleased);
+    window.addEventListener("mousemove", mousePos);
+    window.addEventListener("mousedown", mouseClick);
 }
 
 function setKeyHoldState(thisKey, setTo) {
@@ -50,7 +54,6 @@ function setKeyHoldState(thisKey, setTo) {
 
     if (thisKey == KEY_SPACE && setTo) {
         if (gameGoing == false && isWinner == false) {
-            loadImages();
             // audio_music.play();
         }
         wall_clipping_cheat = !wall_clipping_cheat;
@@ -104,3 +107,33 @@ function keyPressed(evt) {
 function keyReleased(evt) {
     setKeyHoldState(evt.keyCode, false);
 }
+
+function mousePos(evt){
+    var rect = canvas.getBoundingClientRect();
+    var root = document.documentElement;
+    mouseX = evt.clientX - rect.left - root.scrollLeft;
+    mouseY = evt.clientY - rect.top - root.scrollTop;
+    // console.log("mouseX = " + mouseX + " and mouseY = " + mouseY);
+}
+
+function mouseClick(evt){
+    if(mouseX > NEW_BUTTON_X && mouseX < NEW_BUTTON_X + MENU_BUTTON_WIDTH && 
+        mouseY > NEW_BUTTON_Y && mouseY < NEW_BUTTON_Y + MENU_BUTTON_HEIGHT){
+        if(allImagesLoaded){
+            window.localStorage.clear();
+            startGame();
+        } else {
+            console.log("Please wait images loading");
+        }
+    }
+    if(mouseX > CONTINUE_BUTTON_X && mouseX < CONTINUE_BUTTON_X + MENU_BUTTON_WIDTH && 
+        mouseY > CONTINUE_BUTTON_Y && mouseY < CONTINUE_BUTTON_Y + MENU_BUTTON_HEIGHT){
+        if(allImagesLoaded){
+            loadProgress();
+            startGame();
+        } else {
+            console.log("Please wait images loading");
+        }
+    }
+}
+

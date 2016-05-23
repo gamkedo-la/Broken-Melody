@@ -19,6 +19,14 @@ var paused = false;
 var gameGoing = false;
 var isWinner = false;
 
+const NEW_BUTTON_X = 25;
+const NEW_BUTTON_Y = 432;
+const CONTINUE_BUTTON_X = 25;
+const CONTINUE_BUTTON_Y = 516;
+
+const MENU_BUTTON_WIDTH = 289;
+const MENU_BUTTON_HEIGHT = 74;
+
 function updateTime () {
   gameTime ++;
   if (gameTime == 30) {
@@ -64,22 +72,21 @@ function pauseGame(){
   }
 }
 
+function startGame(){
+  loadLevel(); // load stage for game's location in the overall world grid
+//   loadLevel(loadedLevelJSON); // uncomment to test hand-coded/added stage in levels.js
+  playerStoreRoomEntry();
+  playerReset(); // only calling this for first room player starts in.
+  gameGoing = true;
+}
+
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
 
   initInput();
 
-  loadProgress();
-
   loadLevelsBesidesFirstOne();
-
-  loadLevel(); // load stage for game's location in the overall world grid
-//   loadLevel(loadedLevelJSON); // uncomment to test hand-coded/added stage in levels.js
-  playerStoreRoomEntry();
-  playerReset(); // only calling this for first room player starts in.
-
-  sliderReset();
 
   // these next few lines set up our game logic and render to happen 30 times per second
   var framesPerSecond = 30;
@@ -100,10 +107,15 @@ window.onload = function() {
           canvasContext.fillText("Bonuse Keys:" ,400, 340);
           canvasContext.fillText(numberOfPizzas ,480, 340);
         } else {
-          canvasContext.drawImage(startScreen, 0, 70);
+          canvasContext.drawImage(startScreen, 0, 0);
+          if(!allImagesLoaded){
+          canvasContext.fillStyle = "red";
+          canvasContext.fillText("Images Loading", 15, 15);
+          }
         }
       }
     }, 1000/framesPerSecond);
+  loadImages();
 }
 
 function moveEverything() {
@@ -223,6 +235,19 @@ function drawEverything() {
     canvasContext.fillStyle = 'white';
     canvasContext.fillText("Ow",playerX - camPanX -5, playerY - camPanY + (damagedRecentely/5  ));
   }
+
+  if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_PISTOL && money < 15){
+    canvasContext.fillStyle = 'black';
+    canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
+  }
+    if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_RIFLE && money < 15){
+    canvasContext.fillStyle = 'black';
+    canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
+  }
+    if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_ARMOR && money < 15){
+    canvasContext.fillStyle = 'black';
+    canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
+  }
   
   canvasContext.restore(); // undoes the .translate() used for cam scroll
 
@@ -264,8 +289,3 @@ function drawEverything() {
 
 } // end draw everything
 
-function sliderReset() {
-  // center slider on screen
-  sliderX = canvas.width/2;
-  sliderY = canvas.height/2;
-}

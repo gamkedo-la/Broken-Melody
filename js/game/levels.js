@@ -170,13 +170,17 @@ function whichBrickAtPixelCoord(hitPixelX, hitPixelY, forPlayer) {
 }
 
 function drawOnlyBricksOnScreen() {
-
+  var roomKind = roomsToLoad[roomsOverC + roomsDownR*roomsToLoadColsW];
   cyclesTillAnimStep--;
   if(cyclesTillAnimStep < 0) {
     cyclesTillAnimStep = FRAMES_BETWEEN_ANIM;
     animFrame++;
   }
 
+  if(roomKind == 4){
+    canvasContext.drawImage(easterTown, 0, 0);
+    return;
+  }
 
   var cameraLeftMostCol = Math.floor(camPanX / BRICK_W);
   var cameraTopMostRow = Math.floor(camPanY / BRICK_H);
@@ -200,7 +204,7 @@ function drawOnlyBricksOnScreen() {
 
   var usePic;
   var tileFrame;
-  var roomKind = roomsToLoad[roomsOverC + roomsDownR*roomsToLoadColsW];
+  
   for(var eachCol=cameraLeftMostCol; eachCol<cameraRightMostCol; eachCol++) {
     for(var eachRow=cameraTopMostRow; eachRow<cameraBottomMostRow; eachRow++) {
 
@@ -222,6 +226,10 @@ function drawOnlyBricksOnScreen() {
         break;
         case TILE_PISTOL:
         usePic = tilePistolPic;
+        showStreetUnderTransparency = true;
+        break;
+        case TILE_RIFLE:
+        usePic = tileRiflePic;
         showStreetUnderTransparency = true;
         break;
         case TILE_ARMOR:

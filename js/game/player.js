@@ -158,16 +158,16 @@ function playerMove() {
   }
   
   if(numberOfPizzas == 0){
-  if (isBlockPickup(TILE_PIZZA)) {
-      numberOfPizzas ++;
-      if(numberOfPizzas > 1){
-        numberOfPizzas = 1;
+    if (isBlockPickup(TILE_PIZZA)) {
+        numberOfPizzas ++;
+        if(numberOfPizzas > 1){
+          numberOfPizzas = 1;
+        }
       }
-    }
   }
 
   if (numberOfPizzas > 0) {
-    if (isBlockPickup(TILE_WELCOME_MAT)) {
+    if (isBlockPickup(TILE_PIZZA_HERE)) {
         money += 20;
         numberOfPizzas --;
     }
