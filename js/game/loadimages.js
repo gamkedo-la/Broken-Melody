@@ -21,7 +21,6 @@ var tileMerchantPic = document.createElement("img");
 
 var playerPic = document.createElement("img");
 
-var playerSwordPic = document.createElement("img");
 const PLAYER_RUN_FRAMES = 4;
 var hudHealth0Pic = document.createElement("img");
 var hudHealth1Pic = document.createElement("img");
@@ -81,7 +80,6 @@ function loadImages() {
     {varName:tileMapPic, theFile:"images/tileMap.png"},
     {varName:deadScreen, theFile:"images/deadScreen.png"},
     {varName:playerPic, theFile:"images/player-sheet.png"},
-    {varName:playerSwordPic, theFile:"images/playerSwordPic.png"},
     {varName:hudHealth0Pic, theFile:"images/hudHealth0.png"},
     {varName:hudHealth1Pic, theFile:"images/hudHealth1.png"},
     {varName:hudHealth2Pic, theFile:"images/hudHealth2.png"},

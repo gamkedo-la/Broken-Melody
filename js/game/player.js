@@ -1,6 +1,7 @@
 
 var hasPistol = false;
-var has Rifle = false;
+var hasRifle = false;
+var hasArmor = false;
 var numberOfPizzas = 0;
 
 var isFiring = false;
@@ -173,16 +174,26 @@ function playerMove() {
     hasMap = true;
   }
 
-  if(money > 150){
+  if(money > 150 && hasPistol == false){
     if (isBlockPickup(TILE_PISTOL)){
-      money -= 15;
+      money -= 150;
+      hasPistol = true;
       saveProgress();
     }
   }
 
-  if (money > 250){
+  if(money > 350 && hasRifle == false){
+    if (isBlockPickup(TILE_RIFLE)){
+      money -= 350;
+      hasRifle = true;
+      saveProgress();
+    }
+  }
+
+  if (money > 250 && hasArmor == false){
     if (isBlockPickup(TILE_ARMOR)){
-      money -= 25;
+      money -= 250;
+      hasArmor = true;
       saveProgress();
     }
   }
@@ -297,7 +308,6 @@ function playerRestoreFromStoredRoomEntry() {
   countdown = 0;
   timeSCD = 00;
   timeMCD = 2;
-  hasSword = false;
   wobble = 1;
 }
 

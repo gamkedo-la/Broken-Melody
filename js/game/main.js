@@ -47,9 +47,24 @@ function updateTime () {
 function loadProgress(){
   if(typeof(Storage) !== "undefined") {
     if(localStorage.localMoney) {
-      money = Number(localStorage.localMoney);
+      money = JSON.parse(localStorage.localMoney);
     } else {
       money = 0;
+    }
+    if(localStorage.localHasPistol){
+      hasPistol = JSON.parse(localStorage.localHasPistol);
+    } else {
+      hasPistol = false;
+    }
+    if(localStorage.localHasRifle){
+      hasRifle = JSON.parse(localStorage.localHasRifle);
+    } else {
+      hasRifle = false;
+    }
+    if(localStorage.localHasArmor){
+      hasArmor = JSON.parse(localStorage.localHasArmor);
+    } else {
+      hasArmor = false;
     }
   } else {
     console.log("web storage not supported on your browser!");
@@ -58,7 +73,10 @@ function loadProgress(){
 
 function saveProgress(){
   if(typeof Storage !== "undefined") {
-      localStorage.localMoney = money;
+      localStorage.localMoney = JSON.stringify(money);
+      localStorage.localHasPistol = JSON.stringify(hasPistol);
+      localStorage.localHasRifle = JSON.stringify(hasRifle);
+      localStorage.localHasArmor = JSON.stringify(hasArmor);
   } else {
     console.log("web storage not supported");
   }

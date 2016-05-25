@@ -1,5 +1,4 @@
 
-var hasSword = false;
 
 // where is the player/gameplay happening in the overworld level grid?
 // now automatically set at first by loadLevelsBesidesFirstOne
