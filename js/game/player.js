@@ -161,7 +161,7 @@ function playerMove() {
   if (numberOfPizzas > 0) {
     if (isBlockPickup(TILE_PIZZA_HERE)) {
         audio_pizza_delivered.play();
-        money += 20;
+        money += 20 * health;
         numberOfPizzas --;
         health = 0;
     }
