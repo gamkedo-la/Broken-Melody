@@ -106,6 +106,16 @@ function drawHealthHud() {
   }
 }
 
+function drawWeapons(){
+  if (hasRifle){
+    canvasContext.drawImage(tileRifleHudPic, 180, 0);
+  } else if(hasPistol){
+    canvasContext.drawImage(tilePistolHudPic, 180, 0);
+  } else {
+    canvasContext.drawImage(emptyHand, 180, 0);
+  }
+}
+
 
 function drawFunds(){
   canvasContext.font = "20px Comic Sans MS";

@@ -200,6 +200,8 @@ function drawEverything() {
 
   drawFunds();
 
+  drawWeapons();
+
   canvasContext.fillStyle = 'white';
 
   if (timerDelay > 0) {
