@@ -2,6 +2,9 @@
 var hasPistol = false;
 var hasRifle = false;
 var hasArmor = false;
+var pistolCost = 350;
+var rifleCost = 550;
+var armorCost = 250;
 var numberOfPizzas = 0;
 
 var isFiring = false;
@@ -174,25 +177,25 @@ function playerMove() {
     hasMap = true;
   }
 
-  if(money > 150 && hasPistol == false){
+  if(money > pistolCost && hasPistol == false){
     if (isBlockPickup(TILE_PISTOL)){
-      money -= 150;
+      money -= pistolCost;
       hasPistol = true;
       saveProgress();
     }
   }
 
-  if(money > 350 && hasRifle == false){
+  if(money > rifleCost && hasRifle == false){
     if (isBlockPickup(TILE_RIFLE)){
-      money -= 350;
+      money -= rifleCost;
       hasRifle = true;
       saveProgress();
     }
   }
 
-  if (money > 250 && hasArmor == false){
+  if (money > armorCost && hasArmor == false){
     if (isBlockPickup(TILE_ARMOR)){
-      money -= 250;
+      money -= armorCost;
       hasArmor = true;
       saveProgress();
     }
