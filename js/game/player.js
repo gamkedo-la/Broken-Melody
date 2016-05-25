@@ -1,5 +1,6 @@
 
-var carryingBlock = false;
+var hasPistol = false;
+var has Rifle = false;
 var numberOfPizzas = 0;
 
 var isFiring = false;
@@ -164,6 +165,7 @@ function playerMove() {
         money += 20 * health;
         numberOfPizzas --;
         health = 0;
+        saveProgress();
     }
   }
 
@@ -171,15 +173,17 @@ function playerMove() {
     hasMap = true;
   }
 
-  if(money > 15){
+  if(money > 150){
     if (isBlockPickup(TILE_PISTOL)){
       money -= 15;
+      saveProgress();
     }
   }
 
-  if (money > 25){
+  if (money > 250){
     if (isBlockPickup(TILE_ARMOR)){
       money -= 25;
+      saveProgress();
     }
   }
 
@@ -282,7 +286,6 @@ function playerRestoreFromStoredRoomEntry() {
   }
   // enemyList = enemiesWhenRoomStarted.slice(0);
   processBrickGrid();
-  carryingBlock = blockCarryOnEnter;
   damagedRecentely = 0;
   health = START_HEALTH;
   numberOfPizzas = startedPizzas;
