@@ -114,6 +114,7 @@ function mouseClick(evt){
         mouseY > NEW_BUTTON_Y && mouseY < NEW_BUTTON_Y + MENU_BUTTON_HEIGHT){
         if(allImagesLoaded){
             window.localStorage.clear();
+            saveProgress();
             startGame();
         } else {
             console.log("Please wait images loading");

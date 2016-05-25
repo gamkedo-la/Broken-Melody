@@ -15,6 +15,7 @@ var tileRiflePic = document.createElement("img");
 var tileMapPic = document.createElement("img");
 var pausedPic = document.createElement("img");
 var easterTown = document.createElement("img");
+var buttonNoWork = document.createElement("img");
 
 var tileArmorPic = document.createElement("img"); // #TODO remove
 var tileMerchantPic = document.createElement("img");
@@ -89,6 +90,7 @@ function loadImages() {
     {varName:gangerPic, theFile: "images/ganger-sheet.png"},
     {varName:gangerHitPic, theFile: "images/gangerHit-sheet.png"},
     {varName:easterTown, theFile: "images/easterTownPic.jpg"},
+    {varName:buttonNoWork, theFile: "images/buttonNoWork.png"},
     {varName:pausedPic, theFile: "images/pause.png"}
   ];
   

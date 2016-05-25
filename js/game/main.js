@@ -21,8 +21,8 @@ var isWinner = false;
 
 const NEW_BUTTON_X = 25;
 const NEW_BUTTON_Y = 432;
-const CONTINUE_BUTTON_X = 25;
-const CONTINUE_BUTTON_Y = 516;
+const CONTINUE_BUTTON_X = 20;
+const CONTINUE_BUTTON_Y = 510;
 
 const MENU_BUTTON_WIDTH = 289;
 const MENU_BUTTON_HEIGHT = 74;
@@ -46,26 +46,10 @@ function updateTime () {
 
 function loadProgress(){
   if(typeof(Storage) !== "undefined") {
-    if(localStorage.localMoney) {
-      money = JSON.parse(localStorage.localMoney);
-    } else {
-      money = 0;
-    }
-    if(localStorage.localHasPistol){
-      hasPistol = JSON.parse(localStorage.localHasPistol);
-    } else {
-      hasPistol = false;
-    }
-    if(localStorage.localHasRifle){
-      hasRifle = JSON.parse(localStorage.localHasRifle);
-    } else {
-      hasRifle = false;
-    }
-    if(localStorage.localHasArmor){
-      hasArmor = JSON.parse(localStorage.localHasArmor);
-    } else {
-      hasArmor = false;
-    }
+    money = JSON.parse(localStorage.localMoney);
+    hasPistol = JSON.parse(localStorage.localHasPistol);  
+    hasRifle = JSON.parse(localStorage.localHasRifle);  
+    hasArmor = JSON.parse(localStorage.localHasArmor);    
   } else {
     console.log("web storage not supported on your browser!");
   }
@@ -129,6 +113,9 @@ window.onload = function() {
           if(!allImagesLoaded){
           canvasContext.fillStyle = "red";
           canvasContext.fillText("Images Loading", 15, 15);
+          }
+          if(!localStorage.localMoney){
+            canvasContext.drawImage(buttonNoWork, CONTINUE_BUTTON_X, CONTINUE_BUTTON_Y);
           }
         }
       }
