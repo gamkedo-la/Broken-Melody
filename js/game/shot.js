@@ -25,6 +25,7 @@ function shotClass(){
 				this.yv = 1.0;
 				break;
 		}
+		audio_pisol_shoot.play();
 
 		this.bullet_life = bullet_life;
 	}
