@@ -95,9 +95,9 @@ window.onload = function() {
         moveEverything();
         drawEverything();
         updateTime();
-        if (health <= 0) {
-          canvasContext.drawImage(deadScreen, 0, 0);
-        }
+        // if (health <= 0) {
+        //   canvasContext.drawImage(deadScreen, 0, 0);
+        // }
       } else {
         if (isWinner) {
           canvasContext.drawImage(endScreen, 0, 0);
@@ -126,9 +126,8 @@ function moveEverything() {
     return;
   }
 
-  if(health > 0) {
-    playerMove();
-  }
+  playerMove();
+
   cameraFollow();
   if (abilityCoolDown > 0) {
     abilityCoolDown --;

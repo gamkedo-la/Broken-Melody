@@ -26,7 +26,7 @@ var playerX = 75, playerY = 75;
 var playerSpeedX = 0, playerSpeedY = 0;
 
 var PLAYER_RADIUS = 16;
-const START_HEALTH = 3;
+const START_HEALTH = 0;
 var health = START_HEALTH;
 var damagedRecentely = 0;
 
@@ -108,20 +108,10 @@ function drawFunds(){
   canvasContext.fillText("$" + money, canvas.width / 2, 20)
 }
 
-function playerIsDead() {
-  return (health <= 0);
-}
-
 function playerMove() {
   // used for returning player to valid position if bugged through wall
   var playerNonSolidX = -1;
   var playerNonSolidY = -1;
-
-  if ( playerIsDead() ) {
-    playerSpeedX = 0;
-    return;
-  }
-
   
   playerSpeedX *= GROUND_FRICTION;
   playerSpeedY *= GROUND_FRICTION;
@@ -159,7 +149,9 @@ function playerMove() {
   
   if(numberOfPizzas == 0){
     if (isBlockPickup(TILE_PIZZA)) {
+        audio_pizza_picked_up.play();
         numberOfPizzas ++;
+        health = 3;
         if(numberOfPizzas > 1){
           numberOfPizzas = 1;
         }
@@ -168,8 +160,10 @@ function playerMove() {
 
   if (numberOfPizzas > 0) {
     if (isBlockPickup(TILE_PIZZA_HERE)) {
+        audio_pizza_delivered.play();
         money += 20;
         numberOfPizzas --;
+        health = 0;
     }
   }
 
@@ -364,22 +358,21 @@ function shotDetection (theEnemy) {
 }
 
 function hitDetection (enemyX, enemyY) {
-  if (damagedRecentely > 0 || playerIsDead()) {
+  if (damagedRecentely > 0) {
     return;
   }
   if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
     if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
       health --;
       damagedRecentely = 50;
+      if(health == 0){
+        numberOfPizzas = 0;
+      }
     }
   }
 }
 
 function drawplayer() {
-
-  if (playerIsDead()) {
-    return;
-  }
   
   var playerFrame;
   /*var isMoving = Math.abs(playerSpeedX)>1;
