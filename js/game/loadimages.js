@@ -15,13 +15,16 @@ var tileRiflePic = document.createElement("img");
 var tileMapPic = document.createElement("img");
 var pausedPic = document.createElement("img");
 var easterTown = document.createElement("img");
+var buttonNoWork = document.createElement("img");
+var emptyHand = document.createElement("img");
+var tilePistolHudPic = document.createElement("img");
+var tileRifleHudPic = document.createElement("img");
 
 var tileArmorPic = document.createElement("img"); // #TODO remove
 var tileMerchantPic = document.createElement("img");
 
 var playerPic = document.createElement("img");
 
-var playerSwordPic = document.createElement("img");
 const PLAYER_RUN_FRAMES = 4;
 var hudHealth0Pic = document.createElement("img");
 var hudHealth1Pic = document.createElement("img");
@@ -81,7 +84,6 @@ function loadImages() {
     {varName:tileMapPic, theFile:"images/tileMap.png"},
     {varName:deadScreen, theFile:"images/deadScreen.png"},
     {varName:playerPic, theFile:"images/player-sheet.png"},
-    {varName:playerSwordPic, theFile:"images/playerSwordPic.png"},
     {varName:hudHealth0Pic, theFile:"images/hudHealth0.png"},
     {varName:hudHealth1Pic, theFile:"images/hudHealth1.png"},
     {varName:hudHealth2Pic, theFile:"images/hudHealth2.png"},
@@ -91,6 +93,10 @@ function loadImages() {
     {varName:gangerPic, theFile: "images/ganger-sheet.png"},
     {varName:gangerHitPic, theFile: "images/gangerHit-sheet.png"},
     {varName:easterTown, theFile: "images/easterTownPic.jpg"},
+    {varName:buttonNoWork, theFile: "images/buttonNoWork.png"},
+    {varName:emptyHand, theFile: "images/emptyHand.png"},
+    {varName:tilePistolHudPic, theFile: "images/tilePistolHud.png"},
+    {varName:tileRifleHudPic, theFile: "images/tileRifleHud.png"},
     {varName:pausedPic, theFile: "images/pause.png"}
   ];
   

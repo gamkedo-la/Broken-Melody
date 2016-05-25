@@ -21,8 +21,8 @@ var isWinner = false;
 
 const NEW_BUTTON_X = 25;
 const NEW_BUTTON_Y = 432;
-const CONTINUE_BUTTON_X = 25;
-const CONTINUE_BUTTON_Y = 516;
+const CONTINUE_BUTTON_X = 20;
+const CONTINUE_BUTTON_Y = 510;
 
 const MENU_BUTTON_WIDTH = 289;
 const MENU_BUTTON_HEIGHT = 74;
@@ -46,11 +46,10 @@ function updateTime () {
 
 function loadProgress(){
   if(typeof(Storage) !== "undefined") {
-    if(localStorage.localMoney) {
-      money = Number(localStorage.localMoney);
-    } else {
-      money = 0;
-    }
+    money = JSON.parse(localStorage.localMoney);
+    hasPistol = JSON.parse(localStorage.localHasPistol);  
+    hasRifle = JSON.parse(localStorage.localHasRifle);  
+    hasArmor = JSON.parse(localStorage.localHasArmor);    
   } else {
     console.log("web storage not supported on your browser!");
   }
@@ -58,7 +57,10 @@ function loadProgress(){
 
 function saveProgress(){
   if(typeof Storage !== "undefined") {
-      localStorage.localMoney = money;
+      localStorage.localMoney = JSON.stringify(money);
+      localStorage.localHasPistol = JSON.stringify(hasPistol);
+      localStorage.localHasRifle = JSON.stringify(hasRifle);
+      localStorage.localHasArmor = JSON.stringify(hasArmor);
   } else {
     console.log("web storage not supported");
   }
@@ -95,9 +97,9 @@ window.onload = function() {
         moveEverything();
         drawEverything();
         updateTime();
-        if (health <= 0) {
-          canvasContext.drawImage(deadScreen, 0, 0);
-        }
+        // if (health <= 0) {
+        //   canvasContext.drawImage(deadScreen, 0, 0);
+        // }
       } else {
         if (isWinner) {
           canvasContext.drawImage(endScreen, 0, 0);
@@ -111,6 +113,9 @@ window.onload = function() {
           if(!allImagesLoaded){
           canvasContext.fillStyle = "red";
           canvasContext.fillText("Images Loading", 15, 15);
+          }
+          if(!localStorage.localMoney){
+            canvasContext.drawImage(buttonNoWork, CONTINUE_BUTTON_X, CONTINUE_BUTTON_Y);
           }
         }
       }
@@ -126,9 +131,8 @@ function moveEverything() {
     return;
   }
 
-  if(health > 0) {
-    playerMove();
-  }
+  playerMove();
+
   cameraFollow();
   if (abilityCoolDown > 0) {
     abilityCoolDown --;
@@ -195,6 +199,8 @@ function drawEverything() {
   drawHealthHud();
 
   drawFunds();
+
+  drawWeapons();
 
   canvasContext.fillStyle = 'white';
 

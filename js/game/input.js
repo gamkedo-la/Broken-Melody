@@ -13,6 +13,7 @@ const KEY_M = 77;
 const KEY_R = 82;
 const KEY_L = 76;
 const KEY_P = 80;
+const KEY_K = 75;
 
 var wall_clipping_cheat = false;
 
@@ -39,14 +40,6 @@ function initInput() {
 
 function setKeyHoldState(thisKey, setTo) {
 
-    if (thisKey == KEY_R && resetTimer == 0) {
-        resetTimer = 30;
-        playerRestoreFromStoredRoomEntry();
-        audio_music.currentTime = 0;
-        // audio_music.play();
-        return; // block other keys
-    }
-
     if (thisKey == KEY_M && hasMap && timerDelay == 0) {
         showMap = !showMap;
         timerDelay = 10;
@@ -58,7 +51,7 @@ function setKeyHoldState(thisKey, setTo) {
         }
         wall_clipping_cheat = !wall_clipping_cheat;
     }
-    if (thisKey == KEY_LEFT_ARROW) { // removed  || thisKey == KEY_A until a better save is in place
+    if (thisKey == KEY_LEFT_ARROW || thisKey == KEY_A) {
         holdLeft = setTo;
         if (setTo) {
             lastFacingLeft = true;
@@ -67,7 +60,7 @@ function setKeyHoldState(thisKey, setTo) {
             }
         }
     }
-    if (thisKey == KEY_RIGHT_ARROW) { // removed  || thisKey == KEY_D until a better save is in place
+    if (thisKey == KEY_RIGHT_ARROW || thisKey == KEY_D) {
         holdRight = setTo;
         if (setTo) {
             lastFacingLeft = false;
@@ -76,16 +69,16 @@ function setKeyHoldState(thisKey, setTo) {
             }
         }
     }
-    if (thisKey == KEY_UP_ARROW) {
+    if (thisKey == KEY_UP_ARROW || thisKey == KEY_W) {
         holdUp = setTo;
     }
-    if (thisKey == KEY_DOWN_ARROW) {
+    if (thisKey == KEY_DOWN_ARROW || thisKey == KEY_S) {
         holdDown = setTo;
     }
     if (thisKey == KEY_L) {
         loadProgress();
     }
-    if (thisKey == KEY_S) {
+    if (thisKey == KEY_K) {
         saveProgress();
     }
 
@@ -121,6 +114,7 @@ function mouseClick(evt){
         mouseY > NEW_BUTTON_Y && mouseY < NEW_BUTTON_Y + MENU_BUTTON_HEIGHT){
         if(allImagesLoaded){
             window.localStorage.clear();
+            saveProgress();
             startGame();
         } else {
             console.log("Please wait images loading");

@@ -11,11 +11,12 @@ function setFormat() {
 
 setFormat();
 
-var audio_music = new Audio("SFX/antventureTheme" + ext);
-var audio_squishSoundV1 = new Audio("SFX/squishSoundV1" + ext);
-var audio_squishSoundV2 = new Audio("SFX/squishSoundV2" + ext);
-var audio_walkingloop = new Audio("SFX/walkingloop" + ext);
-var audio_bigSound = new Audio("SFX/big-sound" + ext);
-var audio_softSound = new Audio("SFX/soft-sound" + ext);
+// var audio_music = new Audio("SFX/antventureTheme" + ext);
+var audio_ganger_shot = new Audio("SFX/enemy_shot" + ext);
+var audio_player_shot = new Audio("SFX/player_shot" + ext);
+var audio_pizza_picked_up = new Audio("SFX/pizza_picked_up" + ext);
+var audio_pizza_delivered = new Audio("SFX/pizza_delivered" + ext);
+var audio_pisol_shoot = new Audio("SFX/pistol_shoot" + ext);
+var audio_rifle_shoot = new Audio("SFX/rifle_shoot" + ext);
 
-audio_music.loop = true;
+// audio_music.loop = true;

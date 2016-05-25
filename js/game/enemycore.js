@@ -161,6 +161,7 @@ this.enemyMove = function() {
     this.removeHealthAndKill = function() {
         this.gangerHealth--;
         this.hitRecently = 10;
+        audio_ganger_shot.play();
         if (this.gangerHealth <= 0) {
             this.readyToRemove = true;
         }

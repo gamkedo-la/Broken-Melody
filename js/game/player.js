@@ -1,5 +1,10 @@
 
-var carryingBlock = false;
+var hasPistol = false;
+var hasRifle = false;
+var hasArmor = false;
+var pistolCost = 350;
+var rifleCost = 550;
+var armorCost = 250;
 var numberOfPizzas = 0;
 
 var isFiring = false;
@@ -26,7 +31,7 @@ var playerX = 75, playerY = 75;
 var playerSpeedX = 0, playerSpeedY = 0;
 
 var PLAYER_RADIUS = 16;
-const START_HEALTH = 3;
+const START_HEALTH = 0;
 var health = START_HEALTH;
 var damagedRecentely = 0;
 
@@ -101,6 +106,16 @@ function drawHealthHud() {
   }
 }
 
+function drawWeapons(){
+  if (hasRifle){
+    canvasContext.drawImage(tileRifleHudPic, 180, 0);
+  } else if(hasPistol){
+    canvasContext.drawImage(tilePistolHudPic, 180, 0);
+  } else {
+    canvasContext.drawImage(emptyHand, 180, 0);
+  }
+}
+
 
 function drawFunds(){
   canvasContext.font = "20px Comic Sans MS";
@@ -108,20 +123,10 @@ function drawFunds(){
   canvasContext.fillText("$" + money, canvas.width / 2, 20)
 }
 
-function playerIsDead() {
-  return (health <= 0);
-}
-
 function playerMove() {
   // used for returning player to valid position if bugged through wall
   var playerNonSolidX = -1;
   var playerNonSolidY = -1;
-
-  if ( playerIsDead() ) {
-    playerSpeedX = 0;
-    return;
-  }
-
   
   playerSpeedX *= GROUND_FRICTION;
   playerSpeedY *= GROUND_FRICTION;
@@ -159,7 +164,9 @@ function playerMove() {
   
   if(numberOfPizzas == 0){
     if (isBlockPickup(TILE_PIZZA)) {
+        audio_pizza_picked_up.play();
         numberOfPizzas ++;
+        health = 3;
         if(numberOfPizzas > 1){
           numberOfPizzas = 1;
         }
@@ -168,8 +175,11 @@ function playerMove() {
 
   if (numberOfPizzas > 0) {
     if (isBlockPickup(TILE_PIZZA_HERE)) {
-        money += 20;
+        audio_pizza_delivered.play();
+        money += 20 * health;
         numberOfPizzas --;
+        health = 0;
+        saveProgress();
     }
   }
 
@@ -177,15 +187,27 @@ function playerMove() {
     hasMap = true;
   }
 
-  if(money > 15){
+  if(money > pistolCost && hasPistol == false){
     if (isBlockPickup(TILE_PISTOL)){
-      money -= 15;
+      money -= pistolCost;
+      hasPistol = true;
+      saveProgress();
     }
   }
 
-  if (money > 25){
+  if(money > rifleCost && hasRifle == false){
+    if (isBlockPickup(TILE_RIFLE)){
+      money -= rifleCost;
+      hasRifle = true;
+      saveProgress();
+    }
+  }
+
+  if (money > armorCost && hasArmor == false){
     if (isBlockPickup(TILE_ARMOR)){
-      money -= 25;
+      money -= armorCost;
+      hasArmor = true;
+      saveProgress();
     }
   }
 
@@ -288,7 +310,6 @@ function playerRestoreFromStoredRoomEntry() {
   }
   // enemyList = enemiesWhenRoomStarted.slice(0);
   processBrickGrid();
-  carryingBlock = blockCarryOnEnter;
   damagedRecentely = 0;
   health = START_HEALTH;
   numberOfPizzas = startedPizzas;
@@ -300,7 +321,6 @@ function playerRestoreFromStoredRoomEntry() {
   countdown = 0;
   timeSCD = 00;
   timeMCD = 2;
-  hasSword = false;
   wobble = 1;
 }
 
@@ -364,22 +384,21 @@ function shotDetection (theEnemy) {
 }
 
 function hitDetection (enemyX, enemyY) {
-  if (damagedRecentely > 0 || playerIsDead()) {
+  if (damagedRecentely > 0) {
     return;
   }
   if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
     if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
       health --;
       damagedRecentely = 50;
+      if(health == 0){
+        numberOfPizzas = 0;
+      }
     }
   }
 }
 
 function drawplayer() {
-
-  if (playerIsDead()) {
-    return;
-  }
   
   var playerFrame;
   /*var isMoving = Math.abs(playerSpeedX)>1;
