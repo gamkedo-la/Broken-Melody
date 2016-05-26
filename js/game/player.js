@@ -1,7 +1,10 @@
 
-var hasPistol = false;
+var hasPistol = true;
 var hasRifle = false;
 var hasArmor = false;
+
+var isShooting = false;
+
 var pistolCost = 350;
 var rifleCost = 550;
 var armorCost = 250;
@@ -52,8 +55,18 @@ var money = 0;
 
 myShot = new shotClass();
 
-function fireGun(){
-  myShot.shootFrom(playerX, playerY);
+
+var shotList = [];
+
+function fireWeapon() {
+
+    if (hasPistol && myShot.bullet_life <= 0) {
+        myShot.shootFrom(playerX, playerY);
+    }
+
+    if (hasRifle) {
+
+    }
 }
 
 function isShotActive(){
@@ -102,7 +115,7 @@ function drawHealthHud() {
     canvasContext.drawImage(hudHealth3Pic,0,0);
   }
   if (health < 1) {
-    canvasContext.drawImage(hudHealth0Pic, 0,0)
+      canvasContext.drawImage(hudHealth0Pic, 0, 0);
   }
 }
 
@@ -120,10 +133,15 @@ function drawWeapons(){
 function drawFunds(){
   canvasContext.font = "20px Comic Sans MS";
   canvasContext.fillStyle = "black";
-  canvasContext.fillText("$" + money, canvas.width / 2, 20)
+    canvasContext.fillText("$" + money, canvas.width / 2, 20);
 }
 
 function playerMove() {
+
+    if (isFiring) {
+        fireWeapon();
+    }
+
   // used for returning player to valid position if bugged through wall
   var playerNonSolidX = -1;
   var playerNonSolidY = -1;

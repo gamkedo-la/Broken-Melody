@@ -81,14 +81,17 @@ function setKeyHoldState(thisKey, setTo) {
     if (thisKey == KEY_K) {
         saveProgress();
     }
+    if (thisKey === KEY_T) {
+        isShooting = setTo;
+    }
 
 }
 
 function keyPressed(evt) {
     if(slideDir == DIR_NONE){
-        if (evt.keyCode == KEY_T) {    
-            fireGun();
-        }
+        //if (evt.keyCode == KEY_T) {    
+        //    fireWeapon();
+        //}
         setKeyHoldState(evt.keyCode, true);
     }
     if (evt.keyCode == KEY_P) {
