@@ -53,15 +53,16 @@ var mapDotY = 0;
 
 var money = 0;
 
-myShot = new shotClass();
+
 
 
 var shotList = [];
 
 function fireWeapon() {
     
-    if (hasPistol && myShot.bullet_life <= 0) {
-        myShot.shootFrom(playerX, playerY);
+    if (hasPistol) {
+        addShotToPistol();
+        firePistol();
     }
 
     if (hasRifle) {
@@ -69,9 +70,7 @@ function fireWeapon() {
     }
 }
 
-function isShotActive(){
-    return myShot.bullet_life > 0;
-}
+
 
 function isBlockPickup (tileType) {  // this allows for picking up health, etc.
   if (whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == tileType) {
@@ -92,18 +91,7 @@ function isBlockPickup (tileType) {  // this allows for picking up health, etc.
   }
 }
 
-function drawShot () {
 
-  myShot.move();
-  myShot.draw();
-
-
-    //not used
-  if (isFiring) {
-    shotX = playerX + 8*(5-Math.abs(bashTimer-5)) * (shieldFacingLeft ? -1 : 1);
-    shotY = playerY;
-  }
-}
 
 function drawHealthHud() {
   if (health == 1) {
@@ -382,7 +370,7 @@ function playerReset() {
         brickGrid[changeAt] = TILE_NONE; // remove tile where player started
         playerSpeedY = playerSpeedX = 0;
         playerStoreRoomEntry();
-        myShot.reset();
+        //myShot.reset();
       } // end of player start found
     } // end of row
   } // end of col
@@ -392,13 +380,19 @@ function shotDetection (theEnemy) {
   var enemyX = theEnemy.x;
   var enemyY = theEnemy.y;
 
-  if(isShotActive()) {
-    if (enemyX > myShot.x - 20 && enemyX < myShot.x + 20) {
-      if (enemyY > myShot.y - 20 && enemyY < myShot.y + 20) {
-        myShot.bullet_life = 0;
-          theEnemy.removeHealthAndKill();
+  if (shotsExist) {
+
+      for (var i = 0; i < allShots.length; i++) {
+          myShot = allShots[i];
+          if (myShot.isShotActive()) {
+              if (enemyX > myShot.x - 20 && enemyX < myShot.x + 20) {
+                  if (enemyY > myShot.y - 20 && enemyY < myShot.y + 20) {
+                      myShot.bullet_life = 0;
+                      theEnemy.removeHealthAndKill();
+                  }
+              }
+          }
       }
-    }
   }
 }
 
