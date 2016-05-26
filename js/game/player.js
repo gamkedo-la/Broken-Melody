@@ -58,6 +58,8 @@ var money = 0;
 
 var shotList = [];
 
+var shotTimer = 0;
+
 function fireWeapon() {
     
     if (hasPistol) {
@@ -66,7 +68,11 @@ function fireWeapon() {
     }
 
     if (hasRifle) {
-
+        if (shotTimer % 5 == 0) {
+            addShotToRifle();
+            fireRifle();
+        }
+        shotTimer++;
     }
 }
 
