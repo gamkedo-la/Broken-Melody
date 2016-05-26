@@ -59,7 +59,7 @@ myShot = new shotClass();
 var shotList = [];
 
 function fireWeapon() {
-
+    
     if (hasPistol && myShot.bullet_life <= 0) {
         myShot.shootFrom(playerX, playerY);
     }
@@ -98,6 +98,7 @@ function drawShot () {
   myShot.draw();
 
 
+    //not used
   if (isFiring) {
     shotX = playerX + 8*(5-Math.abs(bashTimer-5)) * (shieldFacingLeft ? -1 : 1);
     shotY = playerY;
@@ -138,7 +139,7 @@ function drawFunds(){
 
 function playerMove() {
 
-    if (isFiring) {
+    if (isShooting) {
         fireWeapon();
     }
 
