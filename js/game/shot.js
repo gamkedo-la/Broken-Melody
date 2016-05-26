@@ -29,9 +29,21 @@ function shotClass(){
 				this.yv = 1.0;
 				break;
 		}
-		audio_pisol_shoot.play();
 
-		this.bullet_life = bullet_life;
+	    if (hasPistol) {
+	        audio_pisol_shoot.play();
+	    }
+	    if (hasRifle) {
+	        if (audio_rifle_shoot_alt) {
+	            audio_rifle_shoot_alt.currentTime = 0;
+	            audio_rifle_shoot_alt.play();
+	        } else {
+	            audio_rifle_shoot.currentTime = 0;
+	            audio_rifle_shoot.play();
+	        }
+	    }
+
+	    this.bullet_life = bullet_life;
 	}
 
 	this.move = function(){

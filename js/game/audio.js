@@ -18,5 +18,9 @@ var audio_pizza_picked_up = new Audio("SFX/pizza_picked_up" + ext);
 var audio_pizza_delivered = new Audio("SFX/pizza_delivered" + ext);
 var audio_pisol_shoot = new Audio("SFX/pistol_shoot" + ext);
 var audio_rifle_shoot = new Audio("SFX/rifle_shoot" + ext);
+var audio_rifle_shoot_alt = new Audio("SFX/rifle_shoot" + ext);
 
 // audio_music.loop = true;
+
+
+
