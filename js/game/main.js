@@ -19,6 +19,9 @@ var paused = false;
 var gameGoing = false;
 var isWinner = false;
 
+var mouseOverPlay = false;
+var mouseOverContinue = false;
+
 const NEW_BUTTON_X = 25;
 const NEW_BUTTON_Y = 432;
 const CONTINUE_BUTTON_X = 20;
@@ -47,9 +50,9 @@ function updateTime () {
 function loadProgress(){
   if(typeof(Storage) !== "undefined") {
     money = JSON.parse(localStorage.localMoney);
-    hasPistol = JSON.parse(localStorage.localHasPistol);  
-    hasRifle = JSON.parse(localStorage.localHasRifle);  
-    hasArmor = JSON.parse(localStorage.localHasArmor);    
+    hasPistol = JSON.parse(localStorage.localHasPistol);
+    hasRifle = JSON.parse(localStorage.localHasRifle);
+    hasArmor = JSON.parse(localStorage.localHasArmor);
   } else {
     console.log("web storage not supported on your browser!");
   }
@@ -110,6 +113,12 @@ window.onload = function() {
           canvasContext.fillText(numberOfPizzas ,480, 340);
         } else {
           canvasContext.drawImage(startScreen, 0, 0);
+          if (mouseOverPlay) {
+              rect(NEW_BUTTON_X-6,NEW_BUTTON_Y-6,MENU_BUTTON_WIDTH,MENU_BUTTON_HEIGHT,2,"#2E86AB");
+          }
+          if (mouseOverContinue && localStorage.localMoney) {
+              rect(CONTINUE_BUTTON_X,CONTINUE_BUTTON_Y,MENU_BUTTON_WIDTH,MENU_BUTTON_HEIGHT,2,"#2E86AB");
+          }
           if(!allImagesLoaded){
           canvasContext.fillStyle = "red";
           canvasContext.fillText("Images Loading", 15, 15);
@@ -144,17 +153,17 @@ function moveEverything() {
   if (resetTimer != 0) {
     resetTimer --;
   }
-  
+
   for(var i=0;i<enemyList.length;i++) {
     enemyList[i].enemyMove();
   }
-  
+
   for(var i=enemyList.length-1;i>=0;i--) {
     if(enemyList[i].readyToRemove){
         enemyList.splice(i,1);
     }
   }
-  
+
 }
 
 function drawEverything() {
@@ -176,7 +185,7 @@ function drawEverything() {
         canvasContext.translate(slidePx - canvas.width, 0);
         break;
   }
-  
+
   // canvasContext.drawImage(backgroundPic,0, 0);
 
   drawOnlyBricksOnScreen();
@@ -185,7 +194,7 @@ function drawEverything() {
     canvasContext.drawImage(pausedPic, 200, canvas.height / 3);
     return;
   }
-  
+
   for(var i=0;i<enemyList.length;i++) {
     enemyList[i].enemyDraw();
   }
@@ -254,7 +263,7 @@ function drawEverything() {
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
   }
-  
+
   canvasContext.restore(); // undoes the .translate() used for cam scroll
 
   switch (slideDir){
@@ -291,7 +300,6 @@ function drawEverything() {
         }
         break;
   }
-  
+
 
 } // end draw everything
-

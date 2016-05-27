@@ -90,7 +90,7 @@ function setKeyHoldState(thisKey, setTo) {
 
 function keyPressed(evt) {
     if(slideDir == DIR_NONE){
-        //if (evt.keyCode == KEY_T) {    
+        //if (evt.keyCode == KEY_T) {
         //    fireWeapon();
         //}
         setKeyHoldState(evt.keyCode, true);
@@ -122,10 +122,22 @@ function mousePos(evt){
     mouseX = evt.clientX - rect.left - root.scrollLeft;
     mouseY = evt.clientY - rect.top - root.scrollTop;
     // console.log("mouseX = " + mouseX + " and mouseY = " + mouseY);
+    if(mouseX > NEW_BUTTON_X && mouseX < NEW_BUTTON_X + MENU_BUTTON_WIDTH &&
+        mouseY > NEW_BUTTON_Y && mouseY < NEW_BUTTON_Y + MENU_BUTTON_HEIGHT){
+            mouseOverPlay = true;
+        } else {
+            mouseOverPlay = false;
+        }
+        if(mouseX > CONTINUE_BUTTON_X && mouseX < CONTINUE_BUTTON_X + MENU_BUTTON_WIDTH &&
+            mouseY > CONTINUE_BUTTON_Y && mouseY < CONTINUE_BUTTON_Y + MENU_BUTTON_HEIGHT){
+                mouseOverContinue = true;
+            } else {
+                mouseOverContinue = false;
+            }
 }
 
 function mouseClick(evt){
-    if(mouseX > NEW_BUTTON_X && mouseX < NEW_BUTTON_X + MENU_BUTTON_WIDTH && 
+    if(mouseX > NEW_BUTTON_X && mouseX < NEW_BUTTON_X + MENU_BUTTON_WIDTH &&
         mouseY > NEW_BUTTON_Y && mouseY < NEW_BUTTON_Y + MENU_BUTTON_HEIGHT){
         if(allImagesLoaded){
             window.localStorage.clear();
@@ -135,7 +147,7 @@ function mouseClick(evt){
             console.log("Please wait images loading");
         }
     }
-    if(mouseX > CONTINUE_BUTTON_X && mouseX < CONTINUE_BUTTON_X + MENU_BUTTON_WIDTH && 
+    if(mouseX > CONTINUE_BUTTON_X && mouseX < CONTINUE_BUTTON_X + MENU_BUTTON_WIDTH &&
         mouseY > CONTINUE_BUTTON_Y && mouseY < CONTINUE_BUTTON_Y + MENU_BUTTON_HEIGHT){
         if(allImagesLoaded){
             loadProgress();
@@ -145,4 +157,3 @@ function mouseClick(evt){
         }
     }
 }
-
