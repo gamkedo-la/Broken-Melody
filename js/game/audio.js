@@ -1,12 +1,12 @@
 var ext;
 
 function setFormat() {
-    var audio = new Audio();
-    if( audio.canPlayType("audio/mp3")) {
-        ext = ".mp3";
-    } else {
-        ext = ".ogg";
-    }
+	var audio = new Audio();
+	if( audio.canPlayType("audio/mp3")) {
+		ext = ".mp3";
+	} else {
+		ext = ".ogg";
+	}
 }
 
 setFormat();
