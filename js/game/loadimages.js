@@ -48,68 +48,68 @@ var worldArtSets = 3;
 var allImagesLoaded = false;
 
 function countLoadedImageAndLaunchIfReady() {
-  picsToLoad--;
-  if(picsToLoad == 0) {
-    allImagesLoaded = true;
-  }
+    picsToLoad--;
+    if(picsToLoad == 0) {
+        allImagesLoaded = true;
+    }
 }
 
 function beginLoadingImage(imgVar, fileName, idx) {
-  if(idx != undefined){
-    console.log("IDX is " + idx);
-    imgVar[idx] = document.createElement("img");
-    imgVar[idx].onload=countLoadedImageAndLaunchIfReady; 
-    imgVar[idx].src=fileName; 
-  } else {
-    imgVar.onload=countLoadedImageAndLaunchIfReady; 
-    imgVar.src=fileName; 
-  }
+    if(idx != undefined){
+        console.log("IDX is " + idx);
+        imgVar[idx] = document.createElement("img");
+        imgVar[idx].onload=countLoadedImageAndLaunchIfReady; 
+        imgVar[idx].src=fileName; 
+    } else {
+        imgVar.onload=countLoadedImageAndLaunchIfReady; 
+        imgVar.src=fileName; 
+    }
 }
 
 function loadImages() {
-  tileStreet = [];
-  tileSidewalk = [];
-  tileBuildingPic = [];
+    tileStreet = [];
+    tileSidewalk = [];
+    tileBuildingPic = [];
 
-  var imageList = [
-    {varName:backgroundPic, theFile:"images/gamebg.png"},
-    {varName:tilePistolPic, theFile:"images/tilePistol.png"},
-    {varName:tileArmorPic, theFile:"images/tileArmor.png"},
-    {varName:tileHealth, theFile:"images/healthSheet.png"},
-    {varName:tilePizzaHerePic, theFile:"images/pizzaHere.png"},
-    {varName:tilePizzaPic, theFile:"images/TilePizzaAnimated.png"},
-    {varName:tilePistolGangerPic, theFile:"images/pistolGanger.png"},
-    {varName:tileMerchantPic, theFile:"images/merchant.png"},
-    {varName:tileRiflePic, theFile:"images/tileRifle.png"},
-    {varName:tileMapPic, theFile:"images/tileMap.png"},
-    {varName:deadScreen, theFile:"images/deadScreen.png"},
-    {varName:playerPic, theFile:"images/player-sheet.png"},
-    {varName:hudHealth0Pic, theFile:"images/hudHealth0.png"},
-    {varName:hudHealth1Pic, theFile:"images/hudHealth1.png"},
-    {varName:hudHealth2Pic, theFile:"images/hudHealth2.png"},
-    {varName:hudHealth3Pic, theFile:"images/hudHealth3.png"},
-    {varName:hudMapPic, theFile:"images/hudMap.png"},
-    {varName:mapDotPic, theFile:"images/mapDotPic.png"},
-    {varName:gangerPic, theFile: "images/ganger-sheet.png"},
-    {varName:gangerHitPic, theFile: "images/gangerHit-sheet.png"},
-    {varName:easterTown, theFile: "images/easterTownPic.jpg"},
-    {varName:buttonNoWork, theFile: "images/buttonNoWork.png"},
-    {varName:emptyHand, theFile: "images/emptyHand.png"},
-    {varName:tilePistolHudPic, theFile: "images/tilePistolHud.png"},
-    {varName:tileRifleHudPic, theFile: "images/tileRifleHud.png"},
-    {varName:pausedPic, theFile: "images/pause.png"}
-  ];
-  
-  
+    var imageList = [
+        {varName:backgroundPic, theFile:"images/gamebg.png"},
+        {varName:tilePistolPic, theFile:"images/tilePistol.png"},
+        {varName:tileArmorPic, theFile:"images/tileArmor.png"},
+        {varName:tileHealth, theFile:"images/healthSheet.png"},
+        {varName:tilePizzaHerePic, theFile:"images/pizzaHere.png"},
+        {varName:tilePizzaPic, theFile:"images/TilePizzaAnimated.png"},
+        {varName:tilePistolGangerPic, theFile:"images/pistolGanger.png"},
+        {varName:tileMerchantPic, theFile:"images/merchant.png"},
+        {varName:tileRiflePic, theFile:"images/tileRifle.png"},
+        {varName:tileMapPic, theFile:"images/tileMap.png"},
+        {varName:deadScreen, theFile:"images/deadScreen.png"},
+        {varName:playerPic, theFile:"images/player-sheet.png"},
+        {varName:hudHealth0Pic, theFile:"images/hudHealth0.png"},
+        {varName:hudHealth1Pic, theFile:"images/hudHealth1.png"},
+        {varName:hudHealth2Pic, theFile:"images/hudHealth2.png"},
+        {varName:hudHealth3Pic, theFile:"images/hudHealth3.png"},
+        {varName:hudMapPic, theFile:"images/hudMap.png"},
+        {varName:mapDotPic, theFile:"images/mapDotPic.png"},
+        {varName:gangerPic, theFile: "images/ganger-sheet.png"},
+        {varName:gangerHitPic, theFile: "images/gangerHit-sheet.png"},
+        {varName:easterTown, theFile: "images/easterTownPic.jpg"},
+        {varName:buttonNoWork, theFile: "images/buttonNoWork.png"},
+        {varName:emptyHand, theFile: "images/emptyHand.png"},
+        {varName:tilePistolHudPic, theFile: "images/tilePistolHud.png"},
+        {varName:tileRifleHudPic, theFile: "images/tileRifleHud.png"},
+        {varName:pausedPic, theFile: "images/pause.png"}
+    ];
+    
+    
 
-  for(var i = 1;i<=worldArtSets;i++){ // starting at 1 so <=
-    imageList.push({varName:tileStreet, idx:i, theFile:"images/" + i + "/tileStreet.png"});
-    imageList.push({varName:tileSidewalk, idx:i, theFile:"images/" + i + "/tileSidewalk.png"});
-    imageList.push({varName:tileBuildingPic, idx:i, theFile:"images/" + i + "/tileBuilding.png"});
-  }
-  picsToLoad = imageList.length;
+    for(var i = 1;i<=worldArtSets;i++){ // starting at 1 so <=
+        imageList.push({varName:tileStreet, idx:i, theFile:"images/" + i + "/tileStreet.png"});
+        imageList.push({varName:tileSidewalk, idx:i, theFile:"images/" + i + "/tileSidewalk.png"});
+        imageList.push({varName:tileBuildingPic, idx:i, theFile:"images/" + i + "/tileBuilding.png"});
+    }
+    picsToLoad = imageList.length;
 
-  for(var i=0;i<imageList.length;i++) {
-    beginLoadingImage(imageList[i].varName, imageList[i].theFile, imageList[i].idx);
-  }
+    for(var i=0;i<imageList.length;i++) {
+        beginLoadingImage(imageList[i].varName, imageList[i].theFile, imageList[i].idx);
+    }
 }

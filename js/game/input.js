@@ -10,7 +10,6 @@ const KEY_S = 83;
 const KEY_SPACE = 32;
 const KEY_T = 84;
 const KEY_M = 77;
-const KEY_N = 78;
 const KEY_R = 82;
 const KEY_L = 76;
 const KEY_P = 80;
@@ -82,32 +81,18 @@ function setKeyHoldState(thisKey, setTo) {
     if (thisKey == KEY_K) {
         saveProgress();
     }
-    if (thisKey === KEY_T) {
-        isShooting = setTo;
-    }
 
 }
 
 function keyPressed(evt) {
     if(slideDir == DIR_NONE){
-        //if (evt.keyCode == KEY_T) {    
-        //    fireWeapon();
-        //}
+        if (evt.keyCode == KEY_T) {    
+            fireGun();
+        }
         setKeyHoldState(evt.keyCode, true);
     }
     if (evt.keyCode == KEY_P) {
         pauseGame();
-    }
-
-    //quick cheat to test guns, but may be useful to allow player to switch weapons
-    if (evt.keyCode === KEY_N) {
-        if (hasPistol) {
-            hasPistol = false;
-            hasRifle = true;
-        } else if (hasRifle) {
-            hasRifle = false;
-            hasPistol = true;
-        }
     }
     evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
