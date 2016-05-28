@@ -8,7 +8,6 @@ var isShooting = false;
 var pistolCost = 350;
 var rifleCost = 550;
 var armorCost = 250;
-var numberOfPizzas = 0;
 
 var isFiring = false;
 var bashTimer = 10;
@@ -42,7 +41,6 @@ var startedRoomAtX = 0;
 var startedRoomAtY = 0;
 var startedRoomAtXV = 0;
 var startedRoomAtYV = 0;
-var startedPizzas = 0;
 var roomAsItStarted = [];
 var enemiesWhenRoomStarted = [];
 var blockCarryOnEnter = false;
@@ -175,23 +173,18 @@ function playerMove() {
     }
   }
   
-  if(numberOfPizzas == 0){
+  if(health == 0){
     if (isBlockPickup(TILE_PIZZA)) {
         audio_pizza_picked_up.play();
-        numberOfPizzas ++;
         health = 3;
-        if(numberOfPizzas > 1){
-          numberOfPizzas = 1;
-        }
       }
   }
 
-  if (numberOfPizzas > 0) {
+  if (health > 0) {
     if (isBlockPickup(TILE_PIZZA_HERE)) {
         audio_pizza_delivered.play();
-        money += 20 * health;
-        numberOfPizzas --;
-        health = 0;
+        money += 20;
+        health --;
         saveProgress();
     }
   }
@@ -325,7 +318,6 @@ function playerRestoreFromStoredRoomEntry() {
   processBrickGrid();
   damagedRecentely = 0;
   health = START_HEALTH;
-  numberOfPizzas = startedPizzas;
   playerX = startedRoomAtX;
   playerY = startedRoomAtY;
   playerSpeedX = startedRoomAtXV;
@@ -358,7 +350,6 @@ function playerStoreRoomEntry() {
 
   enemiesWhenRoomStarted = JSON.stringify(enemyListDataOnly); // deep copy needed for positions etc.
   // enemiesWhenRoomStarted = enemyList.slice(0);
-  startedPizzas = numberOfPizzas;
   startedRoomAtX = playerX;
   startedRoomAtY = playerY;
   startedRoomAtXV = playerSpeedX;
@@ -410,9 +401,6 @@ function hitDetection (enemyX, enemyY) {
     if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
       health --;
       damagedRecentely = 50;
-      if(health == 0){
-        numberOfPizzas = 0;
-      }
     }
   }
 }

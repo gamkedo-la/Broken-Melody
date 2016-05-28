@@ -110,7 +110,6 @@ window.onload = function() {
           canvasContext.fillText("Total Time:" ,400, 240);
           canvasContext.fillText(timeH + ":" + timeM + ":" + timeS ,400, 260);
           canvasContext.fillText("Bonuse Keys:" ,400, 340);
-          canvasContext.fillText(numberOfPizzas ,480, 340);
         } else {
           canvasContext.drawImage(startScreen, 0, 0);
           if (mouseOverPlay) {
@@ -232,18 +231,6 @@ function drawEverything() {
   if (showTimer == true) {
     canvasContext.fillStyle = 'white';
     canvasContext.fillText(timeH + ":" + timeM + ":" + timeS ,400, 40);
-  }
-
-  if (numberOfPizzas > 0) {
-    var keyArtDim = tilePizzaPic.height;
-    for (var i = 1; i < numberOfPizzas + 1; i++) {
-      canvasContext.drawImage(tilePizzaPic,
-        0, 0, // don't animtate, just set top-left corner of tile art
-        keyArtDim,keyArtDim, // get full tile size from source
-        720 - (60 * i),0, // x,y top-left corner for image destination
-        keyArtDim, keyArtDim);
-    }
-
   }
 
   if (damagedRecentely > 0) {
