@@ -51,7 +51,7 @@ var mapDotY = 0;
 
 var money = 0;
 
-
+var replacementTile = TILE_NONE;
 
 
 var shotList = [];
@@ -77,20 +77,25 @@ function fireWeapon() {
 
 
 function isBlockPickup (tileType) {  // this allows for picking up health, etc.
+    if(tileType == TILE_PIZZA){
+        replacementTile = TILE_PIZZA;
+    } else {
+        replacementTile = TILE_NONE;
+    }
   if (whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(playerX, playerY + PLAYER_RADIUS)] = TILE_NONE;
+    brickGrid[whichIndexAtPixelCoord(playerX, playerY + PLAYER_RADIUS)] = replacementTile;
     return true;
   }
   if (whichBrickAtPixelCoord(playerX,playerY-PLAYER_RADIUS,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(playerX, playerY - PLAYER_RADIUS)] = TILE_NONE;
+    brickGrid[whichIndexAtPixelCoord(playerX, playerY - PLAYER_RADIUS)] = replacementTile;
     return true;
   }
   if (whichBrickAtPixelCoord(playerX + PLAYER_RADIUS,playerY,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(playerX + PLAYER_RADIUS, playerY)] = TILE_NONE;
+    brickGrid[whichIndexAtPixelCoord(playerX + PLAYER_RADIUS, playerY)] = replacementTile;
     return true;
   }
   if (whichBrickAtPixelCoord(playerX - PLAYER_RADIUS,playerY,true) == tileType) {
-    brickGrid[whichIndexAtPixelCoord(playerX - PLAYER_RADIUS, playerY)] = TILE_NONE;
+    brickGrid[whichIndexAtPixelCoord(playerX - PLAYER_RADIUS, playerY)] = replacementTile;
     return true;
   }
 }
@@ -400,6 +405,7 @@ function hitDetection (enemyX, enemyY) {
   if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
     if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
       health --;
+      audio_player_shot.play();
       damagedRecentely = 50;
     }
   }
