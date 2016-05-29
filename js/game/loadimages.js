@@ -35,8 +35,10 @@ var hudMapPic = document.createElement("img");
 var mapDotPic = document.createElement("img");
 var majorKey = document.createElement("img");
 
-var gangerPic = document.createElement("img");
+// Ganger images
 const ENEMY_FRAMES = 4;
+var gangerPic = document.createElement("img");
+var gangerPistolPic = document.createElement("img");
 var gangerHitPic = document.createElement("img");
 
 // start screen image loading before rest of them
@@ -91,6 +93,7 @@ function loadImages() {
     {varName:hudMapPic, theFile:"images/hudMap.png"},
     {varName:mapDotPic, theFile:"images/mapDotPic.png"},
     {varName:gangerPic, theFile: "images/ganger-sheet.png"},
+    {varName:gangerPistolPic, theFile: "images/ganger-sheet-pistol.png"},
     {varName:gangerHitPic, theFile: "images/gangerHit-sheet.png"},
     {varName:easterTown, theFile: "images/easterTownPic.jpg"},
     {varName:buttonNoWork, theFile: "images/buttonNoWork.png"},
