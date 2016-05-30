@@ -30,7 +30,9 @@ function EnemyClass() {
     //health
   this.readyToRemove = false;
   this.hitRecently = 0;
-  this.gangerHealth = HEALTH_GANGER;
+
+
+
 
   this.restoreImgFromKind =  function() {
       if (this.myKind === TILE_GANGER) {
@@ -39,6 +41,18 @@ function EnemyClass() {
           this.myPic = gangerPistolPic;
       }
       this.myHitPic = gangerHitPic;
+
+      switch (this.myKind) {
+          case TILE_GANGER:
+              this.gangerHealth = HEALTH_GANGER;
+              break;
+          case TILE_PISTOL_GANGER:
+              this.gangerHealth = HEALTH_GANGER_PISTOL;
+              break;
+          default:
+              this.gangerHealth = 5;
+              break;
+      }
 
   }
 
