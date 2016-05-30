@@ -1,4 +1,5 @@
 var canvas, canvasContext;
+var hudCan, hudCanContext;
 
 var gameTime = 0;
 var timeH = 0;
@@ -88,6 +89,8 @@ function startGame(){
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
+  hudCan = document.getElementById('hudCan');
+  hudCanContext = hudCan.getContext('2d');
 
   initInput();
 
@@ -166,7 +169,8 @@ function moveEverything() {
 }
 
 function drawEverything() {
-//   colorRect(0, 0, canvas.width, canvas.height, "#704000");
+    //   colorRect(0, 0, canvas.width, canvas.height, "#704000");
+    
 
   canvasContext.save(); // needed to undo this .translate() used for scroll
 
@@ -202,15 +206,10 @@ function drawEverything() {
     drawplayer();
   }
 
-  drawShot();
 
-  drawHealthHud();
-
-  drawFunds();
-
-  drawWeapons();
 
   canvasContext.fillStyle = 'white';
+    hudCanContext.clearRect(0, 0, 800, 600);
 
   if (timerDelay > 0) {
     timerDelay --;
@@ -250,10 +249,19 @@ function drawEverything() {
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
   }
+    drawShot();
+    canvasContext.restore(); // undoes the .translate() used for cam scroll
 
-  canvasContext.restore(); // undoes the .translate() used for cam scroll
+    hudCanContext.save();
+    hudCanContext.restore();
+    drawHealthHud();
+    drawFunds();
+    drawWeapons();
+    
+  
 
-  switch (slideDir){
+
+    switch (slideDir){
       case DIR_N:
         canvasContext.drawImage(canvas, 0, ROOM_PAN_SPEED);
         slidePx += ROOM_PAN_SPEED;
@@ -286,7 +294,12 @@ function drawEverything() {
             slidePx = 0;
         }
         break;
+
+
   }
 
+    if (slideDir == DIR_NONE) {
+
+    }
 
 } // end draw everything

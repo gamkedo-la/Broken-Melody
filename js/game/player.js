@@ -105,34 +105,38 @@ function isBlockPickup (tileType) {  // this allows for picking up health, etc.
 
 function drawHealthHud() {
   if (health == 1) {
-    canvasContext.drawImage(hudHealth1Pic, 0,0);
+    hudCanContext.drawImage(hudHealth1Pic, 0,0);
   }
   if (health == 2) {
-    canvasContext.drawImage(hudHealth2Pic,0,0);
+      hudCanContext.drawImage(hudHealth2Pic, 0, 0);
   }
   if (health == 3) {
-    canvasContext.drawImage(hudHealth3Pic,0,0);
+      hudCanContext.drawImage(hudHealth3Pic, 0, 0);
   }
   if (health < 1) {
-      canvasContext.drawImage(hudHealth0Pic, 0, 0);
+      hudCanContext.drawImage(hudHealth0Pic, 0, 0);
   }
 }
 
 function drawWeapons(){
   if (hasRifle){
-    canvasContext.drawImage(tileRifleHudPic, 180, 0);
+      hudCanContext.drawImage(tileRifleHudPic, 180, 0);
   } else if(hasPistol){
-    canvasContext.drawImage(tilePistolHudPic, 180, 0);
+      hudCanContext.drawImage(tilePistolHudPic, 180, 0);
   } else {
-    canvasContext.drawImage(emptyHand, 180, 0);
+      hudCanContext.drawImage(emptyHand, 180, 0);
   }
 }
 
 
 function drawFunds(){
-  canvasContext.font = "20px Comic Sans MS";
-  canvasContext.fillStyle = "black";
-    canvasContext.fillText("$" + money, canvas.width / 2, 20);
+
+    hudCanContext.fillStyle = "#000000";
+    hudCanContext.font = "20px Consolas MS";
+    hudCanContext.textAlign = "center";
+    hudCanContext.fillText(`$ ${money}`,400, 20);
+
+
 }
 
 function playerMove() {
