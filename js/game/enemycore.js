@@ -34,25 +34,22 @@ function EnemyClass() {
 
 
 
-  this.restoreImgFromKind =  function() {
-      if (this.myKind === TILE_GANGER) {
-          this.myPic = gangerPic;
-      } else if (this.myKind === TILE_PISTOL_GANGER) {
-          this.myPic = gangerPistolPic;
-      }
-      this.myHitPic = gangerHitPic;
-
+  this.initFromEnemyKind =  function() {
       switch (this.myKind) {
           case TILE_GANGER:
+              this.myPic = gangerPic;
               this.gangerHealth = HEALTH_GANGER;
               break;
           case TILE_PISTOL_GANGER:
+              this.myPic = gangerPistolPic;
               this.gangerHealth = HEALTH_GANGER_PISTOL;
               break;
           default:
               this.gangerHealth = 5;
               break;
       }
+
+      this.myHitPic = gangerHitPic;
 
   }
 
@@ -68,7 +65,7 @@ function EnemyClass() {
     this.facingDir = jsonInfo.facingDir;
     this.myID = jsonInfo.myID;
 
-    this.restoreImgFromKind();
+    this.initFromEnemyKind();
   }
   
   this.enemyPlacement = function(tileLoadIndex,xv,yv,myImg) {
@@ -76,7 +73,7 @@ function EnemyClass() {
     this.yv = yv;
     this.myKind = tileLoadIndex;
       this.myPic = myImg;
-    this.restoreImgFromKind();
+    this.initFromEnemyKind();
     this.facingDir = DIR_E;
 
     for(var eachCol=0; eachCol<BRICK_COLS; eachCol++) {

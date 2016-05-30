@@ -2,6 +2,7 @@
 var hasPistol = true;
 var hasRifle = false;
 var hasArmor = false;
+var hasPizza = false;
 
 var isShooting = false;
 
@@ -182,14 +183,18 @@ function playerMove() {
     if (isBlockPickup(TILE_PIZZA)) {
         audio_pizza_picked_up.play();
         health = 3;
-      }
+        hasPizza = true;
+    }
   }
 
   if (health > 0) {
     if (isBlockPickup(TILE_PIZZA_HERE)) {
         audio_pizza_delivered.play();
         money += 20;
-        health --;
+        health--;
+        if (health <= 0) {
+            hasPizza = false;
+        }
         saveProgress();
     }
   }
@@ -404,11 +409,18 @@ function hitDetection (enemyX, enemyY) {
   }
   if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
     if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
-      health --;
+        health--;
+        removePizza();
       audio_player_shot.play();
       damagedRecentely = 50;
     }
   }
+}
+
+function removePizza() {
+    if (health <= 0) {
+        hasPizza = false;
+    }
 }
 
 function drawplayer() {
@@ -421,7 +433,12 @@ function drawplayer() {
     playerFrame = 0;
   }*/
   playerFrame = playerLastWalkedIn;
-  drawFacingLeftOption(playerPic,playerX,playerY,false, playerFrame);
+    if (hasPizza) {
+        drawFacingLeftOption(playerPizzaPic, playerX, playerY, false, playerFrame);
+    } else {
+        drawFacingLeftOption(playerPic, playerX, playerY, false, playerFrame);
+    }
+ 
 }
 
 function instantCamFollow() {

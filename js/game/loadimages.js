@@ -24,6 +24,7 @@ var tileArmorPic = document.createElement("img"); // #TODO remove
 var tileMerchantPic = document.createElement("img");
 
 var playerPic = document.createElement("img");
+var playerPizzaPic = document.createElement("img");
 
 const PLAYER_RUN_FRAMES = 4;
 var hudHealth0Pic = document.createElement("img");
@@ -73,34 +74,35 @@ function loadImages() {
   tileSidewalk = [];
   tileBuildingPic = [];
 
-  var imageList = [
-    {varName:backgroundPic, theFile:"images/gamebg.png"},
-    {varName:tilePistolPic, theFile:"images/tilePistol.png"},
-    {varName:tileArmorPic, theFile:"images/tileArmor.png"},
-    {varName:tileHealth, theFile:"images/healthSheet.png"},
-    {varName:tilePizzaHerePic, theFile:"images/pizzaHere.png"},
-    {varName:tilePizzaPic, theFile:"images/TilePizzaAnimated.png"},
-    {varName:tileMerchantPic, theFile:"images/merchant.png"},
-    {varName:tileRiflePic, theFile:"images/tileRifle.png"},
-    {varName:tileMapPic, theFile:"images/tileMap.png"},
-    {varName:deadScreen, theFile:"images/deadScreen.png"},
-    {varName:playerPic, theFile:"images/player-sheet.png"},
-    {varName:hudHealth0Pic, theFile:"images/hudHealth0.png"},
-    {varName:hudHealth1Pic, theFile:"images/hudHealth1.png"},
-    {varName:hudHealth2Pic, theFile:"images/hudHealth2.png"},
-    {varName:hudHealth3Pic, theFile:"images/hudHealth3.png"},
-    {varName:hudMapPic, theFile:"images/hudMap.png"},
-    {varName:mapDotPic, theFile:"images/mapDotPic.png"},
-    {varName:gangerPic, theFile: "images/ganger-sheet.png"},
-    {varName:gangerPistolPic, theFile: "images/ganger-sheet-pistol.png"},
-    {varName:gangerHitPic, theFile: "images/gangerHit-sheet.png"},
-    {varName:easterTown, theFile: "images/easterTownPic.jpg"},
-    {varName:buttonNoWork, theFile: "images/buttonNoWork.png"},
-    {varName:emptyHand, theFile: "images/emptyHand.png"},
-    {varName:tilePistolHudPic, theFile: "images/tilePistolHud.png"},
-    {varName:tileRifleHudPic, theFile: "images/tileRifleHud.png"},
-    {varName:pausedPic, theFile: "images/pause.png"}
-  ];
+    var imageList = [
+        { varName: backgroundPic, theFile: "images/gamebg.png" },
+        { varName: tilePistolPic, theFile: "images/tilePistol.png" },
+        { varName: tileArmorPic, theFile: "images/tileArmor.png" },
+        { varName: tileHealth, theFile: "images/healthSheet.png" },
+        { varName: tilePizzaHerePic, theFile: "images/pizzaHere.png" },
+        { varName: tilePizzaPic, theFile: "images/TilePizzaAnimated.png" },
+        { varName: tileMerchantPic, theFile: "images/merchant.png" },
+        { varName: tileRiflePic, theFile: "images/tileRifle.png" },
+        { varName: tileMapPic, theFile: "images/tileMap.png" },
+        { varName: deadScreen, theFile: "images/deadScreen.png" },
+        { varName: playerPic, theFile: "images/player-sheet.png" },
+        { varName: playerPizzaPic, theFile: "images/player-pizza-sheet.png" },
+        { varName: hudHealth0Pic, theFile: "images/hudHealth0.png" },
+        { varName: hudHealth1Pic, theFile: "images/hudHealth1.png" },
+        { varName: hudHealth2Pic, theFile: "images/hudHealth2.png" },
+        { varName: hudHealth3Pic, theFile: "images/hudHealth3.png" },
+        { varName: hudMapPic, theFile: "images/hudMap.png" },
+        { varName: mapDotPic, theFile: "images/mapDotPic.png" },
+        { varName: gangerPic, theFile: "images/ganger-sheet.png" },
+        { varName: gangerPistolPic, theFile: "images/ganger-sheet-pistol.png" },
+        { varName: gangerHitPic, theFile: "images/gangerHit-sheet.png" },
+        { varName: easterTown, theFile: "images/easterTownPic.jpg" },
+        { varName: buttonNoWork, theFile: "images/buttonNoWork.png" },
+        { varName: emptyHand, theFile: "images/emptyHand.png" },
+        { varName: tilePistolHudPic, theFile: "images/tilePistolHud.png" },
+        { varName: tileRifleHudPic, theFile: "images/tileRifleHud.png" },
+        { varName: pausedPic, theFile: "images/pause.png" }
+    ];
   
   
 
