@@ -122,14 +122,14 @@ function processBrickGrid() {
 
   var tempEnemy = new enemySlideAndBounce();
   // enemyList = []; do not clear enemy list, we're keeping old ones around
-  while(tempEnemy.enemyPlacement(TILE_GANGER, ENEMY_SPEED, 0.0)) {
+  while(tempEnemy.enemyPlacement(TILE_GANGER, ENEMY_SPEED, 0.0, gangerPic)) {
     enemyList.push(tempEnemy);
     tempEnemy = new enemySlideAndBounce();
   }
-  // while(tempEnemy.enemyPlacement(KNIFE_GANGER, 0.0, ENEMY_SPEED)) {
-  //   enemyList.push(tempEnemy);
-  //   tempEnemy = new enemySlideAndBounce();
-  // }
+   while(tempEnemy.enemyPlacement(TILE_PISTOL_GANGER, ENEMY_SPEED, 0.0, gangerPistolPic)) {
+     enemyList.push(tempEnemy);
+     tempEnemy = new enemySlideAndBounce();
+   }
 }
 
 function brickTileToIndex(tileCol, tileRow) {
@@ -248,9 +248,6 @@ function drawOnlyBricksOnScreen() {
         usePic = tilePizzaPic;
         showStreetUnderTransparency = true;
         tileFrame = animFrame % TILE_PIZZA_FRAMES;
-        break;
-        case TILE_PISTOL_GANGER:
-        usePic = tilePistolGangerPic;
         break;
         case TILE_MERCHANT:
         showStreetUnderTransparency = true;

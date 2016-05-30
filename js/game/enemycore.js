@@ -32,8 +32,13 @@ function enemySlideAndBounce() {
   this.gangerHealth = HEALTH_GANGER;
 
   this.restoreImgFromKind =  function() {
-      this.myPic = gangerPic;
+      if (this.myKind === TILE_GANGER) {
+          this.myPic = gangerPic;
+      } else if (this.myKind === TILE_PISTOL_GANGER) {
+          this.myPic = gangerPistolPic;
+      }
       this.myHitPic = gangerHitPic;
+
   }
 
 
@@ -55,6 +60,7 @@ function enemySlideAndBounce() {
     this.xv = xv;
     this.yv = yv;
     this.myKind = tileLoadIndex;
+      this.myPic = myImg;
     this.restoreImgFromKind();
     this.facingDir = DIR_E;
 

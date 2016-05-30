@@ -10,7 +10,7 @@ const TILE_HEALTH_FRAMES = 4;
 var tilePizzaHerePic = document.createElement("img");
 var tilePizzaPic = document.createElement("img");
 const TILE_PIZZA_FRAMES = 4;
-var tilePistolGangerPic = document.createElement("img");
+//var tilePistolGangerPic = document.createElement("img");
 var tileRiflePic = document.createElement("img");
 var tileMapPic = document.createElement("img");
 var pausedPic = document.createElement("img");
@@ -80,7 +80,6 @@ function loadImages() {
     {varName:tileHealth, theFile:"images/healthSheet.png"},
     {varName:tilePizzaHerePic, theFile:"images/pizzaHere.png"},
     {varName:tilePizzaPic, theFile:"images/TilePizzaAnimated.png"},
-    {varName:tilePistolGangerPic, theFile:"images/pistolGanger.png"},
     {varName:tileMerchantPic, theFile:"images/merchant.png"},
     {varName:tileRiflePic, theFile:"images/tileRifle.png"},
     {varName:tileMapPic, theFile:"images/tileMap.png"},

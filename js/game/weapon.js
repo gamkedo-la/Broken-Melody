@@ -26,8 +26,6 @@ function fireRifle() {
     for (var i = 0; i < allShots.length; i++) {
         if (allShots[i].isActive == false) {
             allShots[i].shootFrom(playerX, playerY);
-            console.log("bang");
-            console.log(allShots.length);
             break;
         }
     }
