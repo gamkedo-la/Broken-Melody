@@ -11,10 +11,11 @@ const ENEMY_SPEED = 1.0;
 const ANT_GROUND_HEIGHT_OFFSET = 14;
 
 const HEALTH_GANGER = 2;
+const HEALTH_GANGER_PISTOL = 4;
 
 enemyList = [];
 
-function enemySlideAndBounce() {
+function EnemyClass() {
   // these reflect which overworld room coord the creature exists in
   this.myRoomC = 0;
   this.myRoomR = 0;

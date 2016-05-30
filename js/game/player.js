@@ -314,7 +314,7 @@ function playerRestoreFromStoredRoomEntry() {
   enemyList = [];
   var enemyRespawnData = JSON.parse(enemiesWhenRoomStarted); // deep copy needed for positions etc.
   for(var i=0;i<enemyRespawnData.length;i++) {
-    var newEnem = new enemySlideAndBounce();
+    var newEnem = new EnemyClass();
     newEnem.respawnEnemy(enemyRespawnData[i]);
     enemyList.push( newEnem );
     console.log("Enemy respawned from json");

@@ -120,15 +120,15 @@ function loadLevel(fromJSON) { // if no test stage argument, load from world gri
 
 function processBrickGrid() {
 
-  var tempEnemy = new enemySlideAndBounce();
+  var tempEnemy = new EnemyClass();
   // enemyList = []; do not clear enemy list, we're keeping old ones around
   while(tempEnemy.enemyPlacement(TILE_GANGER, ENEMY_SPEED, 0.0, gangerPic)) {
     enemyList.push(tempEnemy);
-    tempEnemy = new enemySlideAndBounce();
+    tempEnemy = new EnemyClass();
   }
    while(tempEnemy.enemyPlacement(TILE_PISTOL_GANGER, ENEMY_SPEED, 0.0, gangerPistolPic)) {
      enemyList.push(tempEnemy);
-     tempEnemy = new enemySlideAndBounce();
+     tempEnemy = new EnemyClass();
    }
 }
 
