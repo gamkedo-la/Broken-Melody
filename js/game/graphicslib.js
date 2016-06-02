@@ -52,3 +52,11 @@ function drawFacingLeftOption(image,atX,atY,ifFlipped, frameNum) {
     spriteSafeEdge(image,frameNum,imageDim,atX,atY);
   }
 }
+
+
+function drawHudText(text, x, y, font, color, align) {
+    hudCanContext.fillStyle = color;
+    hudCanContext.font = font;
+    hudCanContext.textAlign = align;
+    hudCanContext.fillText(text,x,y);
+}

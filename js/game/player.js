@@ -6,8 +6,8 @@ var hasPizza = false;
 
 var isShooting = false;
 
-var pistolCost = 350;
-var rifleCost = 550;
+var pistolCost = 10; //350;
+var rifleCost = 10; //550;
 var armorCost = 250;
 
 var isFiring = false;
@@ -118,15 +118,7 @@ function drawHealthHud() {
   }
 }
 
-function drawWeapons(){
-  if (hasRifle){
-      hudCanContext.drawImage(tileRifleHudPic, 180, 0);
-  } else if(hasPistol){
-      hudCanContext.drawImage(tilePistolHudPic, 180, 0);
-  } else {
-      hudCanContext.drawImage(emptyHand, 180, 0);
-  }
-}
+
 
 
 function drawFunds(){
@@ -207,18 +199,20 @@ function playerMove() {
     hasMap = true;
   }
 
-  if(money > pistolCost && hasPistol == false){
+  if(money >= pistolCost){
     if (isBlockPickup(TILE_PISTOL)){
       money -= pistolCost;
       hasPistol = true;
+        pistolAmmo += PISTOL_PICKUP_AMMO;
       saveProgress();
     }
   }
 
-  if(money > rifleCost && hasRifle == false){
+  if(money >= rifleCost){
     if (isBlockPickup(TILE_RIFLE)){
       money -= rifleCost;
       hasRifle = true;
+        rifleAmmo += RIFLE_PICKUP_AMMO;
       saveProgress();
     }
   }
