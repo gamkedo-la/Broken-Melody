@@ -119,8 +119,8 @@ function keyReleased(evt) {
 function mousePos(evt){
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
-    mouseX = evt.clientX - rect.left - root.scrollLeft;
-    mouseY = evt.clientY - rect.top - root.scrollTop;
+    mouseX = evt.clientX - rect.left;// - root.scrollLeft;
+    mouseY = evt.clientY - rect.top;// - root.scrollTop;
     // console.log("mouseX = " + mouseX + " and mouseY = " + mouseY);
     if(mouseX > NEW_BUTTON_X && mouseX < NEW_BUTTON_X + MENU_BUTTON_WIDTH &&
         mouseY > NEW_BUTTON_Y && mouseY < NEW_BUTTON_Y + MENU_BUTTON_HEIGHT){
@@ -137,10 +137,13 @@ function mousePos(evt){
 }
 
 function mouseClick(evt){
+    console.log(mouseX + ", " + mouseY);
     if(mouseX > NEW_BUTTON_X && mouseX < NEW_BUTTON_X + MENU_BUTTON_WIDTH &&
         mouseY > NEW_BUTTON_Y && mouseY < NEW_BUTTON_Y + MENU_BUTTON_HEIGHT){
         if(allImagesLoaded){
-            window.localStorage.clear();
+            if(window.localStorage) {
+                window.localStorage.clear();
+            }
             saveProgress();
             startGame();
         } else {

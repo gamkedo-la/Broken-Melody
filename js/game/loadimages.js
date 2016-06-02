@@ -60,7 +60,7 @@ function countLoadedImageAndLaunchIfReady() {
 
 function beginLoadingImage(imgVar, fileName, idx) {
   if(idx != undefined){
-    console.log("IDX is " + idx);
+    // console.log("IDX is " + idx);
     imgVar[idx] = document.createElement("img");
     imgVar[idx].onload=countLoadedImageAndLaunchIfReady; 
     imgVar[idx].src=fileName; 

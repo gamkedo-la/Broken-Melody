@@ -85,14 +85,14 @@ function loadLevelsBesidesFirstOne() {
         } // end of col
       }
       var roomKind = roomsToLoad[eachC + eachR*roomsToLoadColsW];
-      console.log(eachC + ", " + eachR + ": " + roomKind )
+      // console.log(eachC + ", " + eachR + ": " + roomKind )
       if(roomKind == 0) {
         continue;
       }
       var imported = document.createElement('script');
       imported.onerror = noLevelHere;
       imported.src = 'levels/'+levelCRToFilename(eachC,eachR)+".js";
-      console.log(imported.src);
+      // console.log(imported.src);
       document.head.appendChild(imported);
     }
   }
