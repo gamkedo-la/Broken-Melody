@@ -401,18 +401,35 @@ function shotDetection (theEnemy) {
   }
 }
 
-function hitDetection (enemyX, enemyY) {
+function hitDetection (enemyX, enemyY, allShots) {
   if (damagedRecentely > 0) {
     return;
   }
-  if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
-    if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
-        health--;
-        removePizza();
-      audio_player_shot.play();
-      damagedRecentely = 50;
+    if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
+        if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
+            health--;
+            removePizza();
+            audio_player_shot.play();
+            damagedRecentely = 50;
+        }
     }
-  }
+    var shotgap = 20;
+      for (var i = 0; i < allShots.length; i++) {
+          myShot = allShots[i];
+          if (myShot.isShotActive()) {
+              if (playerX > myShot.x - shotgap && playerX < myShot.x + shotgap) {
+                  if (playerY > myShot.y - shotgap && playerY < myShot.y + shotgap) {
+                      myShot.bullet_life = 0;
+                      health--;
+                      removePizza();
+                      audio_player_shot.play();
+                      damagedRecentely = 50;
+                  }
+              }
+          }
+      }
+
+
 }
 
 function removePizza() {

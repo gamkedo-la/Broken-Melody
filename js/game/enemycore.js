@@ -31,6 +31,8 @@ function EnemyClass() {
   this.readyToRemove = false;
   this.hitRecently = 0;
 
+    this.allShots_enemy = [];
+
 
 
 
@@ -112,7 +114,9 @@ this.enemyDraw = function() {
     } else {
         drawFacingLeftOption(this.myPic, this.x, this.y, false, enemyFrame);
     }
-    
+
+    drawShot_enemy(this.allShots_enemy);
+
 }
 
 this.enemyMove = function() {
@@ -173,7 +177,18 @@ this.enemyMove = function() {
     this.x += this.xv;
     this.y += this.yv;
 
-    hitDetection (this.x, this.y);
+    if (this.myKind === TILE_PISTOL_GANGER) {
+        var sr = 50;
+        if (this.facingDir === DIR_E && this.x < playerX && this.y > playerY - sr && this.y < playerY + sr ||
+            this.facingDir === DIR_W && this.x > playerX && this.y > playerY - sr && this.y < playerY + sr ||
+            this.facingDir === DIR_N && this.y > playerY && this.x > playerX - sr && this.x < playerX + sr ||
+            this.facingDir === DIR_S && this.y < playerY && this.x > playerX - sr && this.x < playerX + sr) {
+            addShotToPistol_enemy(this.allShots_enemy);
+            firePistol_enemy(this.x, this.y, this.allShots_enemy, this.facingDir);
+        }
+    }
+
+    hitDetection(this.x, this.y, this.allShots_enemy);
 }
 
     this.removeHealthAndKill = function() {

@@ -5,13 +5,13 @@ function shotClass(){
 
     this.isActive = false;
 
-	this.shootFrom = function (playerX, playerY) {
+	this.shootFrom = function (playerX, playerY, direction) {
 
 	    this.isActive = true;
 		this.x = playerX;
 		this.y = playerY;
 
-		switch (playerLastWalkedIn){
+		switch (direction){
 			case DIR_W:
 				this.xv = -1.0;
 				this.yv = 0.0;
