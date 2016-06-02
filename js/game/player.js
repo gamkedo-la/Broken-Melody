@@ -8,7 +8,7 @@ var isShooting = false;
 
 var pistolCost = 10; //350;
 var rifleCost = 10; //550;
-var armorCost = 250;
+var armorCost = 10; //250;
 
 var isFiring = false;
 var bashTimer = 10;
@@ -37,6 +37,8 @@ var PLAYER_RADIUS = 16;
 const START_HEALTH = 0;
 var health = START_HEALTH;
 var damagedRecentely = 0;
+
+var shieldAmount = 0;
 
 var startedRoomAtX = 0;
 var startedRoomAtY = 0;
@@ -116,6 +118,18 @@ function drawHealthHud() {
   if (health < 1) {
       hudCanContext.drawImage(hudHealth0Pic, 0, 0);
   }
+}
+
+function drawShieldHud() {
+    if (shieldAmount === 1) {
+        hudCanContext.drawImage(hudShield1Pic, 0, 0);
+    }
+    if (shieldAmount === 2) {
+        hudCanContext.drawImage(hudShield2Pic, 0, 0);
+    }
+    if (shieldAmount === 3) {
+        hudCanContext.drawImage(hudShield3Pic, 0, 0);
+    }
 }
 
 
@@ -217,11 +231,11 @@ function playerMove() {
     }
   }
 
-  if (money > armorCost && hasArmor == false){
-    if (isBlockPickup(TILE_ARMOR)){
-      money -= armorCost;
-      hasArmor = true;
-      saveProgress();
+  if (money >= armorCost && shieldAmount < 3) {
+    if (isBlockPickup(TILE_ARMOR)) {
+        money -= armorCost;
+        shieldAmount++;
+        saveProgress();
     }
   }
 
@@ -407,8 +421,7 @@ function hitDetection (enemyX, enemyY, allShots) {
   }
     if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
         if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
-            health--;
-            removePizza();
+            checkHealthShieldandRemovePizza();
             audio_player_shot.play();
             damagedRecentely = 50;
         }
@@ -420,8 +433,7 @@ function hitDetection (enemyX, enemyY, allShots) {
               if (playerX > myShot.x - shotgap && playerX < myShot.x + shotgap) {
                   if (playerY > myShot.y - shotgap && playerY < myShot.y + shotgap) {
                       myShot.bullet_life = 0;
-                      health--;
-                      removePizza();
+                      checkHealthShieldandRemovePizza();
                       audio_player_shot.play();
                       damagedRecentely = 50;
                   }
@@ -432,11 +444,21 @@ function hitDetection (enemyX, enemyY, allShots) {
 
 }
 
+function checkHealthShieldandRemovePizza() {
+    if (shieldAmount > 0) {
+        shieldAmount--;
+    } else {
+        health--;
+    }
+    removePizza();
+}
+
 function removePizza() {
     if (health <= 0) {
         hasPizza = false;
     }
 }
+
 
 function drawplayer() {
   

@@ -255,6 +255,7 @@ function drawEverything() {
     hudCanContext.save();
     hudCanContext.restore();
     drawHealthHud();
+    drawShieldHud();
     drawFunds();
     drawWeapons();
     

@@ -31,6 +31,9 @@ var hudHealth0Pic = document.createElement("img");
 var hudHealth1Pic = document.createElement("img");
 var hudHealth2Pic = document.createElement("img");
 var hudHealth3Pic = document.createElement("img");
+var hudShield1Pic = document.createElement("img");
+var hudShield2Pic = document.createElement("img");
+var hudShield3Pic = document.createElement("img");
 
 var hudMapPic = document.createElement("img");
 var mapDotPic = document.createElement("img");
@@ -92,6 +95,9 @@ function loadImages() {
         { varName: hudHealth1Pic, theFile: "images/hudHealth1.png" },
         { varName: hudHealth2Pic, theFile: "images/hudHealth2.png" },
         { varName: hudHealth3Pic, theFile: "images/hudHealth3.png" },
+        { varName: hudShield1Pic, theFile: "images/hudShield1.png" },
+        { varName: hudShield2Pic, theFile: "images/hudShield2.png" },
+        { varName: hudShield3Pic, theFile: "images/hudShield3.png" },
         { varName: hudMapPic, theFile: "images/hudMap.png" },
         { varName: mapDotPic, theFile: "images/mapDotPic.png" },
         { varName: gangerPic, theFile: "images/ganger-sheet.png" },
