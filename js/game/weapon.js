@@ -98,17 +98,17 @@ function drawWeapons() {
         hudCanContext.drawImage(tileRifleHudPic, canvas.width-80, 0);
     }
     if (hasPistol) {
-        hudCanContext.drawImage(tilePistolHudPic, canvas.width-130, 0);
+        hudCanContext.drawImage(tilePistolHudPic, canvas.width-135, 0);
     } 
     
     hudCanContext.drawImage(emptyHand, canvas.width-185, 0);
     
     if (holdingPistol === false && holdingRifle === false) {
-        rect(canvas.width - 180, 2, 50, 50, 2, "yellow");
+        rect(canvas.width - 180, 2, 52, 50, 2, "yellow");
     } else if (holdingPistol === true) {
-        rect(canvas.width - 130, 2, 50, 50, 2, "yellow");
+        rect(canvas.width - 130, 2, 52, 50, 2, "yellow");
     } else if (holdingRifle === true) {
-        rect(canvas.width - 80, 2, 50, 50, 2, "yellow");
+        rect(canvas.width - 80, 2, 52, 50, 2, "yellow");
     }
 
 }
@@ -117,10 +117,10 @@ function drawAmmo() {
     var AMMO_TEXT_SIZE = 15;
     ///change to holdingPistol
     if (hasPistol) {
-        drawHudText(pistolAmmo, canvas.width-85, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
+        drawHudText(pistolAmmo, canvas.width-90, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
     }
     if (hasRifle) {
-        drawHudText(rifleAmmo, canvas.width-45, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
+        drawHudText(rifleAmmo, canvas.width-50, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
     }
 }
 
