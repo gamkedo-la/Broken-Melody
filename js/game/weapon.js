@@ -1,5 +1,9 @@
 var allShots = [];
 
+
+var hasPistol = true;
+var hasRifle = true;
+
 var holdingPistol = false;
 var holdingRifle = false;
 
@@ -87,26 +91,50 @@ function shotsExist() {
     }
 }
 
+
+function drawWeapons() {
+    drawAmmo();
+    if (hasRifle) {
+        hudCanContext.drawImage(tileRifleHudPic, canvas.width-80, 0);
+    }
+    if (hasPistol) {
+        hudCanContext.drawImage(tilePistolHudPic, canvas.width-130, 0);
+    } 
+    
+    hudCanContext.drawImage(emptyHand, canvas.width-185, 0);
+    
+    if (holdingPistol === false && holdingRifle === false) {
+        rect(canvas.width - 180, 2, 50, 50, 2, "yellow");
+    } else if (holdingPistol === true) {
+        rect(canvas.width - 130, 2, 50, 50, 2, "yellow");
+    } else if (holdingRifle === true) {
+        rect(canvas.width - 80, 2, 50, 50, 2, "yellow");
+    }
+
+}
+
 function drawAmmo() {
     var AMMO_TEXT_SIZE = 15;
     ///change to holdingPistol
     if (hasPistol) {
-        drawHudText(pistolAmmo, 200, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
+        drawHudText(pistolAmmo, canvas.width-85, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
     }
     if (hasRifle) {
-        drawHudText(rifleAmmo, 200, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
+        drawHudText(rifleAmmo, canvas.width-45, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
     }
 }
 
-
-function drawWeapons() {
-    if (hasRifle) {
-        hudCanContext.drawImage(tileRifleHudPic, 180, 0);
-        drawAmmo();
-    } else if (hasPistol) {
-        hudCanContext.drawImage(tilePistolHudPic, 180, 0);
-        drawAmmo();
-    } else {
-        hudCanContext.drawImage(emptyHand, 180, 0);
+function gunSwitchLogic() {
+    if (hasPistol && holdingRifle == false && holdingPistol === false) {
+        holdingRifle = false;
+        holdingPistol = true;
+    } else if (hasRifle && holdingPistol) {
+        holdingPistol = false;
+        holdingRifle = true;
+    } else if ((hasPistol === false && hasRifle === false) || holdingRifle) {
+        holdingPistol = false;
+        holdingRifle = false;
     }
+
+
 }
