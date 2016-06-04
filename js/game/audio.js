@@ -23,4 +23,24 @@ var audio_rifle_shoot_alt = new Audio("SFX/rifle_shoot" + ext);
 audio_music.loop = true;
 
 
-
+function mute(){
+    if(muted){
+        audio_music.muted = muted;
+        audio_ganger_shot.muted = muted;
+        audio_player_shot.muted = muted;
+        audio_pizza_picked_up.muted = muted;
+        audio_pizza_delivered.muted = muted;
+        audio_pisol_shoot.muted = muted;
+        audio_rifle_shoot.muted = muted;
+        audio_rifle_shoot_alt.muted = muted;
+    } else {
+        audio_music.muted = muted;
+        audio_ganger_shot.muted = muted;
+        audio_player_shot.muted = muted;
+        audio_pizza_picked_up.muted = muted;
+        audio_pizza_delivered.muted = muted;
+        audio_pisol_shoot.muted = muted;
+        audio_rifle_shoot.muted = muted;
+        audio_rifle_shoot_alt.muted = muted;
+    }
+}

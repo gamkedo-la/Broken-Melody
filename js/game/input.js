@@ -113,11 +113,6 @@ function keyPressed(evt) {
     evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
 
-
-
-
-
-
 function keyReleased(evt) {
     setKeyHoldState(evt.keyCode, false);
 }
@@ -163,6 +158,16 @@ function mouseClick(evt){
             startGame();
         } else {
             console.log("Please wait images loading");
+        }
+    }
+    if(mouseX > MUTE_BUTTON_X && mouseX < MUTE_BUTTON_X + MUTE_BUTTON_WIDTH &&
+        mouseY > MUTE_BUTTON_Y && mouseY < MUTE_BUTTON_Y + MUTE_BUTTON_HEIGHT){
+        if(muted){
+            muted = false;
+            mute();
+        } else {
+            muted = true;
+            mute();
         }
     }
 }

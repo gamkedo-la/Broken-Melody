@@ -31,6 +31,14 @@ const CONTINUE_BUTTON_Y = 510;
 const MENU_BUTTON_WIDTH = 289;
 const MENU_BUTTON_HEIGHT = 74;
 
+const MUTE_BUTTON_X = 570;
+const MUTE_BUTTON_Y = 10;
+
+const MUTE_BUTTON_WIDTH = 29;
+const MUTE_BUTTON_HEIGHT = 30;
+
+var muted = false;
+
 var pizzaTime = 0;
 
 function updateTime () {
@@ -51,6 +59,14 @@ function updateTime () {
     timeM = 0;
     timeH ++;
   }
+}
+
+function drawSpeaker(){
+    if(muted){
+        canvasContext.drawImage(speakerMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
+    } else {
+        canvasContext.drawImage(speakerNotMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
+    }
 }
 
 function loadProgress(){
@@ -198,7 +214,7 @@ function drawEverything() {
   // canvasContext.drawImage(backgroundPic,0, 0);
 
   drawOnlyBricksOnScreen();
-
+  drawSpeaker();
   if(paused){
     canvasContext.drawImage(pausedPic, 200, canvas.height / 3);
     return;
