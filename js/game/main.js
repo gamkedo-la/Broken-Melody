@@ -31,11 +31,16 @@ const CONTINUE_BUTTON_Y = 510;
 const MENU_BUTTON_WIDTH = 289;
 const MENU_BUTTON_HEIGHT = 74;
 
+var pizzaTime = 0;
+
 function updateTime () {
   gameTime ++;
   if (gameTime == 30) {
     gameTime = 0;
-    timeS ++;
+    timeS++;
+      if (pizzaTime > 0) {
+          pizzaTime--;
+      }
   }
   if (timeS == 60) {
     timeS = 0;

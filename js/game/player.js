@@ -141,7 +141,12 @@ function drawFunds(){
     hudCanContext.textAlign = "center";
     hudCanContext.fillText(`$ ${money}`,400, 20);
 
-
+    if (pizzaTime > 0) {
+        hudCanContext.fillStyle = "#000000";
+        hudCanContext.font = "20px Consolas MS";
+        hudCanContext.textAlign = "center";
+        hudCanContext.fillText(pizzaTime, 400, 40);
+    }
 }
 
 function playerMove() {
@@ -193,6 +198,7 @@ function playerMove() {
         audio_pizza_picked_up.play();
         health = 3;
         hasPizza = true;
+        pizzaTime = 120;
     }
   }
 
