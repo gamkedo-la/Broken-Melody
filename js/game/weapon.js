@@ -104,11 +104,11 @@ function drawWeapons() {
     hudCanContext.drawImage(emptyHand, canvas.width-185, 0);
     
     if (holdingPistol === false && holdingRifle === false) {
-        rect(canvas.width - 180, 2, 52, 50, 2, "yellow");
+        rectHud(canvas.width - 180, 2, 52, 50, 2, "yellow");
     } else if (holdingPistol === true) {
-        rect(canvas.width - 130, 2, 52, 50, 2, "yellow");
+        rectHud(canvas.width - 130, 2, 52, 50, 2, "yellow");
     } else if (holdingRifle === true) {
-        rect(canvas.width - 80, 2, 52, 50, 2, "yellow");
+        rectHud(canvas.width - 80, 2, 52, 50, 2, "yellow");
     }
 
 }

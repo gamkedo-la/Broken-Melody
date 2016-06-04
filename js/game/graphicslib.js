@@ -12,6 +12,15 @@ function rect(topLeftX, topLeftY, boxWidth, boxHeight, lineWidth, color) {
 
 }
 
+function rectHud(topLeftX, topLeftY, boxWidth, boxHeight, lineWidth, color) {
+    hudCanContext.beginPath();
+    hudCanContext.lineWidth = lineWidth;
+    hudCanContext.strokeStyle = color;
+    hudCanContext.rect(topLeftX, topLeftY, boxWidth, boxHeight);
+    hudCanContext.stroke();
+
+}
+
 function colorCircle(centerX, centerY, radius, fillColor) {
   canvasContext.fillStyle = fillColor;
   canvasContext.beginPath();
