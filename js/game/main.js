@@ -89,6 +89,7 @@ function startGame(){
   playerStoreRoomEntry();
   playerReset(); // only calling this for first room player starts in.
   gameGoing = true;
+  audio_music.play();
 }
 
 window.onload = function() {
