@@ -47,6 +47,7 @@ var gangerPic = document.createElement("img");
 var gangerPistolPic = document.createElement("img");
 var gangerHitPic = document.createElement("img");
 var gangerPistolHitPic = document.createElement("img");
+var gangerKnifePic = document.createElement("img");
 
 // start screen image loading before rest of them
 var startScreen = document.createElement("img");
@@ -104,6 +105,7 @@ function loadImages() {
         { varName: mapDotPic, theFile: "images/mapDotPic.png" },
         { varName: gangerPic, theFile: "images/ganger-sheet.png" },
         { varName: gangerPistolPic, theFile: "images/ganger-sheet-pistol.png" },
+        { varName: gangerKnifePic, theFile: "images/ganger-sheet-knife.png" },
         { varName: gangerPistolHitPic, theFile: "images/gangerHit-sheet-pistol.png" },
         { varName: gangerHitPic, theFile: "images/gangerHit-sheet.png" },
         { varName: easterTown, theFile: "images/easterTownPic.jpg" },

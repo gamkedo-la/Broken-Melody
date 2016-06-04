@@ -12,6 +12,7 @@ const ANT_GROUND_HEIGHT_OFFSET = 14;
 
 const HEALTH_GANGER = 2;
 const HEALTH_GANGER_PISTOL = 4;
+const HEALTH_GANGER_KNIFE = 3;
 
 enemyList = [];
 
@@ -46,8 +47,11 @@ function EnemyClass() {
               this.myPic = gangerPistolPic;
               this.gangerHealth = HEALTH_GANGER_PISTOL;
               break;
+          case TILE_KNIFE_GANGER:
+              this.myPic = gangerKnifePic;
+              this.gangerHealth = HEALTH_GANGER_KNIFE;
           default:
-              this.gangerHealth = 5;
+              this.gangerHealth = 2;
               break;
       }
 
@@ -188,7 +192,7 @@ this.enemyMove = function() {
         }
     }
 
-    hitDetection(this.x, this.y, this.allShots_enemy);
+    hitDetection(this.x, this.y, this.allShots_enemy, this.myKind);
 }
 
     this.removeHealthAndKill = function() {

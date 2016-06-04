@@ -130,6 +130,10 @@ function processBrickGrid() {
      enemyList.push(tempEnemy);
      tempEnemy = new EnemyClass();
    }
+   while (tempEnemy.enemyPlacement(TILE_KNIFE_GANGER, ENEMY_SPEED, 0.0, gangerKnifePic)) {
+       enemyList.push(tempEnemy);
+       tempEnemy = new EnemyClass();
+   }
 }
 
 function brickTileToIndex(tileCol, tileRow) {

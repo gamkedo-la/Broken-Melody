@@ -420,13 +420,13 @@ function shotDetection (theEnemy) {
   }
 }
 
-function hitDetection (enemyX, enemyY, allShots) {
+function hitDetection(enemyX, enemyY, allShots, enemyType) {
   if (damagedRecentely > 0) {
     return;
   }
     if (enemyX > playerX - PLAYER_RADIUS && enemyX < playerX + PLAYER_RADIUS) {
         if (enemyY > playerY - PLAYER_RADIUS && enemyY < playerY + PLAYER_RADIUS) {
-            checkHealthShieldandRemovePizza();
+            checkHealthShieldandRemovePizza(enemyType);
             audio_player_shot.play();
             damagedRecentely = 50;
         }
@@ -449,11 +449,15 @@ function hitDetection (enemyX, enemyY, allShots) {
 
 }
 
-function checkHealthShieldandRemovePizza() {
+function checkHealthShieldandRemovePizza(enemyType) {
     if (shieldAmount > 0) {
         shieldAmount--;
     } else {
-        health--;
+        if (enemyType == TILE_KNIFE_GANGER) {
+            health = health - 2;
+        } else {
+            health--;
+        }
     }
     removePizza();
 }
