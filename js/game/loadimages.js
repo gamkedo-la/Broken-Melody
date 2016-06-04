@@ -111,8 +111,8 @@ function loadImages() {
         { varName: emptyHand, theFile: "images/emptyHand.png" },
         { varName: tilePistolHudPic, theFile: "images/tilePistolHud.png" },
         { varName: tileRifleHudPic, theFile: "images/tileRifleHud.png" },
-        {varName:speakerMuted, theFile: "images/speakerMuted.png"},
-        {varName:speakerNotMuted, theFile: "images/speakerNotMuted.png"},
+        { varName: speakerMuted, theFile: "images/speakerMuted.png"},
+        { varName: speakerNotMuted, theFile: "images/speakerNotMuted.png"},
         { varName: pausedPic, theFile: "images/pause.png" }
     ];
   
