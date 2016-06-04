@@ -19,6 +19,8 @@ var buttonNoWork = document.createElement("img");
 var emptyHand = document.createElement("img");
 var tilePistolHudPic = document.createElement("img");
 var tileRifleHudPic = document.createElement("img");
+var speakerMuted = document.createElement("img");
+var speakerNotMuted = document.createElement("img");
 
 var tileArmorPic = document.createElement("img"); // #TODO remove
 var tileMerchantPic = document.createElement("img");
@@ -109,6 +111,8 @@ function loadImages() {
         { varName: emptyHand, theFile: "images/emptyHand.png" },
         { varName: tilePistolHudPic, theFile: "images/tilePistolHud.png" },
         { varName: tileRifleHudPic, theFile: "images/tileRifleHud.png" },
+        {varName:speakerMuted, theFile: "images/speakerMuted.png"},
+        {varName:speakerNotMuted, theFile: "images/speakerNotMuted.png"},
         { varName: pausedPic, theFile: "images/pause.png" }
     ];
   
