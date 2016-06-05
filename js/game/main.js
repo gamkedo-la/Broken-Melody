@@ -63,9 +63,9 @@ function updateTime () {
 
 function drawSpeaker(){
     if(muted){
-        canvasContext.drawImage(speakerMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
+        hudCanContext.drawImage(speakerMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
     } else {
-        canvasContext.drawImage(speakerNotMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
+        hudCanContext.drawImage(speakerNotMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
     }
 }
 
@@ -214,7 +214,7 @@ function drawEverything() {
   // canvasContext.drawImage(backgroundPic,0, 0);
 
   drawOnlyBricksOnScreen();
-  drawSpeaker();
+  
   if(paused){
     canvasContext.drawImage(pausedPic, 200, canvas.height / 3);
     return;
@@ -280,6 +280,7 @@ function drawEverything() {
     drawShieldHud();
     drawFunds();
     drawWeapons();
+    drawSpeaker();
     
   
 
