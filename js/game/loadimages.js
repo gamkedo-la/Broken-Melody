@@ -54,7 +54,7 @@ var startScreen = document.createElement("img");
 startScreen.src = "images/startScreen.png";
 
 var picsToLoad = 0;
-var worldArtSets = 3;
+var worldArtSets = 5;
 var allImagesLoaded = false;
 
 function countLoadedImageAndLaunchIfReady() {
