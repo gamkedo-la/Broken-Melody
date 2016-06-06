@@ -41,6 +41,19 @@ var muted = false;
 
 var pizzaTime = 0;
 
+function displayMerchantText(){
+    var textWidth = 250;
+    var textHeight = 20;
+    var textY = canvas.height - 40;
+    var boxY = textY - 16;
+    colorRect(canvas.width / 2 - textWidth / 2, boxY, textWidth, textHeight, 'white');
+    canvasContext.fillStyle = 'black';
+    var savedTextAlign = canvasContext.textAlign;
+    canvasContext.textAlign = "center";
+    canvasContext.fillText("Would you like to buy something?",canvas.width / 2, textY);
+    canvasContext.textAlign = savedTextAlign;
+}
+
 function updateTime () {
   gameTime ++;
   if (gameTime == 30) {
@@ -113,6 +126,8 @@ window.onload = function() {
   canvasContext = canvas.getContext('2d');
   hudCan = document.getElementById('hudCan');
   hudCanContext = hudCan.getContext('2d');
+
+  canvasContext.font = "14px Merriweather";
 
   initInput();
 
@@ -324,6 +339,9 @@ function drawEverything() {
 
     if (slideDir == DIR_NONE) {
 
+    }
+    if(onMerchant){
+        displayMerchantText();
     }
 
 } // end draw everything

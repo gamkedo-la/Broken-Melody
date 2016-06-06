@@ -52,6 +52,7 @@ var mapDotX = 0;
 var mapDotY = 0;
 
 var money = 0;
+var onMerchant = false;
 
 var replacementTile = TILE_NONE;
 
@@ -81,7 +82,9 @@ function fireWeapon() {
 function isBlockPickup (tileType) {  // this allows for picking up health, etc.
     if(tileType == TILE_PIZZA){
         replacementTile = TILE_PIZZA;
-    } else {
+    } else if (tileType == TILE_MERCHANT){
+        replacementTile = TILE_MERCHANT;
+    }else {
         replacementTile = TILE_NONE;
     }
   if (whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == tileType) {
@@ -192,10 +195,11 @@ function playerMove() {
       health ++;
     }
   }
+
+  onMerchant = isBlockPickup(TILE_MERCHANT);
   
   if(health <= 0){
     if (isBlockPickup(TILE_PIZZA)) {
-        console.log("lbock is pizza true");
         audio_pizza_picked_up.play();
         health = 3;
         hasPizza = true;
