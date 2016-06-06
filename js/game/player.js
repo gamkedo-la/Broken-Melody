@@ -193,8 +193,9 @@ function playerMove() {
     }
   }
   
-  if(health == 0){
+  if(health <= 0){
     if (isBlockPickup(TILE_PIZZA)) {
+        console.log("lbock is pizza true");
         audio_pizza_picked_up.play();
         health = 3;
         hasPizza = true;
@@ -465,6 +466,7 @@ function checkHealthShieldandRemovePizza(enemyType) {
 function removePizza() {
     if (health <= 0) {
         hasPizza = false;
+        health = 0; // to avoid negative health so you can still pick it up
     }
 }
 

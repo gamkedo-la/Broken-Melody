@@ -6,6 +6,10 @@ const DIR_S = 1;
 const DIR_W = 2;
 const DIR_N = 3;
 const DIR_NONE = 4;
+const DIR_RAND_COUNT = 4;
+function randDir(){
+    return Math.floor(Math.random() * DIR_RAND_COUNT);
+}
 
 const ENEMY_SPEED = 1.0;
 const ANT_GROUND_HEIGHT_OFFSET = 14;
@@ -123,6 +127,8 @@ this.enemyDraw = function() {
 
 }
 
+
+
 this.enemyMove = function() {
     if(this.myRoomC != roomsOverC || this.myRoomR != roomsDownR) {
       return; // not in this room, skip this one
@@ -138,27 +144,33 @@ this.enemyMove = function() {
     this.x += this.xv;
     this.y += this.yv;
 
-    if(isTileHereSolid(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv)) {
+    if(isTileHereSolid(this.x+PLAYER_RADIUS*this.xv,this.y+PLAYER_RADIUS*this.yv)) { // bumping wall?
       this.facingDir ++;
       if(this.facingDir >= DIR_NONE){
           this.facingDir = DIR_E;
       }
-      
-    } else if (Math.random() < 0.05) { // this will randomly move towards the player
-        if (Math.random() < 0.5){ // North/South
-            if(this.y < playerY){
-                this.facingDir = DIR_S;
-            } else {
-                this.facingDir = DIR_N;
+    } else if(hasPizza) { // this will randomly move towards the player
+        if (Math.random() < 0.05) {
+          if (Math.random() < 0.5){ // Vertical
+              if(this.y < playerY){
+                  this.facingDir = DIR_S;
+              } else {
+                  this.facingDir = DIR_N;
+              } // ends North/South if
+          } else {  // Horizontal
+              if (this.x < playerX){
+                  this.facingDir = DIR_E;
+              } else {
+                  this.facingDir = DIR_W;
+              } 
+          } // ends East/West if
+        } // random odds toward player 
+    } else { // if player doesn't have pizza
+            if(Math.random() < 0.02){
+              this.facingDir = randDir();
             }
-        } else {  // East/West
-            if (this.x < playerX){
-                this.facingDir = DIR_E;
-            } else {
-                this.facingDir = DIR_W;
-            }
-        }
-    }
+    }  // end of player didn't have pizza else 
+
     switch(this.facingDir){
           case DIR_N:
             this.xv = 0;
@@ -181,12 +193,8 @@ this.enemyMove = function() {
     this.x += this.xv;
     this.y += this.yv;
 
-    if (this.myKind === TILE_PISTOL_GANGER) {
-        var sr = 50;
-        if (this.facingDir === DIR_E && this.x < playerX && this.y > playerY - sr && this.y < playerY + sr ||
-            this.facingDir === DIR_W && this.x > playerX && this.y > playerY - sr && this.y < playerY + sr ||
-            this.facingDir === DIR_N && this.y > playerY && this.x > playerX - sr && this.x < playerX + sr ||
-            this.facingDir === DIR_S && this.y < playerY && this.x > playerX - sr && this.x < playerX + sr) {
+    if (this.myKind === TILE_PISTOL_GANGER && hasPizza) {
+        if (this.hasLineOfSightToPlayer()) {
             addShotToPistol_enemy(this.allShots_enemy);
             firePistol_enemy(this.x, this.y, this.allShots_enemy, this.facingDir);
         }
@@ -202,5 +210,50 @@ this.enemyMove = function() {
         if (this.gangerHealth <= 0) {
             this.readyToRemove = true;
         }
+    }
+
+    this.hasLineOfSightToPlayer = function() {
+        var sr = 50;
+        if(this.facingDir === DIR_E && this.x < playerX && this.y > playerY - sr && this.y < playerY + sr ||
+           this.facingDir === DIR_W && this.x > playerX && this.y > playerY - sr && this.y < playerY + sr ||
+           this.facingDir === DIR_N && this.y > playerY && this.x > playerX - sr && this.x < playerX + sr ||
+           this.facingDir === DIR_S && this.y < playerY && this.x > playerX - sr && this.x < playerX + sr){
+          var LOSTesterX = this.x;
+          var LOSTesterY = this.y;
+          var LOSTesterXJump = 0;
+          var LOSTesterYJump = 0;
+
+          switch (this.facingDir){
+            case DIR_E:
+                LOSTesterXJump = BRICK_W;
+                break;
+            case DIR_S:
+                LOSTesterYJump = BRICK_H;
+                break;
+            case DIR_W:
+                LOSTesterXJump = -BRICK_W;
+                break;
+            case DIR_N:
+                LOSTesterYJump = -BRICK_H;
+                break;
+          }
+          // console.log("Xjump = " + LOSTesterXJump + " Yjump = " + LOSTesterYJump);
+          var playerIdx = whichIndexAtPixelCoord(playerX, playerY);
+          var shotTesterIdx = whichIndexAtPixelCoord(LOSTesterX, LOSTesterY);
+
+          while (playerIdx != shotTesterIdx && shotTesterIdx != -1){
+              if(isTileHereSolid(LOSTesterX, LOSTesterY)){
+                  return false;
+              }
+              LOSTesterX += LOSTesterXJump;
+              LOSTesterY += LOSTesterYJump;
+              shotTesterIdx = whichIndexAtPixelCoord(LOSTesterX, LOSTesterY);
+              // console.log("LOSTesterX = " + LOSTesterX + " LOSTesterY = " + LOSTesterY);
+          } 
+          if(playerIdx == shotTesterIdx){
+              return true;
+          }
+        }
+        return false;
     }
 }

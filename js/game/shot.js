@@ -51,6 +51,9 @@ function shotClass(){
 		    this.bullet_life--;
 		    this.x += this.xv * bullet_speed;
 		    this.y += this.yv * bullet_speed;
+		    if(isTileHereSolid(this.x, this.y)) {
+						this.isActive = false;
+				}
 		} else {
 		    this.isActive = false;
 		}
