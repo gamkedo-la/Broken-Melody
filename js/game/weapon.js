@@ -4,7 +4,7 @@ var allShots = [];
 var hasPistol = true;
 var hasRifle = true;
 
-var holdingPistol = false;
+var holdingPistol = true;
 var holdingRifle = false;
 
 const PISTOL_PICKUP_AMMO = 10;
@@ -101,11 +101,7 @@ function drawWeapons() {
         hudCanContext.drawImage(tilePistolHudPic, canvas.width-135, 0);
     } 
     
-    hudCanContext.drawImage(emptyHand, canvas.width-185, 0);
-    
-    if (holdingPistol === false && holdingRifle === false) {
-        rectHud(canvas.width - 180, 2, 52, 50, 2, "yellow");
-    } else if (holdingPistol === true) {
+    if (holdingPistol === true) {
         rectHud(canvas.width - 130, 2, 52, 50, 2, "yellow");
     } else if (holdingRifle === true) {
         rectHud(canvas.width - 80, 2, 52, 50, 2, "yellow");
@@ -125,16 +121,11 @@ function drawAmmo() {
 }
 
 function gunSwitchLogic() {
-    if (hasPistol && holdingRifle == false && holdingPistol === false) {
+    if (holdingRifle) {
         holdingRifle = false;
         holdingPistol = true;
-    } else if (hasRifle && holdingPistol) {
+    } else {
         holdingPistol = false;
         holdingRifle = true;
-    } else if ((hasPistol === false && hasRifle === false) || holdingRifle) {
-        holdingPistol = false;
-        holdingRifle = false;
-    }
-
-
+    } 
 }

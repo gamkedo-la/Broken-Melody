@@ -208,6 +208,7 @@ this.enemyMove = function() {
         this.hitRecently = 10;
         audio_ganger_shot.play();
         if (this.gangerHealth <= 0) {
+            money += 5;
             this.readyToRemove = true;
         }
     }
