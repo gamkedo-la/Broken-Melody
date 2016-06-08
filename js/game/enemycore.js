@@ -193,7 +193,7 @@ this.enemyMove = function() {
     this.x += this.xv;
     this.y += this.yv;
 
-    if (this.myKind === TILE_PISTOL_GANGER && hasPizza) {
+    if (this.myKind === TILE_PISTOL_GANGER && hasPizza && slideDir == DIR_NONE) {
         if (this.hasLineOfSightToPlayer()) {
             addShotToPistol_enemy(this.allShots_enemy);
             firePistol_enemy(this.x, this.y, this.allShots_enemy, this.facingDir);

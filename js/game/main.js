@@ -336,10 +336,6 @@ function drawEverything() {
 
 
   }
-
-    if (slideDir == DIR_NONE) {
-
-    }
     if(onMerchant){
         displayMerchantText();
     }
