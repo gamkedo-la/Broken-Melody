@@ -55,7 +55,7 @@ var money = 0;
 var onMerchant = false;
 
 var replacementTile = TILE_NONE;
-
+var remainingDeliveries = 54;
 
 var shotList = [];
 
@@ -215,6 +215,7 @@ function playerMove() {
         if (health <= 0) {
             hasPizza = false;
         }
+        remainingDeliveries -= 1;
         saveProgress();
     }
   }
