@@ -74,7 +74,7 @@ function updateTime () {
   if (gameTime == 30) {
     gameTime = 0;
     timeS++;
-      if (pizzaTime > 0) {
+      if (pizzaTime > 0 && !paused) {
           pizzaTime--;
       }
   }
