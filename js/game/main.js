@@ -159,6 +159,12 @@ window.onload = function() {
         if (isWinner) {
           canvasContext.drawImage(endScreen, 0, 0);
           hudCanContext.drawImage(endScreen, 0, 0);
+          // loadLevel(level3f);
+          // canvasContext.drawImage(easterTown, 0, 0);
+          // easter = true;
+          // playerReset();
+          // moveEverything();
+          // drawEverything();
         } else {
           canvasContext.drawImage(startScreen, 0, 0);
           if (mouseOverPlay) {
