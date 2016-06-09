@@ -246,7 +246,6 @@ function drawOnlyBricksOnScreen() {
             usePic = tileOvenOn;
         }
         showStreetUnderTransparency = true;
-        
         break;
         case TILE_PIZZA_HERE:
         usePic = tilePizzaHerePic;

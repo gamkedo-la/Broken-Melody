@@ -4,7 +4,9 @@ var hasArmor = false;
 var hasPizza = false;
 
 var isShooting = false;
-
+var onPistol = false;
+var onRifle = false;
+var onArmor = false;
 var pistolCost = 350; //350;
 var rifleCost = 550; //550;
 var armorCost = 250; //250;
@@ -32,7 +34,7 @@ const RUN_SPEED = 8.0; //4
 var playerX = 75, playerY = 75;
 var playerSpeedX = 0, playerSpeedY = 0;
 
-var PLAYER_RADIUS = 16;
+var PLAYER_RADIUS = 12;
 const START_HEALTH = 0;
 var health = START_HEALTH;
 var damagedRecentely = 0;
@@ -79,12 +81,25 @@ function fireWeapon() {
 
 
 function isBlockPickup (tileType) {  // this allows for picking up health, etc.
-    if(tileType == TILE_OVEN){
+    switch(tileType){
+      case TILE_OVEN:
         replacementTile = TILE_OVEN;
-    } else if (tileType == TILE_MERCHANT){
+        break;
+      case TILE_MERCHANT:
         replacementTile = TILE_MERCHANT;
-    }else {
+        break;
+      case TILE_PISTOL:
+        replacementTile = TILE_PISTOL;
+        break;
+      case TILE_RIFLE:
+        replacementTile = TILE_RIFLE;
+        break;
+      case TILE_ARMOR:
+        replacementTile = TILE_ARMOR;
+        break;
+      default:
         replacementTile = TILE_NONE;
+        break;
     }
   if (whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == tileType) {
     brickGrid[whichIndexAtPixelCoord(playerX, playerY + PLAYER_RADIUS)] = replacementTile;
@@ -201,6 +216,9 @@ function playerMove() {
   }
 
   onMerchant = isBlockPickup(TILE_MERCHANT);
+  onPistol = isBlockPickup(TILE_PISTOL);
+  onRifle = isBlockPickup(TILE_RIFLE);
+  onArmor = isBlockPickup(TILE_ARMOR);
   
   if(health <= 0){
     if (isBlockPickup(TILE_OVEN)) {

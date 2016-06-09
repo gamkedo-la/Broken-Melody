@@ -260,15 +260,16 @@ function drawEverything() {
     canvasContext.fillText("Ow",playerX - camPanX -5, playerY - camPanY + (damagedRecentely/5  ));
   }
 
-  if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_PISTOL && money < pistolCost){
+  if(onPistol && money < pistolCost){
+    console.log("oh no it's a pistol!");
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
   }
-    if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_RIFLE && money < rifleCost){
+  if(onRifle && money < rifleCost){
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
   }
-    if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_ARMOR && money < armorCost){
+  if(onArmor && money < armorCost){
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
   }
