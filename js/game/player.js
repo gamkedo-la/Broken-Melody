@@ -29,7 +29,7 @@ const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_X = 150;
 const PLAYER_DIST_FROM_CENTER_BEFORE_CAMERA_PAN_Y = 100;
 
 const GROUND_FRICTION = 0.8;
-const RUN_SPEED = 8.0; //4
+const RUN_SPEED = 4.0; //4
 
 var playerX = 75, playerY = 75;
 var playerSpeedX = 0, playerSpeedY = 0;
