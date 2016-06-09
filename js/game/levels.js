@@ -239,10 +239,14 @@ function drawOnlyBricksOnScreen() {
         usePic = tileArmorPic;
         showStreetUnderTransparency = true;
         break;
-        case TILE_HEALTH:
-        tileFrame = animFrame % TILE_HEALTH_FRAMES;
+        case TILE_OVEN:
+        if (hasPizza){
+            usePic = tileOvenOff;
+        } else {
+            usePic = tileOvenOn;
+        }
         showStreetUnderTransparency = true;
-        usePic = tileHealth;
+        
         break;
         case TILE_PIZZA_HERE:
         usePic = tilePizzaHerePic;

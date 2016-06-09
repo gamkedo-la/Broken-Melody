@@ -80,8 +80,8 @@ function fireWeapon() {
 
 
 function isBlockPickup (tileType) {  // this allows for picking up health, etc.
-    if(tileType == TILE_PIZZA){
-        replacementTile = TILE_PIZZA;
+    if(tileType == TILE_OVEN){
+        replacementTile = TILE_OVEN;
     } else if (tileType == TILE_MERCHANT){
         replacementTile = TILE_MERCHANT;
     }else {
@@ -189,17 +189,10 @@ function playerMove() {
     playerNonSolidY = playerY;
   }
 
-  
-  if (isBlockPickup(TILE_HEALTH)) {
-    if (health < 3) {
-      health ++;
-    }
-  }
-
   onMerchant = isBlockPickup(TILE_MERCHANT);
   
   if(health <= 0){
-    if (isBlockPickup(TILE_PIZZA)) {
+    if (isBlockPickup(TILE_OVEN)) {
         audio_pizza_picked_up.play();
         health = 3;
         hasPizza = true;

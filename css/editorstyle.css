@@ -285,6 +285,12 @@ html {
   background: url("../images/merchant.png") no-repeat;
   background-size: 100% 100%;
 }
+/* Oven */
+.t7 {
+  background: #202020;
+  background: url("../images/ovenWithFire.png") no-repeat;
+  background-size: 100% 100%;
+}
 /* Pizza Delivery */
 .t8 {
   background: #ff5900;

@@ -23,10 +23,10 @@ var isWinner = false;
 var mouseOverPlay = false;
 var mouseOverContinue = false;
 
-const NEW_BUTTON_X = 25;
-const NEW_BUTTON_Y = 432;
-const CONTINUE_BUTTON_X = 20;
-const CONTINUE_BUTTON_Y = 510;
+const NEW_BUTTON_X = 426;
+const NEW_BUTTON_Y = 366;
+const CONTINUE_BUTTON_X = 426;
+const CONTINUE_BUTTON_Y = 450;
 
 const MENU_BUTTON_WIDTH = 289;
 const MENU_BUTTON_HEIGHT = 74;
@@ -160,7 +160,7 @@ window.onload = function() {
         } else {
           canvasContext.drawImage(startScreen, 0, 0);
           if (mouseOverPlay) {
-              rect(NEW_BUTTON_X-6,NEW_BUTTON_Y-6,MENU_BUTTON_WIDTH,MENU_BUTTON_HEIGHT,2,"#2E86AB");
+              rect(NEW_BUTTON_X,NEW_BUTTON_Y,MENU_BUTTON_WIDTH,MENU_BUTTON_HEIGHT,2,"#2E86AB");
           }
           if (mouseOverContinue && localStorage.localMoney) {
               rect(CONTINUE_BUTTON_X,CONTINUE_BUTTON_Y,MENU_BUTTON_WIDTH,MENU_BUTTON_HEIGHT,2,"#2E86AB");

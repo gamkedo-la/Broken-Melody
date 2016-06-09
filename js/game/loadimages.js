@@ -5,9 +5,9 @@ var tileBuildingPic = document.createElement("img");
 var deadScreen = document.createElement("img");
 var endScreen = document.createElement("img");
 var tilePistolPic = document.createElement("img");
-var tileHealth = document.createElement("img");
-const TILE_HEALTH_FRAMES = 4;
 var tilePizzaHerePic = document.createElement("img");
+var tileOvenOn = document.createElement("img");
+var tileOvenOff = document.createElement("img");
 var tilePizzaPic = document.createElement("img");
 const TILE_PIZZA_FRAMES = 4;
 //var tilePistolGangerPic = document.createElement("img");
@@ -15,6 +15,7 @@ var tileRiflePic = document.createElement("img");
 var tileMapPic = document.createElement("img");
 var pausedPic = document.createElement("img");
 var easterTown = document.createElement("img");
+var easterTownForeGround = document.createElement("img");
 var buttonNoWork = document.createElement("img");
 var emptyHand = document.createElement("img");
 var tilePistolHudPic = document.createElement("img");
@@ -85,7 +86,6 @@ function loadImages() {
         { varName: backgroundPic, theFile: "images/gamebg.png" },
         { varName: tilePistolPic, theFile: "images/tilePistol.png" },
         { varName: tileArmorPic, theFile: "images/tileArmor.png" },
-        { varName: tileHealth, theFile: "images/healthSheet.png" },
         { varName: tilePizzaHerePic, theFile: "images/pizzaHere.png" },
         { varName: tilePizzaPic, theFile: "images/TilePizzaAnimated.png" },
         { varName: tileMerchantPic, theFile: "images/merchant.png" },
@@ -115,6 +115,9 @@ function loadImages() {
         { varName: tileRifleHudPic, theFile: "images/tileRifleHud.png" },
         { varName: speakerMuted, theFile: "images/speakerMuted.png"},
         { varName: speakerNotMuted, theFile: "images/speakerNotMuted.png"},
+        { varName: easterTownForeGround, theFile: "images/easterfg.png"},
+        { varName: tileOvenOn, theFile: "images/ovenWithFire.png"},
+        { varName: tileOvenOff, theFile: "images/ovenNoFire.png"},
         { varName: pausedPic, theFile: "images/pause.png" }
     ];
   
