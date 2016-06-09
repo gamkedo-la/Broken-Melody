@@ -1,5 +1,7 @@
 var backgroundPic = document.createElement("img");
 var gamkedoLogoPic = document.createElement("img");
+var story1Pic = document.createElement("img");
+var story2Pic = document.createElement("img");
 var tileStreet = document.createElement("img");
 var tileSidewalk = document.createElement("img");
 var tileBuildingPic = document.createElement("img");
@@ -85,6 +87,8 @@ function loadImages() {
     var imageList = [
         { varName: backgroundPic, theFile: "images/gamebg.png" },
         { varName: gamkedoLogoPic, theFile: "images/logos/gk-logo-with-name.png"},
+        { varName: story1Pic, theFile: "images/logos/story1.png"},
+        { varName: story2Pic, theFile: "images/logos/story2.png"},
         { varName: tilePistolPic, theFile: "images/tilePistol.png" },
         { varName: tileArmorPic, theFile: "images/tileArmor.png" },
         { varName: tilePizzaHerePic, theFile: "images/pizzaHere.png" },

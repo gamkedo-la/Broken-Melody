@@ -21,7 +21,7 @@ var paused = false;
 var gameGoing = false;
 var isWinner = false;
 var startLogos = true;
-var fadeOutLogo = false;
+
 
 var mouseOverPlay = false;
 var mouseOverContinue = false;
@@ -140,8 +140,7 @@ window.onload = function() {
 
   loadLevelsBesidesFirstOne();
 
-    var opacityTimer = 0;
-    var opacity = 0.0;
+
 
   // these next few lines set up our game logic and render to happen 30 times per second
   var framesPerSecond = 30;
@@ -152,33 +151,7 @@ window.onload = function() {
         updateTime();
       } else if (startLogos) {
 
-          if (!fadeOutLogo) {
-              if (opacityTimer >= 1) {
-                  opacityTimer = 0;
-                  colorRect(0, 0, canvas.width, canvas.height, "black");
-                  drawImageWithFade(gamkedoLogoPic, 50, (canvas.height - 128) / 2, opacity);
-
-                  opacity = opacity + 0.01;
-
-
-                  if (opacity >= 1) {
-                      fadeOutLogo = true;
-                  }
-              }
-          }
-          if (opacityTimer >= 1) {
-              opacityTimer = 0;
-              colorRect(0, 0, canvas.width, canvas.height, "black");
-              drawImageWithFade(gamkedoLogoPic, 50, (canvas.height-128)/2, opacity);
-
-              opacity = opacity - 0.01;
-
-
-              if (opacity <= 0) {
-                  startLogos = false;
-              }
-          }
-          opacityTimer++;
+          runStory();
 
       } else {
         if (isWinner) {
