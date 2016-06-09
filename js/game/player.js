@@ -57,7 +57,7 @@ var money = 0;
 var onMerchant = false;
 
 var replacementTile = TILE_NONE;
-var remainingDeliveries = 54;
+var remainingDeliveries = 80;
 
 var shotList = [];
 
