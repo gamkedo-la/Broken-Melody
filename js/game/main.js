@@ -55,6 +55,9 @@ function displayMerchantText(){
 }
 
 function displayRemainingDeliveries(){
+    if(isWinner){
+        return;
+    }
     var textY = 80;
     hudCanContext.fillStyle = "yellow";
     hudCanContext.font = "20px Consolas MS";
@@ -147,16 +150,10 @@ window.onload = function() {
         moveEverything();
         drawEverything();
         updateTime();
-        // if (health <= 0) {
-        //   canvasContext.drawImage(deadScreen, 0, 0);
-        // }
       } else {
         if (isWinner) {
           canvasContext.drawImage(endScreen, 0, 0);
-          canvasContext.fillStyle = 'Green';
-          canvasContext.fillText("Total Time:" ,400, 240);
-          canvasContext.fillText(timeH + ":" + timeM + ":" + timeS ,400, 260);
-          canvasContext.fillText("Bonuse Keys:" ,400, 340);
+          hudCanContext.drawImage(endScreen, 0, 0);
         } else {
           canvasContext.drawImage(startScreen, 0, 0);
           if (mouseOverPlay) {
@@ -237,7 +234,7 @@ function drawEverything() {
 
   drawOnlyBricksOnScreen();
   displayRemainingDeliveries();
-  
+
   if(paused){
     canvasContext.drawImage(pausedPic, 200, canvas.height / 3);
     return;
@@ -250,8 +247,6 @@ function drawEverything() {
   if(slideDir == DIR_NONE) {
     drawplayer();
   }
-
-
 
   canvasContext.fillStyle = 'white';
     hudCanContext.clearRect(0, 0, 800, 600);

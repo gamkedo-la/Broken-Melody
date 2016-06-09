@@ -78,7 +78,6 @@ function fireWeapon() {
 }
 
 
-
 function isBlockPickup (tileType) {  // this allows for picking up health, etc.
     if(tileType == TILE_OVEN){
         replacementTile = TILE_OVEN;
@@ -108,6 +107,9 @@ function isBlockPickup (tileType) {  // this allows for picking up health, etc.
 
 
 function drawHealthHud() {
+      if(isWinner){
+        return;
+    }
   if (health == 1) {
     hudCanContext.drawImage(hudHealth1Pic, 0,0);
   }
@@ -123,6 +125,9 @@ function drawHealthHud() {
 }
 
 function drawShieldHud() {
+      if(isWinner){
+        return;
+    }
     if (shieldAmount === 1) {
         hudCanContext.drawImage(hudShield1Pic, 0, 0);
     }
@@ -138,7 +143,9 @@ function drawShieldHud() {
 
 
 function drawFunds(){
-
+    if(isWinner){
+        return;
+    }
     hudCanContext.fillStyle = "#000000";
     hudCanContext.font = "20px Consolas MS";
     hudCanContext.textAlign = "center";
@@ -158,6 +165,10 @@ function playerMove() {
         fireWeapon();
     }
 
+  if(remainingDeliveries <= 0){
+      gameGoing = false;
+      isWinner = true;
+  }
   // used for returning player to valid position if bugged through wall
   var playerNonSolidX = -1;
   var playerNonSolidY = -1;

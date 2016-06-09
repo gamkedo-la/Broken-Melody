@@ -2,7 +2,6 @@ var backgroundPic = document.createElement("img");
 var tileStreet = document.createElement("img");
 var tileSidewalk = document.createElement("img");
 var tileBuildingPic = document.createElement("img");
-var deadScreen = document.createElement("img");
 var endScreen = document.createElement("img");
 var tilePistolPic = document.createElement("img");
 var tilePizzaHerePic = document.createElement("img");
@@ -91,7 +90,7 @@ function loadImages() {
         { varName: tileMerchantPic, theFile: "images/merchant.png" },
         { varName: tileRiflePic, theFile: "images/tileRifle.png" },
         { varName: tileMapPic, theFile: "images/tileMap.png" },
-        { varName: deadScreen, theFile: "images/deadScreen.png" },
+        { varName: endScreen, theFile: "images/endScreen.png" },
         { varName: playerPic, theFile: "images/player-sheet.png" },
         { varName: playerPizzaPic, theFile: "images/player-pizza-sheet.png" },
         { varName: hudHealth0Pic, theFile: "images/hudHealth0.png" },
