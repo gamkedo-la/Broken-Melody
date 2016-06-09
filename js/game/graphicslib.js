@@ -69,3 +69,11 @@ function drawHudText(text, x, y, font, color, align) {
     hudCanContext.textAlign = align;
     hudCanContext.fillText(text,x,y);
 }
+
+
+
+function drawImageWithFade(image, x, y, opacity) {
+    canvasContext.globalAlpha = opacity;
+    canvasContext.drawImage(image, x, y);
+    canvasContext.globalAlpha = 1;
+}

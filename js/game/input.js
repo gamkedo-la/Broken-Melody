@@ -139,6 +139,11 @@ function mousePos(evt){
 
 function mouseClick(evt){
     console.log(mouseX + ", " + mouseY);
+
+    if (startLogos) {
+        startLogos = false;
+    }
+
     if(mouseX > NEW_BUTTON_X && mouseX < NEW_BUTTON_X + MENU_BUTTON_WIDTH &&
         mouseY > NEW_BUTTON_Y && mouseY < NEW_BUTTON_Y + MENU_BUTTON_HEIGHT){
         if(allImagesLoaded){
