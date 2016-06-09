@@ -15,6 +15,9 @@ const KEY_R = 82;
 const KEY_L = 76;
 const KEY_P = 80;
 const KEY_K = 75;
+const KEY_Z = 90;
+const KEY_C = 67;
+
 
 var wall_clipping_cheat = false;
 
@@ -82,7 +85,7 @@ function setKeyHoldState(thisKey, setTo) {
     if (thisKey == KEY_K) {
         saveProgress();
     }
-    if (thisKey === KEY_T) {
+    if (thisKey === KEY_Z) {
         isShooting = setTo;
     }
 
@@ -100,7 +103,7 @@ function keyPressed(evt) {
     }
 
     //quick cheat to test guns, but may be useful to allow player to switch weapons
-    if (evt.keyCode === KEY_N) {
+    if (evt.keyCode === KEY_C) {
         gunSwitchLogic();
         //if (hasPistol) {
         //    hasPistol = false;
