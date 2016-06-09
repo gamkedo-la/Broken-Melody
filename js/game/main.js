@@ -271,8 +271,9 @@ function drawEverything() {
 
   // canvasContext.drawImage(backgroundPic,0, 0);
 
-  drawOnlyBricksOnScreen();
-  displayRemainingDeliveries();
+    drawOnlyBricksOnScreen();
+
+    displayRemainingDeliveries();
 
   if(paused){
     canvasContext.drawImage(pausedPic, 200, canvas.height / 3);
@@ -319,6 +320,8 @@ function drawEverything() {
   }
     drawShot();
     canvasContext.restore(); // undoes the .translate() used for cam scroll
+
+    drawTransparentHudBox();
     displayRemainingDeliveries();
     hudCanContext.save();
     hudCanContext.restore();

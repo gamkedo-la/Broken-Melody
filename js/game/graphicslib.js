@@ -21,6 +21,11 @@ function rectHud(topLeftX, topLeftY, boxWidth, boxHeight, lineWidth, color) {
 
 }
 
+function colorRectHud(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
+    hudCanContext.fillStyle = fillColor;
+    hudCanContext.fillRect(topLeftX, topLeftY, boxWidth, boxHeight);
+}
+
 function colorCircle(centerX, centerY, radius, fillColor) {
   canvasContext.fillStyle = fillColor;
   canvasContext.beginPath();

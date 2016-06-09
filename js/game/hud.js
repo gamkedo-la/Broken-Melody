@@ -1,3 +1,10 @@
+
+function drawTransparentHudBox() {
+    hudCanContext.globalAlpha = 0.85;
+    colorRectHud(377, 0, 50, 46, "grey");
+    hudCanContext.globalAlpha = 1;
+}
+
 function displayRemainingDeliveries() {
     if (isWinner) {
         return;
