@@ -180,11 +180,6 @@ function drawOnlyBricksOnScreen() {
     animFrame++;
   }
 
-  if(roomKind == 4){
-    canvasContext.drawImage(easterTown, 0, 0);
-    return;
-  }
-
   var cameraLeftMostCol = Math.floor(camPanX / BRICK_W);
   var cameraTopMostRow = Math.floor(camPanY / BRICK_H);
 
@@ -207,6 +202,14 @@ function drawOnlyBricksOnScreen() {
 
   var usePic;
   var tileFrame;
+
+  if(roomKind == 4){
+    canvasContext.drawImage(easterTown, 0, 0);
+    easter = true;
+    return;
+  } else {
+    easter = false;
+  }
   
   for(var eachCol=cameraLeftMostCol; eachCol<cameraRightMostCol; eachCol++) {
     for(var eachRow=cameraTopMostRow; eachRow<cameraBottomMostRow; eachRow++) {

@@ -14,6 +14,7 @@ var countdown = 0;
 var timeSCD = 30;
 var timeMCD = 2;
 var wobble = 1;
+var easter = false;
 
 var paused = false;
 
@@ -40,6 +41,10 @@ const MUTE_BUTTON_HEIGHT = 30;
 var muted = false;
 
 var pizzaTime = 0;
+
+function drawEaster(){
+    canvasContext.drawImage(easterTownForeGround, 0, 0);
+}
 
 function displayMerchantText(){
     var textWidth = 250;
@@ -283,7 +288,9 @@ function drawEverything() {
     drawFunds();
     drawWeapons();
     drawSpeaker();
-    
+    if(easter && slideDir == DIR_NONE){
+        drawEaster();
+    }
   
 
 
