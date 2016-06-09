@@ -1,7 +1,8 @@
 
 function drawTransparentHudBox() {
-    hudCanContext.globalAlpha = 0.85;
-    colorRectHud(377, 0, 50, 46, "grey");
+    hudCanContext.globalAlpha = 0.75;
+    colorRectHud(377, 0, 50, 46, "white");
+    colorRectHud(MUTE_BUTTON_X, MUTE_BUTTON_Y, MUTE_BUTTON_WIDTH-2, MUTE_BUTTON_HEIGHT-2, "white");
     hudCanContext.globalAlpha = 1;
 }
 
@@ -101,10 +102,13 @@ function drawAmmo() {
     }
 }
 
+
 function drawSpeaker() {
     if (muted) {
         hudCanContext.drawImage(speakerMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
     } else {
         hudCanContext.drawImage(speakerNotMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
     }
+
+    
 }
