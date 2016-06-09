@@ -255,37 +255,20 @@ function drawEverything() {
     timerDelay --;
   }
 
-  if (hasMap && tutorialTimerMap < 200) {
-    canvasContext.fillStyle = 'white';
-    canvasContext.fillText("Press M to bring up the Map",playerX - camPanX -60, playerY -20 - camPanY);
-    tutorialTimerMap ++;
-  }
-  if (showMap) {
-    canvasContext.drawImage(hudMapPic, 0, 0)
-    mapDotX = 2 + (88 * roomsOverC)
-    mapDotY = 5 + (66 * roomsDownR)
-    canvasContext.drawImage(mapDotPic, mapDotX, mapDotY)
-  }
-
-  if (showTimer == true) {
-    canvasContext.fillStyle = 'white';
-    canvasContext.fillText(timeH + ":" + timeM + ":" + timeS ,400, 40);
-  }
-
   if (damagedRecentely > 0) {
     canvasContext.fillStyle = 'white';
     canvasContext.fillText("Ow",playerX - camPanX -5, playerY - camPanY + (damagedRecentely/5  ));
   }
 
-  if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_PISTOL && money < 15){
+  if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_PISTOL && money < pistolCost){
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
   }
-    if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_RIFLE && money < 15){
+    if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_RIFLE && money < rifleCost){
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
   }
-    if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_ARMOR && money < 15){
+    if(whichBrickAtPixelCoord(playerX,playerY+PLAYER_RADIUS,true) == TILE_ARMOR && money < armorCost){
     canvasContext.fillStyle = 'black';
     canvasContext.fillText("Not enough money!",playerX - camPanX -5, playerY - camPanY + 50);
   }

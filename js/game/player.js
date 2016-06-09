@@ -5,9 +5,9 @@ var hasPizza = false;
 
 var isShooting = false;
 
-var pistolCost = 10; //350;
-var rifleCost = 10; //550;
-var armorCost = 10; //250;
+var pistolCost = 350; //350;
+var rifleCost = 550; //550;
+var armorCost = 250; //250;
 
 var isFiring = false;
 var bashTimer = 10;
