@@ -64,15 +64,7 @@ function displayMerchantText(){
     canvasContext.textAlign = savedTextAlign;
 }
 
-function displayRemainingDeliveries(){
-    if(isWinner){
-        return;
-    }
-    var textY = 80;
-    hudCanContext.fillStyle = "yellow";
-    hudCanContext.font = "20px Consolas MS";
-    hudCanContext.fillText("Remaining Deliveries: " + remainingDeliveries, 110, textY);
-}
+
 
 function updateTime () {
   gameTime ++;
@@ -95,13 +87,7 @@ function updateTime () {
   }
 }
 
-function drawSpeaker(){
-    if(muted){
-        hudCanContext.drawImage(speakerMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
-    } else {
-        hudCanContext.drawImage(speakerNotMuted, MUTE_BUTTON_X, MUTE_BUTTON_Y);
-    }
-}
+
 
 function loadProgress(){
   if(typeof(Storage) !== "undefined") {
@@ -338,7 +324,7 @@ function drawEverything() {
     hudCanContext.restore();
     drawHealthHud();
     drawShieldHud();
-    drawFunds();
+    drawFundsAndTimer();
     drawWeapons();
     drawSpeaker();
     if(easter && slideDir == DIR_NONE){

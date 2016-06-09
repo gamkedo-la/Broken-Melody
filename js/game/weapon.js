@@ -92,33 +92,7 @@ function shotsExist() {
 }
 
 
-function drawWeapons() {
-    drawAmmo();
-    if (hasRifle) {
-        hudCanContext.drawImage(tileRifleHudPic, canvas.width-80, 0);
-    }
-    if (hasPistol) {
-        hudCanContext.drawImage(tilePistolHudPic, canvas.width-135, 0);
-    } 
-    
-    if (holdingPistol === true) {
-        rectHud(canvas.width - 130, 2, 52, 50, 2, "yellow");
-    } else if (holdingRifle === true) {
-        rectHud(canvas.width - 80, 2, 52, 50, 2, "yellow");
-    }
 
-}
-
-function drawAmmo() {
-    var AMMO_TEXT_SIZE = 15;
-    ///change to holdingPistol
-    if (hasPistol) {
-        drawHudText(pistolAmmo, canvas.width-90, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
-    }
-    if (hasRifle) {
-        drawHudText(rifleAmmo, canvas.width-50, 15, `${AMMO_TEXT_SIZE}px Consolas MS`, "#000000", "center");
-    }
-}
 
 function gunSwitchLogic() {
     if (holdingRifle) {

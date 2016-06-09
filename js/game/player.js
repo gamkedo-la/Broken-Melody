@@ -123,58 +123,7 @@ function isBlockPickup (tileType) {  // this allows for picking up health, etc.
 
 
 
-function drawHealthHud() {
-      if(isWinner){
-        return;
-    }
-  if (health == 1) {
-    hudCanContext.drawImage(hudHealth1Pic, 0,0);
-  }
-  if (health == 2) {
-      hudCanContext.drawImage(hudHealth2Pic, 0, 0);
-  }
-  if (health == 3) {
-      hudCanContext.drawImage(hudHealth3Pic, 0, 0);
-  }
-  if (health < 1) {
-      hudCanContext.drawImage(hudHealth0Pic, 0, 0);
-  }
-}
 
-function drawShieldHud() {
-      if(isWinner){
-        return;
-    }
-    if (shieldAmount === 1) {
-        hudCanContext.drawImage(hudShield1Pic, 0, 0);
-    }
-    if (shieldAmount === 2) {
-        hudCanContext.drawImage(hudShield2Pic, 0, 0);
-    }
-    if (shieldAmount === 3) {
-        hudCanContext.drawImage(hudShield3Pic, 0, 0);
-    }
-}
-
-
-
-
-function drawFunds(){
-    if(isWinner){
-        return;
-    }
-    hudCanContext.fillStyle = "#000000";
-    hudCanContext.font = "20px Consolas MS";
-    hudCanContext.textAlign = "center";
-    hudCanContext.fillText(`$ ${money}`,400, 20);
-
-    if (pizzaTime > 0) {
-        hudCanContext.fillStyle = "#000000";
-        hudCanContext.font = "20px Consolas MS";
-        hudCanContext.textAlign = "center";
-        hudCanContext.fillText(pizzaTime, 400, 40);
-    }
-}
 
 function playerMove() {
 
