@@ -44,17 +44,18 @@ function initInput() {
 
 function setKeyHoldState(thisKey, setTo) {
 
-    if (thisKey == KEY_M && hasMap && timerDelay == 0) {
-        showMap = !showMap;
-        timerDelay = 10;
-    }
+    //if (thisKey == KEY_M && hasMap && timerDelay == 0) {
+    //    showMap = !showMap;
+    //    timerDelay = 10;
+    //}
 
-    if (thisKey == KEY_SPACE && setTo) {
-        if (gameGoing == false && isWinner == false) {
-            // audio_music.play();
-        }
-        wall_clipping_cheat = !wall_clipping_cheat;
-    }
+    //if (thisKey == KEY_SPACE && setTo) {
+    //    if (gameGoing == false && isWinner == false) {
+    //        // audio_music.play();
+    //    }
+    //    wall_clipping_cheat = !wall_clipping_cheat;
+    //}
+
     if (thisKey == KEY_LEFT_ARROW || thisKey == KEY_A) {
         holdLeft = setTo;
         if (setTo) {
