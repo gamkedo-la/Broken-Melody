@@ -44,6 +44,9 @@ var muted = false;
 
 var pizzaTime = 0;
 
+var showColdPizzaTextTimer = 0;
+var coldPizzaText = "The pizza is cold!";
+
 function drawEaster(){
     canvasContext.drawImage(easterTownForeGround, 0, 0);
 }
@@ -78,6 +81,7 @@ function updateTime () {
     timeS++;
       if (pizzaTime > 0 && !paused) {
           pizzaTime--;
+          checkPizzaTimer();
       }
   }
   if (timeS == 60) {
@@ -242,6 +246,9 @@ function moveEverything() {
   if (resetTimer != 0) {
     resetTimer --;
   }
+    if (showColdPizzaTextTimer > 0) {
+        showColdPizzaTextTimer--;
+    }
 
   for(var i=0;i<enemyList.length;i++) {
     enemyList[i].enemyMove();
@@ -305,6 +312,11 @@ function drawEverything() {
     canvasContext.fillStyle = 'white';
     canvasContext.fillText("Ow",playerX - camPanX -5, playerY - camPanY + (damagedRecentely/5  ));
   }
+
+    if (showColdPizzaTextTimer > 0) {
+        canvasContext.fillStyle = 'white';
+        canvasContext.fillText(coldPizzaText, playerX - camPanX - 5, playerY - camPanY + (damagedRecentely / 5));
+    }
 
   if(onPistol && money < pistolCost){
     console.log("oh no it's a pistol!");

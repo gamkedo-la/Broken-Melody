@@ -1,12 +1,12 @@
 var ext;
 
 function setFormat() {
-	var audio = new Audio();
-	if( audio.canPlayType("audio/mp3")) {
-		ext = ".mp3";
-	} else {
-		ext = ".ogg";
-	}
+    var audio = new Audio();
+    if( audio.canPlayType("audio/mp3")) {
+        ext = ".mp3";
+    } else {
+        ext = ".ogg";
+    }
 }
 
 setFormat();
@@ -19,6 +19,7 @@ var audio_pizza_delivered = new Audio("SFX/pizza_delivered" + ext);
 var audio_pisol_shoot = new Audio("SFX/pistol_shoot" + ext);
 var audio_rifle_shoot = new Audio("SFX/rifle_shoot" + ext);
 var audio_rifle_shoot_alt = new Audio("SFX/rifle_shoot" + ext);
+var audio_timer = new Audio("SFX/timer" + ext);
 
 audio_music.loop = true;
 
@@ -33,6 +34,7 @@ function mute(){
         audio_pisol_shoot.muted = muted;
         audio_rifle_shoot.muted = muted;
         audio_rifle_shoot_alt.muted = muted;
+        audio_timer.muted;
     } else {
         audio_music.muted = muted;
         audio_ganger_shot.muted = muted;
@@ -42,5 +44,6 @@ function mute(){
         audio_pisol_shoot.muted = muted;
         audio_rifle_shoot.muted = muted;
         audio_rifle_shoot_alt.muted = muted;
+        audio_timer.muted;
     }
 }

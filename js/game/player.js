@@ -63,6 +63,8 @@ var shotList = [];
 
 var shotTimer = 0;
 
+var PIZZA_TIME = 90;
+
 function fireWeapon() {
     
     if (holdingPistol) {
@@ -225,7 +227,8 @@ function playerMove() {
         audio_pizza_picked_up.play();
         health = 3;
         hasPizza = true;
-        pizzaTime = 120;
+        //PUT PIZZA TIME BACK
+        pizzaTime = PIZZA_TIME;
     }
   }
 
@@ -494,6 +497,17 @@ function removePizza() {
     if (health <= 0) {
         hasPizza = false;
         health = 0; // to avoid negative health so you can still pick it up
+    }
+}
+
+function checkPizzaTimer() {
+    if (pizzaTime <= 5) {
+        audio_timer.play();
+    }
+    if (pizzaTime <= 0) {
+        health = 0;
+        hasPizza = false;
+        showColdPizzaTextTimer = 50;
     }
 }
 
