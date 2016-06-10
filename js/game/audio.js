@@ -34,7 +34,7 @@ function mute(){
         audio_pisol_shoot.muted = muted;
         audio_rifle_shoot.muted = muted;
         audio_rifle_shoot_alt.muted = muted;
-        audio_timer.muted;
+        audio_timer.muted = muted;
     } else {
         audio_music.muted = muted;
         audio_ganger_shot.muted = muted;
@@ -44,6 +44,6 @@ function mute(){
         audio_pisol_shoot.muted = muted;
         audio_rifle_shoot.muted = muted;
         audio_rifle_shoot_alt.muted = muted;
-        audio_timer.muted;
+        audio_timer.muted = muted;
     }
 }
