@@ -82,7 +82,7 @@ function runStory() {
             opacity = opacity + 0.01;
 
 
-            if (opacity >= 1) {
+            if (opacity >= 1.5) {
                 story2fadein = false;
                 story2fadeout = true;
             }
