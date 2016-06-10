@@ -185,9 +185,11 @@ function playerMove() {
     if (isBlockPickup(TILE_PIZZA_HERE)) {
         audio_pizza_delivered.play();
         money += 20;
+        money += calculateTip();
         health--;
         if (health <= 0) {
             hasPizza = false;
+            pizzaTime = 0;
         }
         remainingDeliveries -= 1;
         saveProgress();
@@ -258,6 +260,12 @@ function playerMove() {
   }
  }
   checkIfChangingRooms();
+}
+
+
+function calculateTip() {
+    var tipAmount = Math.floor(pizzaTime / 10)-1;
+    return tipAmount;
 }
 
 function checkIfChangingRooms() {
